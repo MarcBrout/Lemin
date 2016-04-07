@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Tue Apr  5 14:56:58 2016 benjamin duhieu
+** Last update Thu Apr  7 19:41:05 2016 benjamin duhieu
 */
 
 #ifndef LEMIN_H_
@@ -44,6 +44,7 @@ typedef struct		s_tube
 {
   t_room		*room;
   int			nb;
+  int			id;
   struct s_tube		*next;
 }			t_tube;
 
@@ -58,7 +59,8 @@ typedef struct		s_path
 {
   char			pass;
   t_tube		*tube;
-  int			nb;
+  int			way;
+  int			i;
 }			t_path;
 
 typedef struct		s_ant

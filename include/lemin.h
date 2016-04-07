@@ -5,7 +5,11 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
+<<<<<<< HEAD
 ** Last update Thu Apr  7 19:41:05 2016 benjamin duhieu
+=======
+** Last update Thu Apr  7 12:07:03 2016 marc brout
+>>>>>>> d9349f599f280533034c21b36eb393d3edde1a82
 */
 
 #ifndef LEMIN_H_
@@ -25,12 +29,13 @@
 # define MISSING_TUBES "One valid path must exists.\n"
 # define INVALID_ROOM " Does not exist, skipping tube creation.\n"
 # define NO_PATH "No path available, exiting.\n"
-
+# define BAD_FORMAT "Bad line format, skipping it.\n"
 
 typedef struct		s_room
 {
   char			*name;
   int			id;
+  char			first;
   char			last;
   char			ants;
   int			x;

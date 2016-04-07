@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:54:44 2016 marc brout
-** Last update Mon Apr  4 12:10:31 2016 marc brout
+** Last update Thu Apr  7 13:01:18 2016 marc brout
 */
 
 #include <unistd.h>
@@ -45,37 +45,36 @@ int		set_new_x_y(t_room *ref, char *str)
   if (!(ref->name = my_getfirst_name(str, &i, ' ')))
     return (1);
   i++;
-  if (!str[i])
-    return (my_put_room_str(ref->name, WRONG_ROOM), 2);
   if ((ref->x = my_getnbr_i(str, &i)) < 0)
     return (my_put_room_str(ref->name, WRONG_ROOM), 2);
   i++;
-  if (!str[i])
-    return (my_put_room_str(ref->name, WRONG_ROOM), 2);
   if ((ref->y = my_getnbr_i(str, &i)) < 0)
     return (my_put_room_str(ref->name, WRONG_ROOM), 2);
   return (0);
 }
 
-int		check_existing_room(t_room *root, char *name)
+int		check_existing_room(t_room *root, t_room *test,
+				    char *name)
 {
   t_room	*tmp;
 
   tmp = root->next;
   while (tmp != root)
     {
-      if (!my_strcmp(tmp->name, name))
+      if (!my_strcmp(tmp->name, name) ||
+	  (test->x == tmp->x && test->y == tmp->y))
 	return (my_put_room_str(name, EXISTING_ROOM), 1);
       tmp = tmp->next;
     }
+  test->id++;
   return (0);
 }
 
-int		get_one_room(t_room *root, t_room *ref)
+int		get_one_room(t_room *root, t_room *ref, char *next)
 {
   t_room	*elem;
 
-  if (check_existing_room(root, ref->name))
+  if (check_existing_room(root, ref, ref->name))
     return (0);
   if (!(elem = malloc(sizeof(t_room))))
     return (my_put_error(MALLOC_ERR), 1);
@@ -89,70 +88,9 @@ int		get_one_room(t_room *root, t_room *ref)
   elem->x = ref->x;
   elem->y = ref->y;
   elem->id = ref->id;
-  elem->last = ref->last;
-  return (0);
-}
-
-int		get_end_room(t_data *data, int id)
-{
-  int		ret;
-  char		*line;
-  t_room	tmp;
-
-  tmp.id = id + 1;
-  tmp.last = 1;
-  if ((ret = get_next_str(&line)) && (ret == 2))
-    return (my_put_error(MISSING_END_ROOM), 1);
-  else if (ret)
-    return (1);
-  if ((ret = set_new_x_y(&tmp, line)) == 2)
-    return (my_put_error(MISSING_END_ROOM), 1);
-  else if (ret)
-    return (1);
-  if (get_one_room(data->rooms, &tmp))
-    return (1);
-  free(line);
-  return (0);
-}
-
-int		get_all_rooms(t_data *data)
-{
-  int		ret;
-  int		ret2;
-  char		*line;
-  t_room	tmp;
-
-  tmp.id = 0;
-  tmp.last = 0;
-  while (!(ret = get_next_str(&line)))
-    {
-      if (!my_strcmp(line, "##end") && tmp.id <= 1)
-	return (my_put_error(MISSING_ROOM), 1);
-      else if (!my_strcmp(line, "##end") && tmp.id > 1)
-	return (get_end_room(data, tmp.id));
-      ++tmp.id;
-      if ((ret2 = set_new_x_y(&tmp, line)) == 2)
-	continue ;
-      else if (ret2)
-	return (1);
-      if (get_one_room(data->rooms, &tmp))
-	return (1);
-      free(line);
-    }
-  return (my_put_error(MISSING_END), 1);
-}
-
-int		get_first()
-{
-  char		*tmp;
-  int		ret;
-
-  if ((ret = get_next_str(&tmp)) && (ret == 2))
-    return (my_put_error(MISSING_START), 1);
-  else if (ret)
-    return (1);
-  if (my_strcmp(tmp, "##start"))
-    return (my_put_error(MISSING_START), 1);
+  elem->last = (*next == 1) ? 1 : 0;
+  elem->first = (!*next) ? 1 : 0;
+  *next = -1;
   return (0);
 }
 
@@ -249,23 +187,65 @@ int		prepare_rooms(char *str, t_room *root)
   return (0);
 }
 
-int		link_all_rooms(t_room *root)
+int		count_words(char *str)
 {
-  char		*line;
-  int		ret;
-  int		nb_tubes;
+  int		i;
+  int		total;
 
-  nb_tubes = 0;
-  while (!(ret = get_next_str(&line)))
+  total = 0;
+  i = 0;
+  while (str[i])
     {
-      nb_tubes++;
-      if (prepare_rooms(line, root))
+      if ((!i && str[i] != ' ') ||
+	  (i && str[i] != ' ' && str[i - 1] == ' '))
+	++total;
+      ++i;
+    }
+  return (total);
+}
+
+
+int		get_this_line(t_data *data, char *next,
+			      t_room *ref, char *line)
+{
+  int		ret;
+
+  if ((ret = count_words(line)) == 3)
+    {
+      if ((ret = set_new_x_y(&tmp, line)) == 2)
+	free(line), return (0);
+      else if (ret)
+	return (1);
+      if (get_one_room(data->rooms, &tmp, &next))
 	return (1);
     }
-  if (!nb_tubes && ret == 2)
-    return (my_put_error(MISSING_TUBES), 1);
-  if (ret == 1)
+  else if (ret == 1 && prepare_rooms(line, root))
     return (1);
+  else
+    my_put_error(BAD_FORMAT);
+}
+
+int		get_all(t_data *data)
+{
+  int		ret;
+  char		*line;
+  char		next;
+  t_room	tmp;
+
+  tmp.id = 0;
+  tmp.first = 0;
+  tmp.last = 0;
+  while (!get_next_str(&line))
+    {
+      if ((next = (!my_strcmp(line, "##end")) ? 1 :
+	   (!my_strcmp(line, "##start")) ? 0 : -1) >= 0)
+	free(line), continue ;
+      if (get_this_line(data, &next, &tmp, line))
+	return (1);
+      free(line);
+    }
+  if (tmp.id < 2)
+    return (my_put_error(MISSING_ROOM), 1);
   return (0);
 }
 
@@ -290,11 +270,8 @@ int		search_one_path(t_room *root, t_room *prev)
 
 int		parse_input(t_data *data)
 {
-  if (get_ants(data) || get_first() || set_root(data) ||
-      get_all_rooms(data) || link_all_rooms(data->rooms))
+  if (get_ants(data) || get_all(data))
     return (my_put_error(ROOM_TROUBLE), 1);
-  if (search_one_path(data->rooms, data->rooms->next))
-    return (my_put_error(NO_PATH), 1);
   return (0);
 }
 

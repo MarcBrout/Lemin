@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:54:44 2016 marc brout
-** Last update Thu Apr  7 13:01:18 2016 marc brout
+** Last update Fri Apr  8 18:42:39 2016 marc brout
 */
 
 #include <unistd.h>
@@ -212,14 +212,17 @@ int		get_this_line(t_data *data, char *next,
 
   if ((ret = count_words(line)) == 3)
     {
-      if ((ret = set_new_x_y(&tmp, line)) == 2)
-	free(line), return (0);
+      if ((ret = set_new_x_y(ref, line)) == 2)
+	{
+	  free(line);
+	  return (0);
+	}
       else if (ret)
 	return (1);
-      if (get_one_room(data->rooms, &tmp, &next))
+      if (get_one_room(data->rooms, ref, next))
 	return (1);
     }
-  else if (ret == 1 && prepare_rooms(line, root))
+  else if (ret == 1 && prepare_rooms(line, data->rooms))
     return (1);
   else
     my_put_error(BAD_FORMAT);
@@ -239,7 +242,10 @@ int		get_all(t_data *data)
     {
       if ((next = (!my_strcmp(line, "##end")) ? 1 :
 	   (!my_strcmp(line, "##start")) ? 0 : -1) >= 0)
-	free(line), continue ;
+	{
+	  free(line);
+	  continue;
+	}
       if (get_this_line(data, &next, &tmp, line))
 	return (1);
       free(line);

@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Thu Apr  7 20:24:14 2016 benjamin duhieu
+** Last update Fri Apr  8 15:40:26 2016 benjamin duhieu
 */
 
 #ifndef LEMIN_H_
@@ -66,10 +66,22 @@ typedef struct		s_path
   int			i;
 }			t_path;
 
+typedef	struct		s_tree
+{
+  int			i;
+  int			j;
+  int			path;
+  char			bool;
+  int			branch;
+  int			tmp;
+  int			place;
+}			t_tree;
+
 typedef struct		s_ant
 {
   t_path		**way;
   char			finish;
+  int			num;
   struct s_ant		*next;
 }			t_ant;
 
@@ -110,5 +122,51 @@ int			my_getnbr_i(const char *str, int *i);
 int			is_it_a_comment(char *str);
 char			*epur_str(char *str);
 int			get_next_str(char **str);
+
+/*
+** algo.c
+*/
+
+int			start(t_room *, t_ant *, int);
+
+/*
+** all_path.c
+*/
+
+int			all_ways(t_tube *, t_tube *,
+				 t_path **tmp, t_room *);
+int			path(t_room *, t_path **, int);
+
+/*
+** chk_path.c
+*/
+
+int			chk_id(t_tube *, t_tube *);
+int			chk_path(t_tube *, t_tube *,
+				 t_path **, t_room *);
+int			new_path(t_tube *, t_tube *,
+				 t_path **, t_room *);
+int			other_chk(t_tube *, t_tube *,
+				  t_path **, t_room *);
+t_path			**my_realloc_path(t_path **, int);
+
+/*
+** short_path.c
+*/
+
+int			first(int, int *, int, t_path *);
+int			same_way(t_path *, t_path **way, int);
+int			shorts_path(t_path **, int);
+int			swap(int, int *, t_path **);
+
+/*
+** ant.c
+*/
+
+int			path_ant(t_room *);
+int			ant_on_the_way(t_ant *);
+t_ant			*list_ant(t_path **way, int);
+void			aff_ant(t_ant *, int);
+void			start_ant(t_ant *, int);
 
 #endif /* !LEMIN_H_ */

@@ -1,11 +1,11 @@
 ##
-## Makefile for ASM in /home/bougon_p/rendu/CPE_2015_corewar/asm
-##
-## Made by bougon_p
-## Login   <bougon_p@epitech.net>
-##
-## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Fri Apr  1 23:02:13 2016 marc brout
+## Makefile for Makefile in /home/duhieu_b/CPE/CPE_2015_Lemin
+## 
+## Made by benjamin duhieu
+## Login   <duhieu_b@epitech.net>
+## 
+## Started on  Fri Apr  8 15:45:04 2016 benjamin duhieu
+## Last update Fri Apr  8 15:46:34 2016 benjamin duhieu
 ##
 
 # USEFUL VARIABLES
@@ -22,11 +22,18 @@ ECHO	=	echo -e
 
 PARSING		=	parsing/
 
+ALGO		=	algo/
+
 SRC		=	$(PARSING)parsing.c \
 			$(PARSING)errors.c \
 			$(PARSING)my_bzero.c \
 			$(PARSING)misc.c \
 			$(PARSING)my_getnbr.c \
+			$(ALGO)algo.c \
+			$(ALGO)all_path.c \
+			$(ALGO)ant.c \
+			$(ALGO)chk_path.c \
+			$(ALGO)short_path.c \
 
 OBJS    	=	$(SRC:.c=.o)
 
@@ -89,12 +96,10 @@ all		:	$(NAME)
 clean		:
 			@$(RM) $(OBJS)
 			@$(RM) $(OBJSLIB)
-			@$(RM) $(OBJSCOR)
 			@$(ECHO) "$(GREEN)\n> Cleaning repository\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
 fclean		: 	clean
 			@$(RM) $(NAME)
-			@$(RM) $(COREWAR)
 			@$(RM) $(LIBPATH)/libmy.a
 			@$(ECHO) "$(GREEN)\n> Cleaning exec\t\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 

@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:54:44 2016 marc brout
-** Last update Fri Apr  8 18:42:39 2016 marc brout
+** Last update Fri Apr  8 18:44:14 2016 marc brout
 */
 
 #include <unistd.h>
@@ -226,11 +226,11 @@ int		get_this_line(t_data *data, char *next,
     return (1);
   else
     my_put_error(BAD_FORMAT);
+  return (0);
 }
 
 int		get_all(t_data *data)
 {
-  int		ret;
   char		*line;
   char		next;
   t_room	tmp;

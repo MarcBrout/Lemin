@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Fri Apr  8 19:15:54 2016 benjamin duhieu
+** Last update Fri Apr  8 20:02:05 2016 marc brout
 */
 
 #ifndef LEMIN_H_
@@ -160,7 +160,7 @@ t_path			**my_realloc_path(t_path **, int);
 
 int			first(int, int *, int, t_path *);
 int			same_way(t_path *, t_path **way, int);
-int			shorts_path(t_path **, int);
+int			shorts_path(t_path ***, int);
 int			swap(int, int *, t_path **);
 
 /*

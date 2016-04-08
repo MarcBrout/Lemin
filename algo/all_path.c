@@ -5,11 +5,12 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:22:54 2016 benjamin duhieu
-** Last update Fri Apr  8 19:15:19 2016 benjamin duhieu
+** Last update Fri Apr  8 20:02:23 2016 marc brout
 */
 
 #include <stdlib.h>
 #include "lemin.h"
+#include "my.h"
 
 int		all_ways(t_tube *tube, t_tube *new_elem,
 			 t_path **tmp , t_room *room)
@@ -49,11 +50,14 @@ int		path(t_room *room, t_path **way, int nb_path)
   tmp_room = room->next;
   way[0]->i = 0;
   way[0]->way = 0;
+  my_printf("lolpppp : %p\n", way[0]);
   if ((all_ways(elem, new_elem, way, tmp_room)) == 1)
     return (my_put_error(MALLOC_ERR), -1);
-  if (!way[0]->tube)
-    return (-1);
-  if ((nb_path = shorts_path(way, nb_path)) == -1)
+  my_printf("---lolpppp : %p ---\n", way[0]);
+  /* if (!way[0]->tube) */
+  /*   return (-1); */
+  if ((nb_path = shorts_path(&way, nb_path)) == -1)
     return (my_put_error(MALLOC_ERR), -1);
+  my_printf("|||lolpppp : %p ||||-\n", way[0]);
   return (nb_path);
 }

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sat Apr  2 13:24:27 2016 benjamin duhieu
-** Last update Fri Apr  8 18:59:59 2016 benjamin duhieu
+** Last update Fri Apr  8 19:18:49 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -105,13 +105,4 @@ t_ant	*list_ant(t_path **way, int nb)
     }
   elem->next = NULL;
   return (first);
-}
-
-int		main()
-{
-  t_room	room;
-  t_ant		ant;
-
-  start(&room, &ant, 23);
-  return (0);
 }

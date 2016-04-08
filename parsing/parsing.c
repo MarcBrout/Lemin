@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:54:44 2016 marc brout
-** Last update Fri Apr  8 19:08:38 2016 marc brout
+** Last update Fri Apr  8 19:38:32 2016 marc brout
 */
 
 #include <unistd.h>
@@ -209,6 +209,7 @@ int		get_this_line(t_data *data, char *next,
 {
   int		ret;
 
+  my_printf("line = %s, ret = %d\n", line, count_words(line));
   if ((ret = count_words(line)) == 3)
     {
       if ((ret = set_new_x_y(ref, line)) == 2)
@@ -223,7 +224,7 @@ int		get_this_line(t_data *data, char *next,
     }
   else if (ret == 1 && prepare_rooms(line, data->rooms))
     return (1);
-  else
+  else if (ret != 1 && ret != 3)
     my_put_error(BAD_FORMAT);
   return (0);
 }
@@ -237,9 +238,11 @@ int		get_all(t_data *data)
   tmp.id = 0;
   tmp.first = 0;
   tmp.last = 0;
+  next = -1;
   while (!get_next_str(&line))
     {
-      if ((next = (!my_strcmp(line, "##end")) ? 1 :
+      my_printf("line1 = %s\n", line);
+      if (next < 0 && (next = (!my_strcmp(line, "##end")) ? 1 :
 	   (!my_strcmp(line, "##start")) ? 0 : -1) >= 0)
 	{
 	  free(line);
@@ -265,6 +268,7 @@ int		check_first_last(t_room *root)
   total_last = 0;
   while (tmp != root)
     {
+      my_printf("lol\n");
       total_first += (tmp->first) ? 1 : 0;
       total_last += (tmp->last) ? 1 : 0;
       if (tmp->last && tmp->first)
@@ -299,7 +303,7 @@ int		check_room_position(t_room *root)
 	}
       tmp = tmp->next;
     }
-  return (1);
+  return (0);
 }
 
 int		search_one_path(t_room *root, t_room *prev)
@@ -321,21 +325,32 @@ int		search_one_path(t_room *root, t_room *prev)
   return (1);
 }
 
+int		init_root(t_data *data)
+{
+  if (!(data->rooms = malloc(sizeof(t_room))))
+    return (my_put_error(MALLOC_ERR), 1);
+  data->rooms->next = data->rooms;
+  data->rooms->prev = data->rooms;
+  return (0);
+}
+
 int		parse_input(t_data *data)
 {
-  if (get_ants(data) || get_all(data) ||
-      check_room_position(data->rooms) || check_first_last(data->rooms))
+  if (init_root(data) || get_ants(data) || get_all(data) ||
+      check_room_position(data->rooms) ||
+      check_first_last(data->rooms))
     return (my_put_error(ROOM_TROUBLE), 1);
   return (0);
 }
 
 int		main(int ac, char **av)
 {
+  t_ant		ant;
   t_data	data;
 
   if (ac > 1)
     my_put_usage(av, 1);
-  if (parse_input(&data))
+  if (parse_input(&data) || start(data.rooms, &ant, data.ants))
     return (1);
   return (0);
 }

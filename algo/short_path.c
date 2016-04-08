@@ -5,10 +5,11 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:16:30 2016 benjamin duhieu
-** Last update Fri Apr  8 19:11:39 2016 benjamin duhieu
+** Last update Fri Apr  8 20:06:55 2016 marc brout
 */
 
 #include "lemin.h"
+#include "my.h"
 
 int		same_way(t_path *actu, t_path **way, int i)
 {
@@ -70,7 +71,7 @@ int		swap(int place, int *i, t_path **way)
   return (-1);
 }
 
-int		shorts_path(t_path **way, int nb_path)
+int		shorts_path(t_path ***way, int nb_path)
 {
   t_tree	t;
 
@@ -81,20 +82,22 @@ int		shorts_path(t_path **way, int nb_path)
   while (++t.i < nb_path)
     {
       t.j = -1 + t.i;
-      while (way && way[++t.j])
+      while (way[0] && way[0][++t.j])
 	if (t.i == 0)
-	  t.place = first(t.j, &t.tmp, t.place, way[t.j]);
+	  t.place = first(t.j, &t.tmp, t.place, way[0][t.j]);
 	else if (!t.bool)
 	  {
-	    if (!(same_way(way[t.j], way, t.i)))
-	      t.tmp = way[t.j]->i, t.place = t.j, t.bool = 1;
+	    if (!(same_way(way[0][t.j], way[0], t.i)))
+	      t.tmp = way[0][t.j]->i, t.place = t.j, t.bool = 1;
 	  }
 	else if (t.bool)
-	  if (!(same_way(way[t.j], way, t.i)) && t.tmp > way[t.j]->i)
-	    t.tmp = way[t.j]->i, t.place = t.j;
-      t.path += swap(t.place, &t.i, way);
+	  if (!(same_way(way[0][t.j], way[0], t.i)) && t.tmp > way[0][t.j]->i)
+	    t.tmp = way[0][t.j]->i, t.place = t.j;
+      t.path += swap(t.place, &t.i, way[0]);
     }
-  if (!(way = my_realloc_path(way, t.path + 1)))
+  my_printf("0000lolpppp : %p\n", *way);
+  if (!(way[0] = my_realloc_path(way[0], t.path + 1)))
     return (-1);
+  my_printf("11111lolpppp : %p\n", *way);
   return (t.path);
 }

@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Fri Apr  8 15:40:26 2016 benjamin duhieu
+** Last update Fri Apr  8 19:07:28 2016 benjamin duhieu
 */
 
 #ifndef LEMIN_H_
@@ -143,11 +143,11 @@ int			path(t_room *, t_path **, int);
 
 int			chk_id(t_tube *, t_tube *);
 int			chk_path(t_tube *, t_tube *,
-				 t_path **, t_room *);
+				 t_path **);
 int			new_path(t_tube *, t_tube *,
 				 t_path **, t_room *);
 int			other_chk(t_tube *, t_tube *,
-				  t_path **, t_room *);
+				  t_tube *);
 t_path			**my_realloc_path(t_path **, int);
 
 /*

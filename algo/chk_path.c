@@ -5,9 +5,10 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:23:36 2016 benjamin duhieu
-** Last update Fri Apr  8 15:24:59 2016 benjamin duhieu
+** Last update Fri Apr  8 19:07:53 2016 benjamin duhieu
 */
 
+#include <stdlib.h>
 #include "lemin.h"
 
 t_path		**my_realloc_path(t_path **way, int nb)
@@ -46,24 +47,19 @@ int		chk_id(t_tube *new_elem, t_tube *tube)
 }
 
 int		chk_path(t_tube *tube, t_tube *new_elem,
-			 t_path **tmp , t_room *room)
+			 t_path **tmp)
 {
   if (new_elem->room->last)
     {
-      tmp[tmp->way]->tube = tube;
-      tmp[tmp->way]->i = new_elem->nb;
-      tmp[tmp->way]->branch = tube->branch;
-      tmp->way++;
-      if (!(tmp = my_realloc_path(tmp, tmp->way + 2)))
+      tmp[tmp[0]->way]->tube = tube;
+      tmp[tmp[0]->way]->i = new_elem->nb;
+      tmp[tmp[0]->way]->branch = tube->branch;
+      tmp[0]->way++;
+      if (!(tmp = my_realloc_path(tmp, tmp[0]->way + 2)))
 	return (-1);
-      if (!(tmp[tmp->way] = malloc(sizeof(t_path))))
+      if (!(tmp[tmp[0]->way] = malloc(sizeof(t_path))))
 	return (-1);
-      tmp[tmp->way + 1] = NULL;
-      free(new_elem);
-      return (1);
-    }
-  if (!tmp_tube->next)
-    {
+      tmp[tmp[0]->way + 1] = NULL;
       free(new_elem);
       return (1);
     }
@@ -78,11 +74,16 @@ int		other_chk(t_tube *tmp_tube, t_tube *tube,
       free(new_elem);
       return (1);
     }
+  if (!tmp_tube->next)
+    {
+      free(new_elem);
+      return (1);
+    }
   return (0);
 }
 
 int		new_path(t_tube *tube, t_tube *new_elem, t_path **tmp,
-			 t_room *data)
+			 t_room *room)
 {
   t_tube	*elem;
   t_tube	*tmp_tube;

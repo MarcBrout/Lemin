@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:16:30 2016 benjamin duhieu
-** Last update Fri Apr  8 15:20:41 2016 benjamin duhieu
+** Last update Fri Apr  8 19:11:39 2016 benjamin duhieu
 */
 
 #include "lemin.h"
@@ -72,29 +72,29 @@ int		swap(int place, int *i, t_path **way)
 
 int		shorts_path(t_path **way, int nb_path)
 {
-  t_tree	tree;
+  t_tree	t;
 
-  tree.i = -1;
-  tree.bool = 0;
-  tree.place = -1;
-  tree.path = nb_path;
-  while (++tree.i < nb_path)
+  t.i = -1;
+  t.bool = 0;
+  t.place = -1;
+  t.path = nb_path;
+  while (++t.i < nb_path)
     {
-      tree.j = -1 + tree.i;
-      while (way && way[++tree.j])
-	if (tree.i == 0)
-	  tree.place = first(tree.j, &tree.tmp, tree.place, way[j]);
-	else if (!tree.bool)
+      t.j = -1 + t.i;
+      while (way && way[++t.j])
+	if (t.i == 0)
+	  t.place = first(t.j, &t.tmp, t.place, way[t.j]);
+	else if (!t.bool)
 	  {
-	    if (!(same_way(way[j], way, tree.i)))
-	      tree.tmp = way[j]->i, tree.place = tree.j, tree.bool = 1;
+	    if (!(same_way(way[t.j], way, t.i)))
+	      t.tmp = way[t.j]->i, t.place = t.j, t.bool = 1;
 	  }
-	else if (tree.bool)
-	  if (!(same_way(way[j], way, tree.i)) && tree.tmp > way[j]->i)
-	    tree.tmp = way[j]->i, tree.place = tree.j;
-      tree.path += swap(tree.place, &tree.i, way);
+	else if (t.bool)
+	  if (!(same_way(way[t.j], way, t.i)) && t.tmp > way[t.j]->i)
+	    t.tmp = way[t.j]->i, t.place = t.j;
+      t.path += swap(t.place, &t.i, way);
     }
-  if (!(way = my_realloc_path(way, tree.path + 1)))
+  if (!(way = my_realloc_path(way, t.path + 1)))
     return (-1);
-  return (tree.path);
+  return (t.path);
 }

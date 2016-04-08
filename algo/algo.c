@@ -5,9 +5,10 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:14:52 2016 benjamin duhieu
-** Last update Fri Apr  8 15:15:30 2016 benjamin duhieu
+** Last update Fri Apr  8 18:46:53 2016 benjamin duhieu
 */
 
+#include <stdlib.h>
 #include "lemin.h"
 
 int		start(t_room *room, t_ant *ant, int nb)
@@ -23,6 +24,6 @@ int		start(t_room *room, t_ant *ant, int nb)
     return (1);
   if (!(ant = list_ant(way, nb)))
     return (1);
-  start_ant(way, ant, nb_path);
+  start_ant(ant, nb_path);
   return (0);
 }

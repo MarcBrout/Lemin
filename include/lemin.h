@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Fri Apr  8 15:40:26 2016 benjamin duhieu
+** Last update Fri Apr  8 19:06:14 2016 marc brout
 */
 
 #ifndef LEMIN_H_
@@ -14,7 +14,11 @@
 # define MALLOC_ERR "Can't perform malloc.\n"
 # define EMPTY_FOLDER "File is empty.\n"
 # define WRONG_ANTS "Positive number of ants expected.\n"
+# define SAME_ROOM "Rooms are sharing the same coordinates\n"
+# define SAME_START_END "Error, same start and end room\n."
 # define MISSING_START "Missing start label.\n"
+# define TOO_MUCH_END "Too much end rooms.\n"
+# define TOO_MUCH_START "Too much start rooms.\n"
 # define MISSING_END "Missing end label.\n"
 # define MISSING_END_ROOM "Missing end room.\n"
 # define MISSING_ROOM "At least 2 rooms are needed.\n"

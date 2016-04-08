@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:54:44 2016 marc brout
-** Last update Fri Apr  8 18:44:14 2016 marc brout
+** Last update Fri Apr  8 19:08:38 2016 marc brout
 */
 
 #include <unistd.h>
@@ -204,7 +204,6 @@ int		count_words(char *str)
   return (total);
 }
 
-
 int		get_this_line(t_data *data, char *next,
 			      t_room *ref, char *line)
 {
@@ -255,6 +254,54 @@ int		get_all(t_data *data)
   return (0);
 }
 
+int		check_first_last(t_room *root)
+{
+  t_room	*tmp;
+  int		total_first;
+  int		total_last;
+
+  tmp = root->next;
+  total_first = 0;
+  total_last = 0;
+  while (tmp != root)
+    {
+      total_first += (tmp->first) ? 1 : 0;
+      total_last += (tmp->last) ? 1 : 0;
+      if (tmp->last && tmp->first)
+	return (my_put_error(SAME_START_END), 1);
+      tmp = tmp->next;
+    }
+  if (total_first < 1)
+    return (my_put_error(MISSING_START), 1);
+  if (total_last < 1)
+    return (my_put_error(MISSING_END), 1);
+  if (total_first > 1)
+    return (my_put_error(TOO_MUCH_START), 1);
+  if (total_last > 1)
+    return (my_put_error(TOO_MUCH_END), 1);
+  return (0);
+}
+
+int		check_room_position(t_room *root)
+{
+  t_room	*tmp;
+  t_room	*tmp2;
+
+  tmp = root->next;
+  while (tmp != root && tmp->next != root)
+    {
+      tmp2 = tmp->next;
+      while (tmp2 != root)
+	{
+	  if (tmp->x == tmp2->x && tmp->y == tmp2->y)
+	    return (my_put_error(SAME_ROOM), 1);
+	  tmp2 = tmp2->next;
+	}
+      tmp = tmp->next;
+    }
+  return (1);
+}
+
 int		search_one_path(t_room *root, t_room *prev)
 {
   t_tube	*gotow;
@@ -276,7 +323,8 @@ int		search_one_path(t_room *root, t_room *prev)
 
 int		parse_input(t_data *data)
 {
-  if (get_ants(data) || get_all(data))
+  if (get_ants(data) || get_all(data) ||
+      check_room_position(data->rooms) || check_first_last(data->rooms))
     return (my_put_error(ROOM_TROUBLE), 1);
   return (0);
 }

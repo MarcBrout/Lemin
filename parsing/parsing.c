@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:54:44 2016 marc brout
-** Last update Mon Apr 11 16:43:09 2016 benjamin duhieu
+** Last update Mon Apr 11 17:37:43 2016 marc brout
 */
 
 #include <unistd.h>
@@ -54,36 +54,6 @@ int		init_root(t_data *data)
   return (0);
 }
 
-void		free_tubes(t_tube *tubes)
-{
-  t_tube	*cur;
-  t_tube	*tmp;
-
-  cur = tubes;
-  while (cur)
-    {
-      tmp = cur->next;
-      free(cur);
-      cur = tmp;
-    }
-}
-
-void		free_graph(t_room *root)
-{
-  t_room	*cur;
-  t_room	*tmp;
-
-  cur = root->next;
-  while (cur && cur != root)
-    {
-      tmp = cur->next;
-      free(cur->name);
-      free_tubes(cur->tubes);
-      free(cur);
-      cur = tmp;
-    }
-}
-
 int		parse_input(t_data *data)
 {
   if (init_root(data) || get_ants(data) || get_all(data) ||
@@ -93,6 +63,38 @@ int		parse_input(t_data *data)
   if (solve_one_path(data->rooms))
     return (1);
   return (0);
+}
+
+void		show_tubes(t_tube *first)
+{
+  int		i;
+
+  i = 0;
+  while (first)
+    {
+      ++i;
+      my_printf("tube n°%d: room %s\n", i, first->room->name);
+      first = first->next;
+    }
+}
+
+void		show_graph(t_room *root)
+{
+  t_room	*first;
+
+  first = root->next;
+  while (first != root)
+    {
+      my_printf("===============\n");
+      my_printf("ROOM : %s\n", first->name);
+      my_printf("id : %d\n", first->id);
+      my_printf("first : %d\n", first->first);
+      my_printf("last : %d\n", first->last);
+      my_printf("x : %d, y : %d\n", first->x, first->y);
+      show_tubes(first->tubes);
+      my_printf("===============\n");
+      first = first->next;
+    }
 }
 
 int		main(int ac, char **av)
@@ -107,6 +109,7 @@ int		main(int ac, char **av)
     return (1);
   if ((first = find_first_room(data.rooms)))
     {
+      show_graph(data.rooms);
       if (start(first, &ant, data.ants))
 	return (1);
       free_graph(data.rooms);

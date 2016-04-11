@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Mon Apr 11 16:32:14 2016 marc brout
+** Last update Mon Apr 11 17:18:42 2016 marc brout
 */
 
 #ifndef LEMIN_H_
@@ -227,5 +227,13 @@ int			get_ants(t_data *data);
 int			count_words(char *str);
 int			init_root(t_data *data);
 int			parse_input(t_data *data);
+
+/*
+** free_pile.c
+*/
+
+void			free_tubes(t_tube *tubes);
+void			free_graph(t_room *root);
+void			free_pile(t_tube *root);
 
 #endif /* !LEMIN_H_ */

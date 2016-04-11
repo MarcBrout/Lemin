@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sat Apr  2 13:24:27 2016 benjamin duhieu
-** Last update Fri Apr  8 19:18:49 2016 marc brout
+** Last update Mon Apr 11 15:32:03 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -43,13 +43,13 @@ int	ant_on_the_way(t_ant *ant)
 
 void	aff_ant(t_ant *elem, int i)
 {
+  /* my_printf("\n\n\n--------chk : %p------------\n", elem->way[i]); */
   if (!elem->finish &&
       !elem->way[i]->tube->next->room->ants)
     {
       elem->way[i]->tube->room->ants = 0;
-      if (i == 0)
-	my_printf("P%d-%d", elem->num,
-		  elem->way[i]->tube->next->room->id);
+      if (i != 0)
+	my_printf(" ");
       else
 	my_printf(" P%d-%d", elem->num,
 		  elem->way[i]->tube->next->room->id);
@@ -95,7 +95,7 @@ t_ant	*list_ant(t_path **way, int nb)
   i = -1;
   while (++i < nb)
     {
-      elem->num = i;
+      elem->num = i + 1;
       elem->way = way;
       elem->finish = 0;
       elem->next = NULL;

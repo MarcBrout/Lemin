@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:54:44 2016 marc brout
-** Last update Mon Apr 11 12:56:38 2016 marc brout
+** Last update Mon Apr 11 13:41:30 2016 benjamin duhieu
 */
 
 #include <unistd.h>
@@ -344,12 +344,12 @@ int		parse_input(t_data *data)
 
 int		main(int ac, char **av)
 {
-  /* t_ant		ant; */
+  t_ant		ant;
   t_data	data;
 
   if (ac > 1)
     my_put_usage(av, 1);
-  if (parse_input(&data) /*|| start(data.rooms, &ant, data.ants) */)
+  if (parse_input(&data) || start(data.rooms, &ant, data.ants))
     return (1);
   return (0);
 }

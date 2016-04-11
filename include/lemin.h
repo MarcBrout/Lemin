@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Fri Apr  8 20:02:05 2016 marc brout
+** Last update Sun Apr 10 20:06:26 2016 marc brout
 */
 
 #ifndef LEMIN_H_
@@ -172,5 +172,16 @@ int			ant_on_the_way(t_ant *);
 t_ant			*list_ant(t_path **way, int);
 void			aff_ant(t_ant *, int);
 void			start_ant(t_ant *, int);
+
+/*
+** solve_one_path.c
+*/
+
+t_tube			*remove_from_the_pile(t_tube *root);
+int			add_one_to_the_pile(t_tube *root,
+					    t_tube *tube);
+int			add_all_to_the_pile(t_tube *root,
+					    t_tube *tubes);
+int			solve_one_path(t_room *root);
 
 #endif /* !LEMIN_H_ */

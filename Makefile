@@ -5,7 +5,7 @@
 ## Login   <duhieu_b@epitech.net>
 ## 
 ## Started on  Fri Apr  8 15:45:04 2016 benjamin duhieu
-## Last update Fri Apr  8 18:38:43 2016 marc brout
+## Last update Sun Apr 10 20:08:55 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -28,6 +28,7 @@ SRC		=	$(PARSING)parsing.c \
 			$(PARSING)errors.c \
 			$(PARSING)my_bzero.c \
 			$(PARSING)misc.c \
+			$(PARSING)solve_one_path.c \
 			$(PARSING)my_getnbr.c \
 			$(ALGO)algo.c \
 			$(ALGO)all_path.c \

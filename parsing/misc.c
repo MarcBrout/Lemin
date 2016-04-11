@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 19:24:56 2016 marc brout
-** Last update Fri Apr  1 23:01:46 2016 marc brout
+** Last update Mon Apr 11 13:00:03 2016 marc brout
 */
 
 #include <unistd.h>
@@ -41,6 +41,20 @@ int		get_next_str(char **str)
   return (0);
 }
 
+int		anymore_letters(char *str)
+{
+  int		i;
+
+  i = 0;
+  while (str[i])
+    {
+      if (str[i] != ' ' && str[i] != '\t')
+	return (1);
+      ++i;
+    }
+  return (0);
+}
+
 char		*epur_str(char *str)
 {
   char		*tmp;
@@ -57,7 +71,8 @@ char		*epur_str(char *str)
       if (str[i] != ' ' && str[i] != '\t')
 	tmp[j] = str[i], ++j;
       else if (i && (str[i] == ' ' || str[i] == '\t') &&
-	       str[i - 1] != ' ' && str[i - 1] != '\t')
+	       str[i - 1] != ' ' && str[i - 1] != '\t' &&
+	       anymore_letters(&str[i]))
 	tmp[j] = ' ', ++j;
       ++i;
     }
@@ -66,7 +81,8 @@ char		*epur_str(char *str)
 
 int		is_it_a_comment(char *str)
 {
-  if (!my_strncmp(str, "#", 1))
+  if (!my_strncmp(str, "#", 0) && my_strcmp(str, "##start") &&
+      my_strcmp(str, "##end"))
     return (1);
   return (0);
 }

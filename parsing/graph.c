@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Apr 11 13:56:58 2016 marc brout
-** Last update Mon Apr 11 15:54:13 2016 marc brout
+** Last update Mon Apr 11 16:57:34 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -86,7 +86,7 @@ int		prepare_rooms(char *str, t_room *root)
   if (!(room2 = my_getfirst_name(str, &i, '-')))
     return (1);
   if (!my_strcmp(room1, room2))
-    return (my_put_error(SAME_LINK), 1);
+    return (my_put_error(SAME_LINK), 0);
   if (link_rooms(root, room1, room2))
     return (1);
   free(room1);

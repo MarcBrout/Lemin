@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:16:30 2016 benjamin duhieu
-** Last update Fri Apr  8 20:06:55 2016 marc brout
+** Last update Mon Apr 11 15:53:58 2016 benjamin duhieu
 */
 
 #include "lemin.h"
@@ -62,6 +62,7 @@ int		swap(int place, int *i, t_path **way)
 
   if (place != -1)
     {
+      /* my_printf("way[%d]->tube = %p && place = %d\n", *i, way[*i]->tube, place); */
       tempo = way[*i]->tube;
       way[*i]->tube = way[place]->tube;
       way[place]->tube = tempo;
@@ -83,21 +84,24 @@ int		shorts_path(t_path ***way, int nb_path)
     {
       t.j = -1 + t.i;
       while (way[0] && way[0][++t.j])
-	if (t.i == 0)
-	  t.place = first(t.j, &t.tmp, t.place, way[0][t.j]);
-	else if (!t.bool)
-	  {
-	    if (!(same_way(way[0][t.j], way[0], t.i)))
-	      t.tmp = way[0][t.j]->i, t.place = t.j, t.bool = 1;
-	  }
-	else if (t.bool)
-	  if (!(same_way(way[0][t.j], way[0], t.i)) && t.tmp > way[0][t.j]->i)
-	    t.tmp = way[0][t.j]->i, t.place = t.j;
+	{
+	  if (t.i == 0)
+	    t.place = first(t.j, &t.tmp, t.place, way[0][t.j]);
+	  else if (!t.bool)
+	    {
+	      if (!(same_way(way[0][t.j], way[0], t.i)))
+		t.tmp = way[0][t.j]->i, t.place = t.j, t.bool = 1;
+	    }
+	  else if (t.bool)
+	    if (!(same_way(way[0][t.j], way[0], t.i)) && t.tmp > way[0][t.j]->i)
+	      t.tmp = way[0][t.j]->i, t.place = t.j;
+	  /* my_printf("t.tmp = %d, t.place = %d\n", t.tmp, t.place); */
+	}
       t.path += swap(t.place, &t.i, way[0]);
     }
-  my_printf("0000lolpppp : %p\n", *way);
+  /* my_printf("0000lolpppp : %p\n", *way); */
   if (!(way[0] = my_realloc_path(way[0], t.path + 1)))
     return (-1);
-  my_printf("11111lolpppp : %p\n", *way);
+  /* my_printf("11111lolpppp : %p\n", *way); */
   return (t.path);
 }

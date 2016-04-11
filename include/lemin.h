@@ -5,12 +5,13 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Mon Apr 11 17:18:42 2016 marc brout
+** Last update Mon Apr 11 21:09:15 2016 benjamin duhieu
 */
 
 #ifndef LEMIN_H_
 # define LEMIN_H_
 
+# define UNUSED __attribute__((__unused__))
 # define MALLOC_ERR "Can't perform malloc.\n"
 # define EMPTY_FOLDER "File is empty.\n"
 # define WRONG_ANTS "Positive number of ants expected.\n"
@@ -139,7 +140,7 @@ int			start(t_room *, t_ant *, int);
 */
 
 int			all_ways(t_tube *, t_tube *,
-				 t_path **tmp, t_room *);
+				 t_path **tmp, t_tube *);
 int			path(t_room *, t_path **, int);
 
 /*
@@ -150,7 +151,7 @@ int			chk_id(t_tube *, t_tube *);
 int			chk_path(t_tube *, t_tube *,
 				 t_path **);
 int			new_path(t_tube *, t_tube *,
-				 t_path **, t_room *);
+				 t_path **, t_tube *);
 int			other_chk(t_tube *, t_tube *,
 				  t_tube *);
 t_path			**my_realloc_path(t_path **, int);

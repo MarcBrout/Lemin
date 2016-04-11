@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Sun Apr 10 20:06:26 2016 marc brout
+** Last update Mon Apr 11 16:32:14 2016 marc brout
 */
 
 #ifndef LEMIN_H_
@@ -24,7 +24,8 @@
 # define MISSING_ROOM "At least 2 rooms are needed.\n"
 # define EXISTING_ROOM " existing, skipping it.\n"
 # define WRONG_ROOM " not correct, skipping it.\n"
-# define WRONG_TUBE "Tube line incorrect, skippint it.\n"
+# define WRONG_TUBE "Tube line incorrect, skipping it.\n"
+# define SAME_LINK "Can't link a room on itself, skipping line.\n"
 # define ROOM_TROUBLE "Trouble while loading rooms, aborting.\n"
 # define MISSING_TUBES "One valid path must exists.\n"
 # define INVALID_ROOM " Does not exist, skipping tube creation.\n"
@@ -183,5 +184,48 @@ int			add_one_to_the_pile(t_tube *root,
 int			add_all_to_the_pile(t_tube *root,
 					    t_tube *tubes);
 int			solve_one_path(t_room *root);
+t_room			*find_first_room(t_room *root);
+
+/*
+** checks.c
+*/
+
+int			check_first_last(t_room *root);
+int			check_room_position(t_room *root);
+int			check_existing_room(t_room *root,
+					    t_room *test,
+					    char *name);
+
+/*
+** graph.c
+*/
+
+int			set_root(t_data *data);
+int			add_tube(t_room *base, t_room *target);
+t_room			*search_room(t_room *root, char *room);
+int			link_rooms(t_room *root, char *room1,
+				   char *room2);
+int			prepare_rooms(char *str, t_room *root);
+
+/*
+** get_graph.c
+*/
+
+char			*my_getfirst_name(char *str, int *i, char c);
+int			set_new_x_y(t_room *ref, char *str);
+int			get_one_room(t_room *root, t_room *ref,
+				     char *next);
+int			get_this_line(t_data *data, char *next,
+				      t_room *ref, char *line);
+int			get_all(t_data *data);
+
+/*
+** parsing.c
+*/
+
+int			get_ants(t_data *data);
+int			count_words(char *str);
+int			init_root(t_data *data);
+int			parse_input(t_data *data);
 
 #endif /* !LEMIN_H_ */

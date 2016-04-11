@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Sun Apr 10 19:16:00 2016 marc brout
-** Last update Mon Apr 11 12:59:42 2016 marc brout
+** Last update Mon Apr 11 16:01:33 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -68,6 +68,20 @@ t_room		*find_first_room(t_room *root)
   return (NULL);
 }
 
+void		free_pile(t_tube *root)
+{
+  t_tube	*cur;
+  t_tube	*tmp;
+
+  cur = root->next;
+  while (cur && cur != root)
+    {
+      tmp = cur->next;
+      free(cur);
+      cur = tmp;
+    }
+}
+
 int		solve_one_path(t_room *root)
 {
   t_tube	root_tube;
@@ -84,7 +98,7 @@ int		solve_one_path(t_room *root)
       if (add_all_to_the_pile(&root_tube, tmp->room->tubes))
 	return (1);
       if (tmp->room->last)
-	return (free(tmp), 0);
+	return (free(tmp), free_pile(&root_tube), 0);
       free(tmp);
     }
   return (my_put_error(NO_PATH), 1);

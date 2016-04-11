@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 19:24:56 2016 marc brout
-** Last update Mon Apr 11 13:00:03 2016 marc brout
+** Last update Mon Apr 11 15:25:24 2016 marc brout
 */
 
 #include <unistd.h>
@@ -34,8 +34,6 @@ int		get_next_str(char **str)
     }
   if (!tmp)
     return (2);
-  if (!(clean_tmp = epur_str(tmp)))
-    return (my_put_error(MALLOC_ERR), 1);
   free(tmp);
   *str = clean_tmp;
   return (0);

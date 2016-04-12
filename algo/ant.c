@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sat Apr  2 13:24:27 2016 benjamin duhieu
-** Last update Mon Apr 11 15:32:03 2016 benjamin duhieu
+** Last update Mon Apr 11 17:50:25 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -17,7 +17,7 @@ int		path_ant(t_room	*room)
   t_room	*elem;
   int		i;
 
-  elem = room->next;
+  elem = room;
   i = 1;
   while (elem->tubes->next != NULL)
     {

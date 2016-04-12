@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:22:54 2016 benjamin duhieu
-** Last update Mon Apr 11 21:08:11 2016 benjamin duhieu
+** Last update Tue Apr 12 11:41:38 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -13,7 +13,7 @@
 #include "my.h"
 
 int		all_ways(t_tube *tube, t_tube *new_elem,
-			 t_path **tmp, t_tube *prev)
+			 t_path ***tmp, t_tube *prev)
 {
   int		chk;
 
@@ -47,7 +47,7 @@ int		path(t_room *room, t_path **way, int nb_path)
   /* tmp_room = room; */
   way[0]->i = 0;
   way[0]->way = 0;
-  if ((all_ways(elem, new_elem, way, new_elem)) == -1)
+  if ((all_ways(elem, new_elem, &way, new_elem)) == -1)
     return (my_put_error(MALLOC_ERR), -1);
   /* my_printf("---lolpppp : %p ---\n", way[0]); */
   /* my_printf("((((((%p)))))))))\n", way[0]->tube); */

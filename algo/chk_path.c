@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:23:36 2016 benjamin duhieu
-** Last update Mon Apr 11 21:14:34 2016 benjamin duhieu
+** Last update Tue Apr 12 11:44:30 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -49,21 +49,21 @@ int		chk_id(t_tube *new_elem, t_tube *tube)
 }
 
 int		chk_path(t_tube *tube, t_tube *new_elem,
-			 t_path **tmp)
+			 t_path ***tmp)
 {
   if (new_elem->room->last)
     {
       my_printf("NEW_PATH\n");
-      my_printf("((((((%d \n %p)))))))))\n", tmp[0]->way, &tmp[0]->way);
-      tmp[tmp[0]->way]->tube = tube;
-      tmp[tmp[0]->way]->i = new_elem->nb;
-      tmp[tmp[0]->way]->branch = tube->branch;
-      tmp[0]->way++;
-      if (!(tmp = my_realloc_path(tmp, tmp[0]->way + 2)))
+      /* my_printf("((((((%d \n %p)))))))))\n", tmp[0]->way, tmp[tmp[0]->way]); */
+      tmp[0][tmp[0][0]->way]->tube = tube;
+      tmp[0][tmp[0][0]->way]->i = new_elem->nb;
+      tmp[0][tmp[0][0]->way]->branch = tube->branch;
+      tmp[0][0]->way++;
+      if (!(tmp[0] = my_realloc_path(tmp[0], tmp[0][0]->way + 2)))
 	return (-1);
-      if (!(tmp[tmp[0]->way] = malloc(sizeof(t_path))))
-	return (-1);
-      tmp[tmp[0]->way + 1] = NULL;
+      if (!(tmp[0][tmp[0][0]->way] = malloc(sizeof(t_path))))
+      	return (-1);
+      tmp[0][tmp[0][0]->way + 1] = NULL;
       /* free(new_elem); */
       return (1);
     }
@@ -83,12 +83,13 @@ int		other_chk(t_tube *tmp_tube, t_tube *tube,
     {
       my_printf("IMPASSE\n");
       /* free(new_elem); */
+
       return (1);
     }
   return (0);
 }
 
-int		new_path(t_tube *tube, t_tube *new_elem, t_path **tmp, t_tube *prev)
+int		new_path(t_tube *tube, t_tube *new_elem, t_path ***tmp, t_tube *prev)
 {
   t_tube	*elem;
   t_tube	*tmp_tube;

@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Mon Apr 11 21:09:15 2016 benjamin duhieu
+** Last update Tue Apr 12 15:58:13 2016 benjamin duhieu
 */
 
 #ifndef LEMIN_H_
@@ -37,6 +37,7 @@ typedef struct		s_room
 {
   char			*name;
   int			id;
+  char			pass;
   char			first;
   char			last;
   char			ants;
@@ -62,6 +63,20 @@ typedef struct		s_data
   int			end_ants;
   t_room		*rooms;
 }			t_data;
+
+/* typedef	struct		s_way */
+/* { */
+/*   t_room		*room; */
+/*   struct s_way		*next; */
+/* }			t_way; */
+
+typedef	struct		s_larg
+{
+  int			count;
+  char			pass;
+  t_tube			*way;
+  struct s_larg		*next;
+}			t_larg;
 
 typedef struct		s_path
 {
@@ -140,7 +155,7 @@ int			start(t_room *, t_ant *, int);
 */
 
 int			all_ways(t_tube *, t_tube *,
-				 t_path **tmp, t_tube *);
+				 t_path ***, t_tube *);
 int			path(t_room *, t_path **, int);
 
 /*
@@ -149,9 +164,9 @@ int			path(t_room *, t_path **, int);
 
 int			chk_id(t_tube *, t_tube *);
 int			chk_path(t_tube *, t_tube *,
-				 t_path **);
+				 t_path ***);
 int			new_path(t_tube *, t_tube *,
-				 t_path **, t_tube *);
+				 t_path ***, t_tube *);
 int			other_chk(t_tube *, t_tube *,
 				  t_tube *);
 t_path			**my_realloc_path(t_path **, int);

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sat Apr  2 13:24:27 2016 benjamin duhieu
-** Last update Mon Apr 11 17:50:25 2016 benjamin duhieu
+** Last update Wed Apr 13 13:10:54 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -68,11 +68,12 @@ void	start_ant(t_ant *ant, int nb_path)
   elem = ant;
   while (ant_on_the_way(ant))
     {
+      a = count_way(ant, nb_path);
       elem = ant;
       while (elem->next != NULL)
 	{
 	  i = -1;
-	  while (++i < nb_path && elem->next != NULL)
+	  while (++i < a && elem->next != NULL)
 	    {
 	      aff_ant(elem, i);
 	      elem = elem->next;

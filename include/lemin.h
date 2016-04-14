@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Tue Apr 12 15:58:13 2016 benjamin duhieu
+** Last update Wed Apr 13 12:25:00 2016 benjamin duhieu
 */
 
 #ifndef LEMIN_H_
@@ -55,6 +55,7 @@ typedef struct		s_tube
   int			nb;
   int			id;
   struct s_tube		*next;
+  struct s_tube		*prev;
 }			t_tube;
 
 typedef struct		s_data
@@ -73,9 +74,10 @@ typedef struct		s_data
 typedef	struct		s_larg
 {
   int			count;
-  char			pass;
-  t_tube			*way;
+  char			valid;
+  t_tube		*pile;
   struct s_larg		*next;
+  struct s_prev		*prev;
 }			t_larg;
 
 typedef struct		s_path

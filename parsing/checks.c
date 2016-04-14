@@ -5,22 +5,22 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Apr 11 13:51:30 2016 marc brout
-** Last update Mon Apr 11 14:15:32 2016 marc brout
+** Last update Thu Apr 14 16:47:16 2016 marc brout
 */
 
 #include "lemin.h"
 #include "my.h"
 
-int		check_first_last(t_room *root)
+int		check_first_last(t_data *data)
 {
   t_room	*tmp;
   int		total_first;
   int		total_last;
 
-  tmp = root->next;
+  tmp = data->rooms->next;
   total_first = 0;
   total_last = 0;
-  while (tmp != root)
+  while (tmp != data->rooms)
     {
       total_first += (tmp->first) ? 1 : 0;
       total_last += (tmp->last) ? 1 : 0;
@@ -39,16 +39,16 @@ int		check_first_last(t_room *root)
   return (0);
 }
 
-int		check_room_position(t_room *root)
+int		check_room_position(t_data *data)
 {
   t_room	*tmp;
   t_room	*tmp2;
 
-  tmp = root->next;
-  while (tmp != root && tmp->next != root)
+  tmp = data->rooms->next;
+  while (tmp != data->rooms && tmp->next != data->rooms)
     {
       tmp2 = tmp->next;
-      while (tmp2 != root)
+      while (tmp2 != data->rooms)
 	{
 	  if (tmp->x == tmp2->x && tmp->y == tmp2->y)
 	    return (my_put_error(SAME_ROOM), 1);

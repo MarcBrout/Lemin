@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:54:44 2016 marc brout
-** Last update Thu Apr 14 12:51:34 2016 marc brout
+** Last update Thu Apr 14 16:49:53 2016 marc brout
 */
 
 #include <unistd.h>
@@ -19,11 +19,11 @@ int		get_ants(t_data *data)
   int		ret;
 
   if ((ret = get_next_str(&tmp)) && (ret == 2))
-    return (my_put_error(WRONG_ANTS), 1);
+    return (my_put_error(WRONG_ANTS), 2);
   else if (ret)
     return (1);
   if ((data->ants = my_getnbrcst(tmp)) <= 0)
-    return (my_put_error(WRONG_ANTS), 1);
+    return (my_put_error(WRONG_ANTS), 2);
   my_printf("%d\n", data->ants);
   free(tmp);
   return (0);
@@ -48,19 +48,32 @@ int		count_words(char *str)
 
 int		init_root(t_data *data)
 {
-  if (!(data->rooms = malloc(sizeof(t_room))))
+  if (!(data->rooms = malloc(sizeof(t_room))) ||
+      !(data->tabf = malloc(sizeof(void *) * 5)))
     return (my_put_error(MALLOC_ERR), 1);
   data->rooms->next = data->rooms;
   data->rooms->prev = data->rooms;
+  data->tabf[0] = &get_ants;
+  data->tabf[1] = &get_all;
+  data->tabf[2] = &check_room_position;
+  data->tabf[3] = &check_first_last;
   return (0);
 }
 
 int		parse_input(t_data *data)
 {
-  if (init_root(data) || get_ants(data) || get_all(data) ||
-      check_room_position(data->rooms) ||
-      check_first_last(data->rooms))
-    return (my_put_error(ROOM_TROUBLE), 1);
+  int		i;
+  int		ret;
+
+  if (init_root(data))
+    return (1);
+  i = 0;
+  while (!(ret = data->tabf[i](data)) && i < 4)
+    ++i;
+  if (ret == 1)
+    return (1);
+  else if (ret)
+    my_put_error(ROOM_TROUBLE);
   if (solve_one_path(data->rooms))
     return (1);
   return (0);

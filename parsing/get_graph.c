@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Apr 11 14:03:02 2016 marc brout
-** Last update Mon Apr 11 14:17:07 2016 marc brout
+** Last update Thu Apr 14 13:02:27 2016 marc brout
 */
 
 #include "get_next_line.h"
@@ -73,6 +73,7 @@ int		get_one_room(t_room *root, t_room *ref, char *next)
   elem->last = (*next == 1) ? 1 : 0;
   elem->first = (!*next) ? 1 : 0;
   *next = -1;
+  my_printf("%s %d %d\n", elem->name, elem->x, elem->y);
   return (0);
 }
 
@@ -93,7 +94,8 @@ int		get_this_line(t_data *data, char *next,
       if (get_one_room(data->rooms, ref, next))
 	return (1);
     }
-  else if (ret == 1 && prepare_rooms(line, data->rooms))
+  else if (line && line[0] && ret == 1 &&
+	   prepare_rooms(line, data->rooms))
     return (1);
   else if (ret != 1 && ret != 3)
     my_put_error(BAD_FORMAT);
@@ -115,6 +117,7 @@ int		get_all(t_data *data)
       if (next < 0 && (next = (!my_strcmp(line, "##end")) ? 1 :
 	   (!my_strcmp(line, "##start")) ? 0 : -1) >= 0)
 	{
+	  my_printf("%s\n", line);
 	  free(line);
 	  continue;
 	}

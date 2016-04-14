@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:54:44 2016 marc brout
-** Last update Mon Apr 11 17:37:43 2016 marc brout
+** Last update Thu Apr 14 12:51:34 2016 marc brout
 */
 
 #include <unistd.h>
@@ -24,6 +24,7 @@ int		get_ants(t_data *data)
     return (1);
   if ((data->ants = my_getnbrcst(tmp)) <= 0)
     return (my_put_error(WRONG_ANTS), 1);
+  my_printf("%d\n", data->ants);
   free(tmp);
   return (0);
 }

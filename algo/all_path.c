@@ -5,25 +5,25 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:22:54 2016 benjamin duhieu
-** Last update Wed Apr 13 12:45:34 2016 benjamin duhieu
+** Last update Thu Apr 14 13:17:42 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
 #include "lemin.h"
 #include "my.h"
 
-int		all_ways(t_tube *tube, t_tube *new_elem,
-			 t_path ***tmp, t_tube *prev)
-{
-  int		chk;
+/* int		all_ways(t_tube *tube, t_tube *new_elem, */
+/* 			 t_path ***tmp, t_tube *prev) */
+/* { */
+/*   int		chk; */
 
-  if ((chk = new_path(tube, new_elem, tmp, prev)) == 1)
-    return (0);
-  else if (chk == -1)
-    return (-1);
-  /* free(new_elem); */
-  return (0);
-}
+/*   if ((chk = new_path(tube, new_elem, tmp, prev)) == 1) */
+/*     return (0); */
+/*   else if (chk == -1) */
+/*     return (-1); */
+/*   /\* free(new_elem); *\/ */
+/*   return (0); */
+/* } */
 
 
 int		path(t_room *prem, t_larg *root)
@@ -48,5 +48,6 @@ int		path(t_room *prem, t_larg *root)
   /* if ((nb_path = shorts_path(&way, nb_path)) == -1) */
   /*   return (my_put_error(MALLOC_ERR), -1); */
   /* my_printf("|||lolpppp : %p ||||-\n", way[0]); */
-  return (nb_path);
+  /* return (nb_path); */
+  return (2);
 }

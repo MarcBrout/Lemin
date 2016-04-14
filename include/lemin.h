@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Thu Apr 14 13:04:38 2016 marc brout
+** Last update Thu Apr 14 13:23:07 2016 marc brout
 */
 
 #ifndef LEMIN_H_
@@ -251,5 +251,16 @@ int			parse_input(t_data *data);
 void			free_tubes(t_tube *tubes);
 void			free_graph(t_room *root);
 void			free_pile(t_tube *root);
+
+/*
+** tri.c
+*/
+
+void			swap_value(t_larg *pile1,
+				   t_larg *pile2);
+void			tri_pile_by_branch(t_larg *piles);
+void			tri_pile_by_length(t_larg *piles, char id);
+t_tube			*copy_pile(t_tube *pile);
+void			free_pile(t_tube *pile);
 
 #endif /* !LEMIN_H_ */

@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Thu Apr 14 13:23:07 2016 marc brout
+** Last update Thu Apr 14 13:23:40 2016 marc brout
 */
 
 #ifndef LEMIN_H_
@@ -75,7 +75,7 @@ typedef	struct		s_larg
   char			valid;
   t_tube		*pile;
   struct s_larg		*next;
-  struct s_prev		*prev;
+  struct s_larg		*prev;
 }			t_larg;
 
 typedef struct		s_path
@@ -156,20 +156,24 @@ int			start(t_room *, t_ant *, int);
 
 int			all_ways(t_tube *, t_tube *,
 				 t_path ***, t_tube *);
-int			path(t_room *, t_path **, int);
+int			path(t_room *, t_larg *);
 
 /*
-** chk_path.c
+** large_path.c
 */
 
-int			chk_id(t_tube *, t_tube *);
-int			chk_path(t_tube *, t_tube *,
-				 t_path ***);
-int			new_path(t_tube *, t_tube *,
-				 t_path ***, t_tube *);
-int			other_chk(t_tube *, t_tube *,
-				  t_tube *);
-t_path			**my_realloc_path(t_path **, int);
+int	add_pile(t_larg *, t_larg *);
+int	add_elem_to_pile(t_room *, t_tube *);
+int	browse_graph(t_larg *);
+int	copy_new_pile(t_tube *, t_larg *, t_larg *);
+void	remove_pile(t_larg *);
+
+/*
+** count_way.c
+*/
+
+int	count_way(t_ant *, int);
+int	nb_strokes(t_ant *, int);
 
 /*
 ** short_path.c

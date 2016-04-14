@@ -5,9 +5,10 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Tue Apr 12 14:47:52 2016 benjamin duhieu
-** Last update Wed Apr 13 12:35:23 2016 benjamin duhieu
+** Last update Thu Apr 14 13:20:11 2016 benjamin duhieu
 */
 
+#include <stdlib.h>
 #include "lemin.h"
 
 void		remove_pile(t_larg *new_elem)
@@ -49,7 +50,7 @@ int		add_path(t_tube *tub, t_larg *act, t_larg *root)
   return (0);
 }
 
-int		add_pile(t_room *room, t_tube *pile)
+int		add_elem_to_pile(t_room *room, t_tube *pile)
 {
   t_tube	*elem;
 
@@ -67,7 +68,7 @@ int		copy_new_pile(t_tube *tub, t_larg *act, t_larg *root)
 {
   if (add_path(tub, act, root))
     return (1);
-  if (add_pile(tub->room, root->prev->pile))
+  if (add_elem_to_pile(tub->room, root->prev->pile))
     return (1);
   return (0);
 }

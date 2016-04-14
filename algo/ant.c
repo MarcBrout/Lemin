@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sat Apr  2 13:24:27 2016 benjamin duhieu
-** Last update Wed Apr 13 13:10:54 2016 benjamin duhieu
+** Last update Thu Apr 14 13:19:23 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -63,6 +63,7 @@ void	aff_ant(t_ant *elem, int i)
 void	start_ant(t_ant *ant, int nb_path)
 {
   t_ant	*elem;
+  int	a;
   int	i;
 
   elem = ant;

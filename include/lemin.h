@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Thu Apr 14 13:23:40 2016 marc brout
+** Last update Sat Apr 16 15:20:50 2016 benjamin duhieu
 */
 
 #ifndef LEMIN_H_
@@ -92,7 +92,7 @@ typedef	struct		s_tree
   int			i;
   int			j;
   int			path;
-  char			bool;
+  char			bol;
   int			branch;
   int			tmp;
   int			place;
@@ -148,51 +148,59 @@ int			get_next_str(char **str);
 ** algo.c
 */
 
-int			start(t_room *, t_ant *, int);
+int			start(t_room *room, t_ant *ant, int nb);
 
 /*
 ** all_path.c
 */
 
-int			all_ways(t_tube *, t_tube *,
-				 t_path ***, t_tube *);
-int			path(t_room *, t_larg *);
+/* int			all_ways(t_tube *, t_tube *, */
+/* 				 t_path ***, t_tube *); */
+int			path(t_room *prem, t_larg *root);
 
 /*
 ** large_path.c
 */
 
-int	add_pile(t_larg *, t_larg *);
-int	add_elem_to_pile(t_room *, t_tube *);
-int	browse_graph(t_larg *);
-int	copy_new_pile(t_tube *, t_larg *, t_larg *);
-void	remove_pile(t_larg *);
+int			browse_graph(t_larg *root);
+int			chk_id(int id, t_larg *elem);
+int			copy_new_pile(t_tube *tub, t_larg *act,
+				      t_larg *root);
+void			remove_pile(t_larg *new_elem);
+
+/*
+** add_pile.c
+*/
+
+int			add_path(t_larg *act, t_larg *root);
+int			add_elem_to_pile(t_room *room, t_tube *pile);
+int			add_pil(t_larg *elem, t_larg *root);
 
 /*
 ** count_way.c
 */
 
-int	count_way(t_ant *, int);
-int	nb_strokes(t_ant *, int);
+int			count_way(t_ant *ant, int a);
+int			nb_strokes(t_ant *ant, int nb_path);
 
 /*
 ** short_path.c
 */
 
-int			first(int, int *, int, t_path *);
-int			same_way(t_path *, t_path **way, int);
-int			shorts_path(t_path ***, int);
-int			swap(int, int *, t_path **);
+/* int			first(int, int *, int, t_path *); */
+/* int			same_way(t_path *, t_path **way, int); */
+/* int			shorts_path(t_path ***, int); */
+/* int			swap(int, int *, t_path **); */
 
 /*
 ** ant.c
 */
 
-int			path_ant(t_room *);
-int			ant_on_the_way(t_ant *);
-t_ant			*list_ant(t_path **way, int);
-void			aff_ant(t_ant *, int);
-void			start_ant(t_ant *, int);
+int			path_ant(t_room *room);
+int			ant_on_the_way(t_ant *ant);
+t_ant			*list_ant(t_path **way, int nb);
+void			aff_ant(t_ant *elem, int i);
+void			start_ant(t_ant *ant, int nb_path);
 
 /*
 ** solve_one_path.c
@@ -262,9 +270,20 @@ void			free_pile(t_tube *root);
 
 void			swap_value(t_larg *pile1,
 				   t_larg *pile2);
-void			tri_pile_by_branch(t_larg *piles);
-void			tri_pile_by_length(t_larg *piles, char id);
+void			tri_piles_by_branch(t_larg *piles);
+void			tri_piles_by_length(t_larg *piles, char id);
 t_tube			*copy_pile(t_tube *pile);
-void			free_pile(t_tube *pile);
+void			free_pil(t_tube *pile);
+
+/*
+** get_short_path.c
+*/
+
+int			count_paths(t_larg *root);
+int			how_many_to_remove(t_larg *one, t_larg *root);
+int			piles_same_tube(t_tube *root1, t_tube *root2);
+t_larg			*compare_piles(t_larg *root,
+				       t_larg *one, t_larg *sec);
+void			get_short_paths(t_larg *root);
 
 #endif /* !LEMIN_H_ */

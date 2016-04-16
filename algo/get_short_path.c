@@ -5,9 +5,10 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Wed Apr 13 11:28:34 2016 marc brout
-** Last update Wed Apr 13 12:53:54 2016 marc brout
+** Last update Sat Apr 16 15:18:01 2016 benjamin duhieu
 */
 
+#include <stdlib.h>
 #include "lemin.h"
 
 int		piles_same_tube(t_tube *root1, t_tube *root2)
@@ -78,16 +79,16 @@ t_larg		*compare_piles(t_larg *root, t_larg *one, t_larg *sec)
 void		get_short_paths(t_larg *root)
 {
   char		go;
-  int		nb;
-  t_larg	*to_delete;
+  /* int		nb; */
+  /* t_larg	*to_delete; */
   t_larg	*cur;
 
   go = 1;
-  nb = 0;
+  /* nb = 0; */
   while (go)
     {
       cur = root->next;
-      to_delete = NULL;
+      /* to_delete = NULL; */
       go = 0;
       while (cur != root && cur->next != root)
 	{

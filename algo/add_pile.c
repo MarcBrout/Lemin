@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sat Apr 16 14:31:05 2016 benjamin duhieu
-** Last update Sat Apr 16 16:00:24 2016 benjamin duhieu
+** Last update Sat Apr 16 18:57:25 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -37,10 +37,8 @@ int		add_elem_to_pile(t_room *room, t_tube *pile)
 
   if (!(elem = malloc(sizeof(t_tube))))
     return (1);
-  elem->next = pile->prev;
-  elem->prev = pile;
-  pile->prev->next = elem;
-  pile->prev = elem;
+  pile->next = elem;
+  elem->next = NULL;
   elem->room = room;
   return (0);
 }

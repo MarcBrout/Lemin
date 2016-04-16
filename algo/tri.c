@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Apr 12 15:38:47 2016 marc brout
-** Last update Sat Apr 16 15:45:58 2016 benjamin duhieu
+** Last update Sat Apr 16 18:58:28 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -75,13 +75,11 @@ t_tube		*copy_pile(t_tube *pile)
   t_tube	*tmp;
   t_tube	*first;
   t_tube	*elem;
-  int		i;
 
   if (!(cur = pile))
     return (NULL);
   tmp = NULL;
-  i = 0;
-  while (!i)
+  while (cur)
     {
       if (!(elem = malloc(sizeof(t_tube))))
 	return (my_put_error(MALLOC_ERR), NULL);
@@ -95,8 +93,6 @@ t_tube		*copy_pile(t_tube *pile)
       if (cur != pile)
 	tmp = elem;
       cur = cur->next;
-      if (cur == pile)
-	i = 1;
     }
   return (first);
 }

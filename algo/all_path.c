@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:22:54 2016 benjamin duhieu
-** Last update Sat Apr 16 15:32:03 2016 benjamin duhieu
+** Last update Sat Apr 16 18:55:26 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -40,8 +40,8 @@ int		path(t_room *prem, t_larg *root)
   first->valid = 0;
   if (!(first->pile = malloc(sizeof(t_tube))))
     return (my_put_error(MALLOC_ERR), -1);
-  first->pile->next = first->pile;
-  first->pile->prev = first->pile;
+  first->pile->next = NULL;
+  /* first->pile->prev = first->pile; */
   first->pile->room = prem;
   my_printf("a\n");
   if (browse_graph(root))

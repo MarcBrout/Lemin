@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Tue Apr 12 14:47:52 2016 benjamin duhieu
-** Last update Sat Apr 16 16:10:06 2016 benjamin duhieu
+** Last update Sat Apr 16 18:58:44 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -24,18 +24,14 @@ void		remove_pile(t_larg *new_elem)
 int		chk_id(int id, t_larg *elem)
 {
   t_tube	*new_elem;
-  char		i;
 
   new_elem = elem->pile;
-  i = 0;
-  while (!i)
+  while (new_elem)
     {
       my_printf("id : %d && elem->room->id : %d\n", id, new_elem->room->id);
       if (id == new_elem->room->id)
 	return (1);
       new_elem = new_elem->next;
-      if (new_elem == elem->pile)
-	i = 1;
     }
   my_printf("--------------\n", id, new_elem->room->id);
   return (0);

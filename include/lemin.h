@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Sat Apr 16 15:20:50 2016 benjamin duhieu
+** Last update Sat Apr 16 16:32:11 2016 benjamin duhieu
 */
 
 #ifndef LEMIN_H_
@@ -60,6 +60,7 @@ typedef struct		s_data
 {
   int			ants;
   int			end_ants;
+  int			(**tabf)(struct s_data *);
   t_room		*rooms;
 }			t_data;
 
@@ -218,8 +219,8 @@ t_room			*find_first_room(t_room *root);
 ** checks.c
 */
 
-int			check_first_last(t_room *root);
-int			check_room_position(t_room *root);
+int			check_first_last(t_data *data);
+int			check_room_position(t_data *data);
 int			check_existing_room(t_room *root,
 					    t_room *test,
 					    char *name);

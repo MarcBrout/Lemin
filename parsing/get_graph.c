@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Apr 11 14:03:02 2016 marc brout
-** Last update Fri Apr 15 09:49:19 2016 marc brout
+** Last update Sun Apr 17 11:18:23 2016 marc brout
 */
 
 #include "get_next_line.h"
@@ -92,11 +92,14 @@ int		get_this_line(t_data *data, char *next,
       if ((ret = (get_one_room(data->rooms, ref, next))))
 	return (ret);
     }
-  else if (line && line[0] && ret == 1 &&
-	   (ret = prepare_rooms(line, data->rooms)))
-    return (ret);
-  else if (ret != 1 && ret != 3)
-    return (my_put_error(BAD_FORMAT), 2);
+  else if (line && line[0] && ret == 1)
+    {
+      if ((ret = prepare_rooms(line, data->rooms)))
+	return (ret);
+    }
+  else
+    if (ret != 1 && ret != 3)
+      return (my_put_error(BAD_FORMAT), 2);
   return (0);
 }
 

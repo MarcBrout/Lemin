@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:54:44 2016 marc brout
-** Last update Fri Apr 15 10:00:08 2016 marc brout
+** Last update Sun Apr 17 11:21:56 2016 marc brout
 */
 
 #include <unistd.h>
@@ -67,7 +67,7 @@ int		parse_input(t_data *data)
   if (init_root(data))
     return (1);
   i = 0;
-  while (!(ret = data->tabf[i](data)) && i < 4)
+  while (i < 3 && !(ret = data->tabf[i](data)))
     ++i;
   if (ret == 1)
     return (1);

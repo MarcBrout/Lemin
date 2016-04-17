@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:54:44 2016 marc brout
-** Last update Thu Apr 14 16:49:53 2016 marc brout
+** Last update Fri Apr 15 10:00:08 2016 marc brout
 */
 
 #include <unistd.h>
@@ -49,14 +49,13 @@ int		count_words(char *str)
 int		init_root(t_data *data)
 {
   if (!(data->rooms = malloc(sizeof(t_room))) ||
-      !(data->tabf = malloc(sizeof(void *) * 5)))
+      !(data->tabf = malloc(sizeof(void *) * 4)))
     return (my_put_error(MALLOC_ERR), 1);
   data->rooms->next = data->rooms;
   data->rooms->prev = data->rooms;
   data->tabf[0] = &get_ants;
   data->tabf[1] = &get_all;
   data->tabf[2] = &check_room_position;
-  data->tabf[3] = &check_first_last;
   return (0);
 }
 
@@ -74,6 +73,8 @@ int		parse_input(t_data *data)
     return (1);
   else if (ret)
     my_put_error(ROOM_TROUBLE);
+  if (check_first_last(data))
+    return (1);
   if (solve_one_path(data->rooms))
     return (1);
   return (0);
@@ -128,6 +129,7 @@ int		main(int ac, char **av)
 	return (1);
       free_graph(data.rooms);
       free(data.rooms);
+      free(data.tabf);
       return (0);
     }
   return (1);

@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Apr 11 14:03:02 2016 marc brout
-** Last update Thu Apr 14 13:02:27 2016 marc brout
+** Last update Fri Apr 15 09:49:19 2016 marc brout
 */
 
 #include "get_next_line.h"
@@ -57,7 +57,7 @@ int		get_one_room(t_room *root, t_room *ref, char *next)
   t_room	*elem;
 
   if (check_existing_room(root, ref, ref->name))
-    return (0);
+    return (2);
   if (!(elem = malloc(sizeof(t_room))))
     return (my_put_error(MALLOC_ERR), 1);
   elem->name = ref->name;
@@ -84,21 +84,19 @@ int		get_this_line(t_data *data, char *next,
 
   if ((ret = count_words(line)) == 3)
     {
-      if ((ret = set_new_x_y(ref, line)) == 2)
+      if ((ret = set_new_x_y(ref, line)))
 	{
 	  free(line);
-	  return (0);
+	  return (ret);
 	}
-      else if (ret)
-	return (1);
-      if (get_one_room(data->rooms, ref, next))
-	return (1);
+      if ((ret = (get_one_room(data->rooms, ref, next))))
+	return (ret);
     }
   else if (line && line[0] && ret == 1 &&
-	   prepare_rooms(line, data->rooms))
-    return (1);
+	   (ret = prepare_rooms(line, data->rooms)))
+    return (ret);
   else if (ret != 1 && ret != 3)
-    my_put_error(BAD_FORMAT);
+    return (my_put_error(BAD_FORMAT), 2);
   return (0);
 }
 
@@ -106,6 +104,7 @@ int		get_all(t_data *data)
 {
   char		*line;
   char		next;
+  int		ret;
   t_room	tmp;
 
   tmp.id = 0;
@@ -121,11 +120,11 @@ int		get_all(t_data *data)
 	  free(line);
 	  continue;
 	}
-      if (get_this_line(data, &next, &tmp, line))
-	return (1);
+      if ((ret = get_this_line(data, &next, &tmp, line)))
+	return (ret);
       free(line);
     }
   if (tmp.id < 2)
-    return (my_put_error(MISSING_ROOM), 1);
+    return (my_put_error(MISSING_ROOM), 2);
   return (0);
 }

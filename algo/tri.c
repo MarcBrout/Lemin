@@ -5,9 +5,10 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Apr 12 15:38:47 2016 marc brout
-** Last update Wed Apr 13 12:50:41 2016 marc brout
+** Last update Sat Apr 16 18:58:28 2016 benjamin duhieu
 */
 
+#include <stdlib.h>
 #include "lemin.h"
 
 void		swap_value(t_larg *pile1, t_larg *pile2)
@@ -91,11 +92,12 @@ t_tube		*copy_pile(t_tube *pile)
 	first = elem;
       if (cur != pile)
 	tmp = elem;
+      cur = cur->next;
     }
   return (first);
 }
 
-void		free_pile(t_tube *pile)
+void		free_pil(t_tube *pile)
 {
   t_tube	*cur;
   t_tube	*tmp;

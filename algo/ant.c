@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sat Apr  2 13:24:27 2016 benjamin duhieu
-** Last update Thu Apr 14 13:19:23 2016 benjamin duhieu
+** Last update Sat Apr 16 14:48:33 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -54,7 +54,7 @@ void	aff_ant(t_ant *elem, int i)
 	my_printf(" P%d-%d", elem->num,
 		  elem->way[i]->tube->next->room->id);
       if (!elem->way[i]->tube->next->room->last)
-	elem->way[i]->tube->room->ants = 1;
+	elem->way[i]->tube->next->room->ants = 1;
       else
 	elem->finish = 1;
     }

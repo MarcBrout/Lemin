@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:22:54 2016 benjamin duhieu
-** Last update Thu Apr 14 13:17:42 2016 benjamin duhieu
+** Last update Sat Apr 16 18:55:26 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -40,14 +40,24 @@ int		path(t_room *prem, t_larg *root)
   first->valid = 0;
   if (!(first->pile = malloc(sizeof(t_tube))))
     return (my_put_error(MALLOC_ERR), -1);
-  first->pile->next = first->pile;
-  first->pile->prev = first->pile;
+  first->pile->next = NULL;
+  /* first->pile->prev = first->pile; */
   first->pile->room = prem;
+  my_printf("a\n");
   if (browse_graph(root))
     return (my_put_error(MALLOC_ERR), -1);
+  my_printf("b\n");
+  tri_piles_by_branch(root);
+  my_printf("c\n");
+  tri_piles_by_length(root, 0);
+  my_printf("d\n");
+  get_short_paths(root);
+  my_printf("e\n");
+  tri_piles_by_length(root, 1);
+  my_printf("f\n");
   /* if ((nb_path = shorts_path(&way, nb_path)) == -1) */
   /*   return (my_put_error(MALLOC_ERR), -1); */
   /* my_printf("|||lolpppp : %p ||||-\n", way[0]); */
   /* return (nb_path); */
-  return (2);
+  return (count_paths(root));
 }

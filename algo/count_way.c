@@ -5,34 +5,35 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Wed Apr 13 13:02:53 2016 benjamin duhieu
-** Last update Wed Apr 13 13:09:44 2016 benjamin duhieu
+** Last update Sat Apr 16 14:49:18 2016 benjamin duhieu
 */
 
+#include <stdlib.h>
 #include "lemin.h"
 
 int	nb_strokes(t_ant *ant, int a)
 {
   int	i;
+  t_ant	*elm;
   int	ret;
 
   ret = 0;
   while (ant_on_the_way(ant) && ++ret)
     {
-      elem = ant;
-      while (elem->next != NULL)
+      elm = ant;
+      while (elm->next != NULL && (i = -1))
 	{
-	  i = -1;
-	  while (++i < a && elem->next != NULL)
+	  while (++i < a && elm->next != NULL)
 	    {
-	      if (!elem->finish && !elem->way[i]->room->next->ants)
+	      if (!elm->finish && !elm->way[i]->tube->next->room->ants)
 		{
-		  elem->way[i]->room->ants = 0;
-		  if (!elem->way->room->next->last)
-		    elem->way->room->next->ants = 1;
+		  elm->way[i]->tube->room->ants = 0;
+		  if (!elm->way[i]->tube->next->room->last)
+		    elm->way[i]->tube->next->room->ants = 1;
 		  else
-		    elem->finish = 1;
+		    elm->finish = 1;
 		}
-	      elem = elem->next;
+	      elm = elm->next;
 	    }
 	}
     }

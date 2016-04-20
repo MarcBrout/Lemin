@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Wed Apr 20 19:40:11 2016 marc brout
+** Last update Wed Apr 20 21:34:24 2016 marc brout
 */
 
 #ifndef LEMIN_H_
@@ -292,5 +292,11 @@ t_larg			*compare_piles(t_larg *root,
 void			get_short_paths(t_larg *root);
 
 void			verif_elem(t_larg *, t_tube *);
+
+/*
+** clean.c
+*/
+
+void			clean_paths(t_larg *root);
 
 #endif /* !LEMIN_H_ */

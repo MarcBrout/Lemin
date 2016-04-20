@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Wed Apr 20 22:21:13 2016 marc brout
+** Last update Wed Apr 20 22:45:17 2016 marc brout
 */
 
 #ifndef LEMIN_H_
@@ -32,6 +32,7 @@
 # define INVALID_ROOM " Does not exist, skipping tube creation.\n"
 # define NO_PATH "No path available, exiting.\n"
 # define BAD_FORMAT "Bad line format, skipping it.\n"
+# include <stdbool.h>
 
 typedef struct		s_room
 {
@@ -180,7 +181,6 @@ int			add_pil(t_larg *elem, t_larg *root);
 int			count_way(t_ant *ant, int a);
 int			nb_strokes(t_ant *ant, int nb_path);
 
-
 /*
 ** ant.c
 */
@@ -261,6 +261,12 @@ void			free_graph(t_room *root);
 void			free_pile(t_tube *root);
 
 /*
+** free_pile.c
+*/
+
+void			free_pil(t_tube *pile);
+
+/*
 ** tri.c
 */
 
@@ -268,8 +274,8 @@ void			swap_value(t_larg *pile1,
 				   t_larg *pile2);
 void			tri_piles_by_branch(t_larg *piles);
 void			tri_piles_by_length(t_larg *piles, char id);
+t_tube			*copy_maillon(t_tube *cur, t_tube **tmp, bool *i);
 t_tube			*copy_pile(t_tube *pile);
-void			free_pil(t_tube *pile);
 
 /*
 ** get_short_path.c

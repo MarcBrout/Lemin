@@ -5,10 +5,11 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Apr 12 15:38:47 2016 marc brout
-** Last update Wed Apr 20 22:00:09 2016 marc brout
+** Last update Wed Apr 20 22:46:15 2016 marc brout
 */
 
 #include <stdlib.h>
+#include <stdbool.h>
 #include "lemin.h"
 #include "my.h"
 
@@ -70,24 +71,36 @@ void		tri_piles_by_length(t_larg *piles, char id)
     }
 }
 
+t_tube		*copy_maillon(t_tube *cur, t_tube **tmp, bool *i)
+{
+  t_tube	*first;
+
+  if (!(first = malloc(sizeof(t_tube))))
+    return (my_put_error(MALLOC_ERR), NULL);
+  first->next = NULL;
+  first->room = cur->room;
+  first->ants = cur->ants;
+  *tmp = first;
+  *i = true;
+  return (first);
+}
+
 t_tube		*copy_pile(t_tube *pile)
 {
   t_tube	*cur;
   t_tube	*tmp;
   t_tube	*first;
-  int		i;
+  bool		i;
   t_tube	*elem;
 
   cur = pile;
-  i = 0;
+  i = false;
   while (cur)
     {
-      if (i == 0)
+      if (!i)
 	{
-	  if (!(first = malloc(sizeof(t_tube))))
-	    return (my_put_error(MALLOC_ERR), NULL);
-	  first->next = NULL, first->room = cur->room;
-	  first->ants = cur->ants, tmp = first, i++;
+	  if (!(first = copy_maillon(cur, &tmp, &i)))
+	    return (NULL);
 	}
       else
 	{
@@ -99,18 +112,4 @@ t_tube		*copy_pile(t_tube *pile)
       cur = cur->next;
     }
   return (first);
-}
-
-void		free_pil(t_tube *pile)
-{
-  t_tube	*cur;
-  t_tube	*tmp;
-
-  cur = pile;
-  while (cur)
-    {
-      tmp = cur->next;
-      free(cur);
-      cur = tmp;
-    }
 }

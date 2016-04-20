@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Tue Apr 12 14:47:52 2016 benjamin duhieu
-** Last update Wed Apr 20 22:11:42 2016 marc brout
+** Last update Wed Apr 20 22:28:18 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -55,10 +55,8 @@ int		browse_graph(t_larg *root)
   bool		pass;
 
   pass = true;
-  while (pass)
+  while (pass && !(pass = false) && (new_elem = root->next))
     {
-      pass = false;
-      new_elem = root->next;
       while (new_elem != root)
 	{
 	  if (count_paths(root) > 30000)

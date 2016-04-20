@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sat Apr 16 14:31:05 2016 benjamin duhieu
-** Last update Wed Apr 20 22:06:13 2016 marc brout
+** Last update Wed Apr 20 22:48:11 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -56,24 +56,9 @@ t_tube		*last_elem_pile(t_larg *elem)
   return (tmp->room->tubes);
 }
 
-int		add_pil2(t_larg *elem)
-{
-  t_tube	*new_elem;
-  int		i = 0;
-
-  new_elem = last_elem_pile(elem);
-  while (new_elem)
-    {
-      new_elem = new_elem->next;
-      i++;
-    }
-  return (0);
-}
-
 int		add_pil(t_larg *elem, t_larg *root)
 {
   t_tube	*new_elem;
-  int		i = 0;
 
   new_elem = last_elem_pile(elem);
   while (new_elem)
@@ -86,7 +71,6 @@ int		add_pil(t_larg *elem, t_larg *root)
       if (copy_new_pile(new_elem, elem, root))
 	return (1);
       new_elem = new_elem->next;
-      i++;
     }
   return (0);
 }

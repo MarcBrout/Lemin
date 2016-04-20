@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:22:54 2016 benjamin duhieu
-** Last update Wed Apr 20 14:24:42 2016 benjamin duhieu
+** Last update Wed Apr 20 19:18:06 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -59,14 +59,14 @@ int		path(t_room *prem, t_larg *root)
   if (browse_graph(root))
     return (my_put_error(MALLOC_ERR), -1);
   //chk_list(root);
-  //   my_printf("aaaaaaaa\n");
+  //my_printf("aaaaaaaa\n");
   tri_piles_by_branch(root);
   // my_printf("bbbbbbbb\n");
-  tri_piles_by_length(root, 0);
-  /* my_printf("ccccccccccc\n"); */
-  get_short_paths(root);
-  //  my_printf("ddddddd\n");
   tri_piles_by_length(root, 1);
+  my_printf("ccccccccccc\n");
+  get_short_paths(root);
+   my_printf("ddddddd\n");
+  tri_piles_by_length(root, 0);
   /* my_printf("eeeeeee\n"); */
   return (count_paths(root));
 }

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sat Apr 16 14:31:05 2016 benjamin duhieu
-** Last update Tue Apr 19 21:09:50 2016 benjamin duhieu
+** Last update Wed Apr 20 21:12:54 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -54,8 +54,25 @@ t_tube		*last_elem_pile(t_larg *elem)
   tmp = elem->pile;
   while (tmp->next)
     tmp = tmp->next;
-  //my_printf("\nCHECK ROOM : %s\n\n", tmp->room->name);
+  // my_printf("\nCHECK ROOM : %s\n\n", tmp->room->name);
   return (tmp->room->tubes);
+}
+
+int		add_pil2(t_larg *elem)
+{
+  t_tube	*new_elem;
+  int		i = 0;
+
+  new_elem = last_elem_pile(elem);
+  while (new_elem)
+    {
+      //my_printf("NEXT ROOM : %s\n\n", new_elem->room->name);
+      //my_printf("GO NEXT NEW_ELEM\n");
+      new_elem = new_elem->next;
+      i++;
+    }
+  // my_printf("AAAAAAAAAAA\n");
+  return (0);
 }
 
 int		add_pil(t_larg *elem, t_larg *root)
@@ -66,16 +83,16 @@ int		add_pil(t_larg *elem, t_larg *root)
   new_elem = last_elem_pile(elem);
   while (new_elem)
     {
-      //  my_printf("NEXT ROOM : %s\n\n", new_elem->room->name);
+      //my_printf("NEXT ROOM : %s\n\n", new_elem->room->name);
       if (chk_id(new_elem->room->name, elem))
 	{
-	  //	  my_printf("LOOP\n");
+	  //my_printf("LOOP\n");
 	  new_elem = new_elem->next;
 	  continue ;
 	}
       if (copy_new_pile(new_elem, elem, root))
 	return (1);
-      //  my_printf("|||||\n");
+      //my_printf("GO NEXT NEW_ELEM\n");
       new_elem = new_elem->next;
       i++;
     }

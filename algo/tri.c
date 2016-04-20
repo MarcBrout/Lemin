@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Apr 12 15:38:47 2016 marc brout
-** Last update Tue Apr 19 17:42:12 2016 benjamin duhieu
+** Last update Wed Apr 20 20:47:45 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -34,7 +34,7 @@ void		tri_piles_by_branch(t_larg *piles)
     {
       go = 0;
       cur = piles->next;
-      while (cur && cur->next && cur->next != piles)
+      while (cur && cur->next != piles)
 	{
 	  if (cur->pile->next->room->id <
 	      cur->next->pile->next->room->id)
@@ -57,13 +57,13 @@ void		tri_piles_by_length(t_larg *piles, char id)
     {
       go = 0;
       cur = piles->next;
-      while (cur && cur->next && cur->next != piles)
+      while (cur && cur->next != piles)
 	{
 	  if (id && cur->pile->next->room->id ==
 	      cur->next->pile->next->room->id &&
-	      cur->count < cur->next->count && (go = 1))
+	      cur->count > cur->next->count && (go = 1))
 	    swap_value(cur, cur->next);
-	  else if (!id && cur->count < cur->next->count && (go = 1))
+	  else if (!id && cur->count > cur->next->count && (go = 1))
 	    swap_value(cur, cur->next);
 	  cur = cur->next;
 	}

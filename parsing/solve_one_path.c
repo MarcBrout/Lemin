@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Sun Apr 10 19:16:00 2016 marc brout
-** Last update Mon Apr 11 17:16:08 2016 marc brout
+** Last update Wed Apr 20 19:14:57 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -47,7 +47,8 @@ int		add_all_to_the_pile(t_tube *root,
   cur = tubes;
   while (cur)
     {
-      if (add_one_to_the_pile(root, cur))
+      if (!cur->room->pass &&
+	  add_one_to_the_pile(root, cur))
 	return (1);
       cur = cur->next;
     }
@@ -81,6 +82,7 @@ int		solve_one_path(t_room *root)
   while (root_tube.next)
     {
       tmp = remove_from_the_pile(&root_tube);
+      tmp->room->pass = 1;
       if (add_all_to_the_pile(&root_tube, tmp->room->tubes))
 	return (1);
       if (tmp->room->last)

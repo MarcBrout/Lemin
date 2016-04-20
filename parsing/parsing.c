@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:54:44 2016 marc brout
-** Last update Wed Apr 20 22:05:18 2016 marc brout
+** Last update Wed Apr 20 22:15:07 2016 marc brout
 */
 
 #include <unistd.h>
@@ -80,38 +80,6 @@ int		parse_input(t_data *data)
   return (0);
 }
 
-void		show_tubes(t_tube *first)
-{
-  int		i;
-
-  i = 0;
-  while (first)
-    {
-      ++i;
-      my_printf("tube n°%d: room %s\n", i, first->room->name);
-      first = first->next;
-    }
-}
-
-void		show_graph(t_room *root)
-{
-  t_room	*first;
-
-  first = root->next;
-  while (first != root)
-    {
-      my_printf("===============\n");
-      my_printf("ROOM : %s\n", first->name);
-      my_printf("id : %d\n", first->id);
-      my_printf("first : %d\n", first->first);
-      my_printf("last : %d\n", first->last);
-      my_printf("x : %d, y : %d\n", first->x, first->y);
-      show_tubes(first->tubes);
-      my_printf("===============\n");
-      first = first->next;
-    }
-}
-
 int		main(int ac, char **av)
 {
   t_ant		ant;
@@ -124,7 +92,6 @@ int		main(int ac, char **av)
     return (1);
   if ((first = find_first_room(data.rooms)))
     {
-      /* show_graph(data.rooms); */
       if (start(first, &ant, data.ants))
 	return (1);
       free_graph(data.rooms);

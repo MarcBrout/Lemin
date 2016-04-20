@@ -5,24 +5,12 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:22:54 2016 benjamin duhieu
-** Last update Wed Apr 20 22:06:54 2016 marc brout
+** Last update Wed Apr 20 22:10:19 2016 marc brout
 */
 
 #include <stdlib.h>
 #include "lemin.h"
 #include "my.h"
-
-void		chk_list(t_larg *root)
-{
-  t_larg	*elem;
-
-  elem = root->next;
-  while (elem != root)
-    {
-      verif_elem(elem, elem->pile);
-      elem = elem->next;
-    }
-}
 
 int		path(t_room *prem, t_larg *root)
 {

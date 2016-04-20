@@ -5,7 +5,7 @@
 ## Login   <duhieu_b@epitech.net>
 ## 
 ## Started on  Fri Apr  8 15:45:04 2016 benjamin duhieu
-## Last update Wed Apr 20 22:09:47 2016 marc brout
+## Last update Wed Apr 20 22:19:20 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -41,6 +41,7 @@ SRC		=	$(PARSING)parsing.c \
 			$(ALGO)ant.c \
 			$(ALGO)larg_path.c \
 			$(ALGO)add_pile.c \
+			$(ALGO)aff_ant.c \
 			$(ALGO)get_short_path.c \
 
 OBJS    	=	$(SRC:.c=.o)

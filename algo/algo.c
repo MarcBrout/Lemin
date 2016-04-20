@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:14:52 2016 benjamin duhieu
-** Last update Wed Apr 20 21:07:45 2016 marc brout
+** Last update Wed Apr 20 22:06:26 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -37,7 +37,6 @@ int		start(t_room *room, t_ant *ant, int nb)
   t_larg	*root;
   int		nb_path;
 
-  //  my_printf("=)\n");
   if (!(root = malloc(sizeof(t_larg))))
     return (my_put_error(MALLOC_ERR), 1);
   root->prev = root;
@@ -46,7 +45,6 @@ int		start(t_room *room, t_ant *ant, int nb)
     return (1);
   if (!(way = malloc(sizeof(t_path *) * (nb_path + 1))))
     return (my_put_error(MALLOC_ERR), -1);
-  // my_printf(" NB PAAAATH = %d\n", nb_path);
   way[nb_path] = NULL;
   if (!(way = fill_tab(root, way, nb_path)))
     return (1);

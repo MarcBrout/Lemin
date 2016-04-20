@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sat Apr 16 14:31:05 2016 benjamin duhieu
-** Last update Wed Apr 20 21:12:54 2016 marc brout
+** Last update Wed Apr 20 22:06:13 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -24,10 +24,8 @@ int		add_path(t_larg *act, t_larg *root)
   root->next = new;
   new->count = act->count + 1;
   new->valid = act->valid;
-  //my_printf("FIRST OF PILE : %s\n", act->pile->room->name);
   if (!(new->pile = copy_pile(act->pile)))
     return (1);
-  /* my_printf("EEEEEEEEEEEE\n"); */
   return (0);
 }
 
@@ -43,6 +41,7 @@ int		add_elem_to_pile(t_room *room, t_tube *pile)
     return (1);
   tmp->next = elem;
   elem->next = NULL;
+  elem->ants = 0;
   elem->room = room;
   return (0);
 }
@@ -54,7 +53,6 @@ t_tube		*last_elem_pile(t_larg *elem)
   tmp = elem->pile;
   while (tmp->next)
     tmp = tmp->next;
-  // my_printf("\nCHECK ROOM : %s\n\n", tmp->room->name);
   return (tmp->room->tubes);
 }
 
@@ -66,12 +64,9 @@ int		add_pil2(t_larg *elem)
   new_elem = last_elem_pile(elem);
   while (new_elem)
     {
-      //my_printf("NEXT ROOM : %s\n\n", new_elem->room->name);
-      //my_printf("GO NEXT NEW_ELEM\n");
       new_elem = new_elem->next;
       i++;
     }
-  // my_printf("AAAAAAAAAAA\n");
   return (0);
 }
 
@@ -83,19 +78,15 @@ int		add_pil(t_larg *elem, t_larg *root)
   new_elem = last_elem_pile(elem);
   while (new_elem)
     {
-      //my_printf("NEXT ROOM : %s\n\n", new_elem->room->name);
       if (chk_id(new_elem->room->name, elem))
 	{
-	  //my_printf("LOOP\n");
 	  new_elem = new_elem->next;
 	  continue ;
 	}
       if (copy_new_pile(new_elem, elem, root))
 	return (1);
-      //my_printf("GO NEXT NEW_ELEM\n");
       new_elem = new_elem->next;
       i++;
     }
-  // my_printf("AAAAAAAAAAA\n");
   return (0);
 }

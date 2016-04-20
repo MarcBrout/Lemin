@@ -5,28 +5,12 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:22:54 2016 benjamin duhieu
-** Last update Wed Apr 20 21:46:10 2016 benjamin duhieu
+** Last update Wed Apr 20 22:06:54 2016 marc brout
 */
 
 #include <stdlib.h>
 #include "lemin.h"
 #include "my.h"
-
-/* void		verif_elem(t_larg *elem, t_tube *new_elem) */
-/* { */
-/*   t_tube *tmp; */
-
-/*   tmp = elem->pile; */
-/*   my_printf("||||||-count pile : %d", elem->count); */
-/*   my_printf("&& valid pile: %d\n", elem->valid); */
-/*   my_printf("id room act : %s||||||\n\n", new_elem->room->name); */
-/*   while (tmp) */
-/*     { */
-/*       my_printf("|%s|\n", tmp->room->name); */
-/*       tmp = tmp->next; */
-/*     } */
-/*   my_printf(" _ \n"); */
-/* } */
 
 void		chk_list(t_larg *root)
 {
@@ -58,20 +42,10 @@ int		path(t_room *prem, t_larg *root)
   first->pile->room = prem;
   if (browse_graph(root))
     return (my_put_error(MALLOC_ERR), -1);
-  //   my_printf("aaaaaaaa\n");
   clean_paths(root);
   tri_piles_by_branch(root);
-  //  my_printf("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\n");
-  //  chk_list(root);
   tri_piles_by_length(root, 1);
-  //my_printf("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\n");
-  //chk_list(root);
   get_short_paths(root);
-  //my_printf("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD\n");
-  //  my_printf("ddddddd\n");
   tri_piles_by_length(root, 0);
-  //my_printf("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n");
-  /* my_printf("eeeeeee\n"); */
-  //  chk_list(root);
   return (count_paths(root));
 }

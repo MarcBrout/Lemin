@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Apr 11 14:03:02 2016 marc brout
-** Last update Sun Apr 17 11:18:23 2016 marc brout
+** Last update Tue Apr 19 18:42:41 2016 benjamin duhieu
 */
 
 #include "get_next_line.h"

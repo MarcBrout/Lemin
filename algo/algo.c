@@ -5,24 +5,30 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:14:52 2016 benjamin duhieu
-** Last update Thu Apr 14 13:08:48 2016 benjamin duhieu
+** Last update Tue Apr 19 20:41:05 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
 #include "lemin.h"
+#include "my.h"
 
-void		fill_tab(t_larg *root, t_path ***way)
+t_path		**fill_tab(t_larg *root, t_path **way, int nb_path)
 {
   int		i;
   t_larg	*elem;
 
   i = -1;
+  while (++i < nb_path)
+    if (!(way[i] = malloc(sizeof(t_path))))
+      return (my_put_error(MALLOC_ERR), NULL);
+  i = -1;
   elem = root->next;
-  while (way[0] && way[0][++i])
+  while (way && way[++i])
     {
-      way[0][i]->tube = elem->pile;
+      way[i]->tube = elem->pile;
       elem = elem->next;
     }
+  return (way);
 }
 
 int		start(t_room *room, t_ant *ant, int nb)
@@ -41,7 +47,8 @@ int		start(t_room *room, t_ant *ant, int nb)
   if (!(way = malloc(sizeof(t_path *) * (nb_path + 1))))
     return (my_put_error(MALLOC_ERR), -1);
   way[nb_path] = NULL;
-  fill_tab(root, &way);
+  if (!(way = fill_tab(root, way, nb_path)))
+    return (1);
   if (!(ant = list_ant(way, nb)))
     return (1);
   start_ant(ant, nb_path);

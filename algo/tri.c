@@ -5,11 +5,12 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Apr 12 15:38:47 2016 marc brout
-** Last update Sat Apr 16 18:58:28 2016 benjamin duhieu
+** Last update Tue Apr 19 17:42:12 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
 #include "lemin.h"
+#include "my.h"
 
 void		swap_value(t_larg *pile1, t_larg *pile2)
 {
@@ -32,8 +33,8 @@ void		tri_piles_by_branch(t_larg *piles)
   while (go)
     {
       go = 0;
-      cur = piles;
-      while (cur && cur->next)
+      cur = piles->next;
+      while (cur && cur->next && cur->next != piles)
 	{
 	  if (cur->pile->next->room->id <
 	      cur->next->pile->next->room->id)
@@ -55,8 +56,8 @@ void		tri_piles_by_length(t_larg *piles, char id)
   while (go)
     {
       go = 0;
-      cur = piles;
-      while (cur && cur->next)
+      cur = piles->next;
+      while (cur && cur->next && cur->next != piles)
 	{
 	  if (id && cur->pile->next->room->id ==
 	      cur->next->pile->next->room->id &&
@@ -74,24 +75,27 @@ t_tube		*copy_pile(t_tube *pile)
   t_tube	*cur;
   t_tube	*tmp;
   t_tube	*first;
+  int		i;
   t_tube	*elem;
 
-  if (!(cur = pile))
-    return (NULL);
-  tmp = NULL;
+  cur = pile;
+  i = 0;
   while (cur)
     {
-      if (!(elem = malloc(sizeof(t_tube))))
-	return (my_put_error(MALLOC_ERR), NULL);
-      elem->room = cur->room;
-      elem->branch = cur->branch;
-      elem->next = NULL;
-      if (tmp)
-	tmp->next = elem;
-      if (cur == pile)
-	first = elem;
-      if (cur != pile)
-	tmp = elem;
+      if (i == 0)
+	{
+	  if (!(first = malloc(sizeof(t_tube))))
+	    return (my_put_error(MALLOC_ERR), NULL);
+	  first->next = NULL, first->room = cur->room;
+	  first->branch = cur->branch, tmp = first, i++;
+	}
+      else
+	{
+	  if (!(elem = malloc(sizeof(t_tube))))
+	    return (my_put_error(MALLOC_ERR), NULL);
+	  elem->next = NULL, elem->room = cur->room;
+	  elem->branch = cur->branch, tmp->next = elem, tmp = elem;
+	}
       cur = cur->next;
     }
   return (first);

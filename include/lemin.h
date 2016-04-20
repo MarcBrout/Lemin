@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Sat Apr 16 16:32:11 2016 benjamin duhieu
+** Last update Wed Apr 20 13:51:03 2016 benjamin duhieu
 */
 
 #ifndef LEMIN_H_
@@ -37,10 +37,10 @@ typedef struct		s_room
 {
   char			*name;
   int			id;
+  char			ants;
   char			pass;
   char			first;
   char			last;
-  char			ants;
   int			x;
   int			y;
   struct s_tube		*tubes;
@@ -52,6 +52,7 @@ typedef struct		s_tube
 {
   t_room		*room;
   int			branch;
+  char			ants;
   struct s_tube		*next;
   struct s_tube		*prev;
 }			t_tube;
@@ -102,6 +103,8 @@ typedef	struct		s_tree
 typedef struct		s_ant
 {
   t_path		**way;
+  t_tube		*act;
+  int			rank;
   char			finish;
   int			num;
   struct s_ant		*next;
@@ -150,6 +153,7 @@ int			get_next_str(char **str);
 */
 
 int			start(t_room *room, t_ant *ant, int nb);
+t_path			**fill_tab(t_larg *root, t_path **way, int nb_path);
 
 /*
 ** all_path.c
@@ -164,7 +168,7 @@ int			path(t_room *prem, t_larg *root);
 */
 
 int			browse_graph(t_larg *root);
-int			chk_id(int id, t_larg *elem);
+int			chk_id(char *name, t_larg *elem);
 int			copy_new_pile(t_tube *tub, t_larg *act,
 				      t_larg *root);
 void			remove_pile(t_larg *new_elem);
@@ -200,7 +204,7 @@ int			nb_strokes(t_ant *ant, int nb_path);
 int			path_ant(t_room *room);
 int			ant_on_the_way(t_ant *ant);
 t_ant			*list_ant(t_path **way, int nb);
-void			aff_ant(t_ant *elem, int i);
+void			aff_ant(t_ant *elem, int i, int *first);
 void			start_ant(t_ant *ant, int nb_path);
 
 /*

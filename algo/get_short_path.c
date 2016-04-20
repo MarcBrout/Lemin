@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Wed Apr 13 11:28:34 2016 marc brout
-** Last update Sun Apr 17 11:09:24 2016 marc brout
+** Last update Tue Apr 19 17:45:45 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -112,6 +112,9 @@ int		count_paths(t_larg *root)
   i = 0;
   cur = root->next;
   while (cur != root)
-    ++i;
+    {
+      i++;
+      cur = cur->next;
+    }
   return (i);
 }

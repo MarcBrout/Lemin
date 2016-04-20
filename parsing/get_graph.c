@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Apr 11 14:03:02 2016 marc brout
-** Last update Tue Apr 19 18:42:41 2016 benjamin duhieu
+** Last update Wed Apr 20 19:11:23 2016 marc brout
 */
 
 #include "get_next_line.h"
@@ -67,6 +67,7 @@ int		get_one_room(t_room *root, t_room *ref, char *next)
   root->prev = elem;
   elem->tubes = NULL;
   elem->ants = 0;
+  elem->pass = 0;
   elem->x = ref->x;
   elem->y = ref->y;
   elem->id = ref->id;

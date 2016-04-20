@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Wed Apr 20 14:39:51 2016 benjamin duhieu
+** Last update Wed Apr 20 19:40:11 2016 marc brout
 */
 
 #ifndef LEMIN_H_
@@ -290,5 +290,7 @@ int			piles_same_tube(t_tube *root1, t_tube *root2);
 t_larg			*compare_piles(t_larg *root,
 				       t_larg *one, t_larg *sec);
 void			get_short_paths(t_larg *root);
+
+void			verif_elem(t_larg *, t_tube *);
 
 #endif /* !LEMIN_H_ */

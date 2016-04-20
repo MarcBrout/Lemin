@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Tue Apr 12 14:47:52 2016 benjamin duhieu
-** Last update Wed Apr 20 14:25:08 2016 benjamin duhieu
+** Last update Wed Apr 20 21:09:32 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -42,8 +42,8 @@ void		verif_elem(t_larg *elem, t_tube *new_elem)
   t_tube *tmp;
 
   tmp = elem->pile;
-  my_printf("||||||-count pile : %d", elem->count);
-  my_printf("&& valid pile: %d\n", elem->valid);
+  my_printf("||||||-count pile : %d ", elem->count);
+  my_printf("&& valid pile: %d ", elem->valid);
   my_printf("id room act : %s||||||\n\n", new_elem->room->name);
   while (tmp)
     {
@@ -90,6 +90,7 @@ int		browse_graph(t_larg *root)
 	  //  my_printf("valid ? %d\n", new_elem->valid);
 	  //  my_printf("\nPATH LOOP: %p\n\n", new_elem->pile);
 	  // verif_elem(new_elem, new_elem->pile);
+	  my_printf("NB PATH = %d\n", count_paths(root));
 	  if (!new_elem->valid)
 	    {
 	      if (add_pil(new_elem, root))
@@ -103,7 +104,7 @@ int		browse_graph(t_larg *root)
 	    new_elem = new_elem->next;
 	  //	  my_printf("elem : %p\n", new_elem);
 	}
-      //       my_printf("------------------\n");
+      //         my_printf("------------------\n");
     }
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Tue Apr 12 14:47:52 2016 benjamin duhieu
-** Last update Wed Apr 20 21:09:32 2016 marc brout
+** Last update Wed Apr 20 21:28:44 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -90,7 +90,8 @@ int		browse_graph(t_larg *root)
 	  //  my_printf("valid ? %d\n", new_elem->valid);
 	  //  my_printf("\nPATH LOOP: %p\n\n", new_elem->pile);
 	  // verif_elem(new_elem, new_elem->pile);
-	  my_printf("NB PATH = %d\n", count_paths(root));
+	  if (count_paths(root) > 30000)
+	    return (0);
 	  if (!new_elem->valid)
 	    {
 	      if (add_pil(new_elem, root))

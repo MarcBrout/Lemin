@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Wed Apr 20 13:51:03 2016 benjamin duhieu
+** Last update Wed Apr 20 14:39:51 2016 benjamin duhieu
 */
 
 #ifndef LEMIN_H_

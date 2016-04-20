@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:14:52 2016 benjamin duhieu
-** Last update Tue Apr 19 20:41:05 2016 benjamin duhieu
+** Last update Wed Apr 20 14:24:49 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -37,7 +37,7 @@ int		start(t_room *room, t_ant *ant, int nb)
   t_larg	*root;
   int		nb_path;
 
-  /* nb_path = path_ant(room); */
+  //  my_printf("=)\n");
   if (!(root = malloc(sizeof(t_larg))))
     return (my_put_error(MALLOC_ERR), 1);
   root->prev = root;

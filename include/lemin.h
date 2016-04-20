@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Wed Apr 20 21:34:24 2016 marc brout
+** Last update Wed Apr 20 22:15:56 2016 benjamin duhieu
 */
 
 #ifndef LEMIN_H_
@@ -188,14 +188,6 @@ int			add_pil(t_larg *elem, t_larg *root);
 int			count_way(t_ant *ant, int a);
 int			nb_strokes(t_ant *ant, int nb_path);
 
-/*
-** short_path.c
-*/
-
-/* int			first(int, int *, int, t_path *); */
-/* int			same_way(t_path *, t_path **way, int); */
-/* int			shorts_path(t_path ***, int); */
-/* int			swap(int, int *, t_path **); */
 
 /*
 ** ant.c
@@ -204,8 +196,15 @@ int			nb_strokes(t_ant *ant, int nb_path);
 int			path_ant(t_room *room);
 int			ant_on_the_way(t_ant *ant);
 t_ant			*list_ant(t_path **way, int nb);
-void			aff_ant(t_ant *elem, int i, int *first);
 void			start_ant(t_ant *ant, int nb_path);
+
+/*
+** aff_ant.c
+*/
+
+void			aff_ant(t_ant *elem, int i, int *first);
+void			first_ant(t_ant *elem, int i, int *first);
+void			other_ants(t_ant *elem, int i, int *first);
 
 /*
 ** solve_one_path.c
@@ -290,13 +289,5 @@ int			piles_same_tube(t_tube *root1, t_tube *root2);
 t_larg			*compare_piles(t_larg *root,
 				       t_larg *one, t_larg *sec);
 void			get_short_paths(t_larg *root);
-
-void			verif_elem(t_larg *, t_tube *);
-
-/*
-** clean.c
-*/
-
-void			clean_paths(t_larg *root);
 
 #endif /* !LEMIN_H_ */

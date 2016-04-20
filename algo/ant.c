@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sat Apr  2 13:24:27 2016 benjamin duhieu
-** Last update Wed Apr 20 14:09:57 2016 benjamin duhieu
+** Last update Wed Apr 20 22:05:03 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -39,46 +39,6 @@ int	ant_on_the_way(t_ant *ant)
       elem = elem->next;
     }
   return (0);
-}
-
-void	aff_ant(t_ant *elem, int i, int *first)
-{
-  if (!elem->rank && !elem->way[i]->tube->next->ants)
-    {
-      *first += 1;
-      elem->rank++;
-      if (elem->way[i]->tube->next->room->last)
-	{
-	  elem->finish = 1;
-	  elem->act = elem->way[i]->tube->next;
-	}
-      else
-	{
-	  elem->act = elem->way[i]->tube->next;
-	  elem->act->ants = 1;
-	}
-      if (*first != 0)
-	my_printf(" ");
-      my_printf("P%d-%s", elem->num, elem->act->room->name);
-    }
-  else if (elem->rank && !elem->finish && !elem->act->next->ants)
-    {
-      *first += 1;
-      elem->act->ants = 0;
-      if (elem->act->next->room->last)
-	{
-	  elem->act = elem->act->next;
-	  elem->finish = 1;
-	}
-      else
-	{
-	  elem->act = elem->act->next;
-	  elem->act->ants = 1;
-	}
-      if (*first != 0)
-	my_printf(" ");
-      my_printf("P%d-%s", elem->num, elem->act->room->name);
-    }
 }
 
 void	start_ant(t_ant *ant, int nb_path)

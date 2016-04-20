@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:54:44 2016 marc brout
-** Last update Wed Apr 20 20:15:47 2016 marc brout
+** Last update Wed Apr 20 22:05:18 2016 marc brout
 */
 
 #include <unistd.h>
@@ -124,7 +124,7 @@ int		main(int ac, char **av)
     return (1);
   if ((first = find_first_room(data.rooms)))
     {
-            show_graph(data.rooms);
+      /* show_graph(data.rooms); */
       if (start(first, &ant, data.ants))
 	return (1);
       free_graph(data.rooms);

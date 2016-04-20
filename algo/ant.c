@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sat Apr  2 13:24:27 2016 benjamin duhieu
-** Last update Wed Apr 20 14:09:57 2016 benjamin duhieu
+** Last update Wed Apr 20 22:07:09 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -90,7 +90,6 @@ void	start_ant(t_ant *ant, int nb_path)
   elem = ant;
   while (ant_on_the_way(ant))
     {
-      //      a = count_way(ant, nb_path);
       elem = ant;
       a = -1;
       while (elem->next != NULL)

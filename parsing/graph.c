@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Apr 11 13:56:58 2016 marc brout
-** Last update Thu Apr 21 17:09:49 2016 marc brout
+** Last update Thu Apr 21 17:48:29 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -75,9 +75,9 @@ int		link_rooms(t_room *root,
   t_room	*tmp2;
 
   if ((tmp = search_room(root, room1)) == root)
-    return (my_put_room_str(room1, INVALID_ROOM), 0);
+    return (my_put_room_str(room1, INVALID_ROOM), 2);
   if ((tmp2 = search_room(root, room2)) == root)
-    return (my_put_room_str(room2, INVALID_ROOM), 0);
+    return (my_put_room_str(room2, INVALID_ROOM), 2);
   if (already_linked(tmp, tmp2))
       return (0);
   if (add_tube(tmp, tmp2) || add_tube(tmp2, tmp))
@@ -101,8 +101,8 @@ int		prepare_rooms(char *str, t_room *root)
     return (1);
   if (!my_strcmp(room1, room2))
     return (my_printf("%s-%s\n", room1, room2), 0);
-  if (link_rooms(root, room1, room2))
-    return (1);
+  if ((i = link_rooms(root, room1, room2)))
+    return (i);
   my_printf("%s-%s\n", room1, room2);
   free(room1);
   free(room2);

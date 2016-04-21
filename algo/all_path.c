@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:22:54 2016 benjamin duhieu
-** Last update Wed Apr 20 22:10:19 2016 marc brout
+** Last update Thu Apr 21 17:18:40 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -35,5 +35,6 @@ int		path(t_room *prem, t_larg *root)
   tri_piles_by_length(root, 1);
   get_short_paths(root);
   tri_piles_by_length(root, 0);
+  tri_by_common(root);
   return (count_paths(root));
 }

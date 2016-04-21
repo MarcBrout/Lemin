@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Thu Apr 21 17:15:46 2016 marc brout
+** Last update Thu Apr 21 17:43:55 2016 marc brout
 */
 
 #ifndef LEMIN_H_
@@ -292,6 +292,8 @@ void			get_short_paths(t_larg *root);
 ** clean.c
 */
 
+int			compare_common(t_tube *first, t_tube *second);
 void			clean_paths(t_larg *root);
+void			tri_by_common(t_larg *root);
 
 #endif /* !LEMIN_H_ */

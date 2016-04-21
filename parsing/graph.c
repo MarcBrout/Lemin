@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Apr 11 13:56:58 2016 marc brout
-** Last update Wed Apr 20 20:23:01 2016 marc brout
+** Last update Thu Apr 21 17:09:49 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -96,11 +96,11 @@ int		prepare_rooms(char *str, t_room *root)
     return (1);
   i++;
   if (!str[i])
-    return (my_put_error(WRONG_TUBE), 0);
+    return (my_put_error(WRONG_TUBE), 2);
   if (!(room2 = my_getfirst_name(str, &i, '-')))
     return (1);
   if (!my_strcmp(room1, room2))
-    return (my_put_error(SAME_LINK), 0);
+    return (my_printf("%s-%s\n", room1, room2), 0);
   if (link_rooms(root, room1, room2))
     return (1);
   my_printf("%s-%s\n", room1, room2);

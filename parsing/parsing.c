@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:54:44 2016 marc brout
-** Last update Wed Apr 20 22:15:07 2016 marc brout
+** Last update Thu Apr 21 17:16:20 2016 marc brout
 */
 
 #include <unistd.h>
@@ -71,8 +71,6 @@ int		parse_input(t_data *data)
     ++i;
   if (ret == 1)
     return (1);
-  else if (ret)
-    my_put_error(ROOM_TROUBLE);
   if (check_first_last(data))
     return (1);
   if (solve_one_path(data->rooms))

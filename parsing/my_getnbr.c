@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Oct 12 19:01:57 2015 marc brout
-** Last update Sat Apr  2 18:21:21 2016 marc brout
+** Last update Thu Apr 21 17:41:57 2016 marc brout
 */
 
 #include <stdio.h>
@@ -91,5 +91,7 @@ int		my_getnbr_i(const char *str, int *i)
       total = ((total * 10) + (str[*i] - 48));
       *i = *i + 1;
     }
+  if (str[*i] != ' ' && str[*i] != 0)
+    return (-1);
   return (total);
 }

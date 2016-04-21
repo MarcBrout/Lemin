@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Thu Apr 21 17:43:55 2016 marc brout
+** Last update Thu Apr 21 18:17:56 2016 marc brout
 */
 
 #ifndef LEMIN_H_
@@ -32,6 +32,8 @@
 # define INVALID_ROOM " Does not exist, skipping tube creation.\n"
 # define NO_PATH "No path available, exiting.\n"
 # define BAD_FORMAT "Bad line format, skipping rest of file.\n"
+# define MISSING_LINE "Missing valid line after command.\n"
+
 # include <stdbool.h>
 
 typedef struct		s_room

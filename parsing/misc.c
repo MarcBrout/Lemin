@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 19:24:56 2016 marc brout
-** Last update Mon Apr 11 15:25:24 2016 marc brout
+** Last update Thu Apr 21 18:12:55 2016 marc brout
 */
 
 #include <unistd.h>
@@ -79,8 +79,12 @@ char		*epur_str(char *str)
 
 int		is_it_a_comment(char *str)
 {
-  if (!my_strncmp(str, "#", 0) && my_strcmp(str, "##start") &&
-      my_strcmp(str, "##end"))
+  if (!my_strncmp(str, "##", 1))
+    {
+      my_printf("%s\n", str);
+      return (0);
+    }
+  if (!my_strncmp(str, "#", 0))
     return (1);
   return (0);
 }

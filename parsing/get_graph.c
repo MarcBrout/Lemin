@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Apr 11 14:03:02 2016 marc brout
-** Last update Thu Apr 21 17:26:30 2016 marc brout
+** Last update Thu Apr 21 17:53:38 2016 marc brout
 */
 
 #include "get_next_line.h"
@@ -23,14 +23,14 @@ char		*my_getfirst_name(char *str, int *i, char c)
   j = 0;
   while (str[*i] && str[*i] != c && str[*i] != ' ')
     {
-      if (!(tmp = my_realloc(tmp, *i + 1)))
+      if (!(tmp = my_realloc(tmp, j + 1)))
 	return (my_put_error(MALLOC_ERR), NULL);
-      tmp[*i + 1] = 0;
+      tmp[j + 1] = 0;
       tmp[j] = str[*i];
       ++*i;
       ++j;
     }
-  tmp[*i] = 0;
+  tmp[j] = 0;
   return (tmp);
 }
 

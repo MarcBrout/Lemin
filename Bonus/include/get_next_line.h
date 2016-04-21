@@ -1,26 +1,23 @@
 /*
-** get_next_line.h for GetNextLine in /home/theis_p/Getnextline
-**
-** Made by Paul THEIS
-** Login   <theis_p@epitech.net>
-**
-** Started on  Fri Nov 20 18:44:03 2015 Paul THEIS
-** Last update Wed Apr 20 18:44:57 2016 THEIS Paul
+** get_next_line.h for gnl
+** 
+** Made by marc brout
+** Login   <brout_m@epitech.net>
+** 
+** Started on  Mon Jan  4 10:37:28 2016 marc brout
+** Last update Wed Jan 13 15:41:39 2016 marc brout
 */
 
 #ifndef GET_NEXT_LINE_H_
 # define GET_NEXT_LINE_H_
+# include <stdlib.h>
+# include <unistd.h>
+# ifndef READ_SIZE
+#  define READ_SIZE (4096)
+# endif /* !READ_SIZE_H_ */
 
-#include <unistd.h>
-#include <stdlib.h>
-
-#include "main.h"
-
-char            *get_next_line(const int fd);
-static char     *set_line(char *line, int treat, char *buff, int *start);
-
-#ifndef	READ_SIZE
-# define READ_SIZE (42)
-#endif /* !READ_SIZE */
+char *my_realloc(char *, int);
+char *get_next_line(const int fd);
+char *get_last_buff(char *, int *, int *, int *);
 
 #endif /* !GET_NEXT_LINE_H_ */

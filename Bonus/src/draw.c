@@ -5,29 +5,32 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:22:03 2016 THEIS Paul
-** Last update Wed Apr 20 18:19:43 2016 THEIS Paul
+** Last update Thu Apr 21 20:33:02 2016 THEIS Paul
 */
 
 #include "main.h"
 
-void	swapint(int *x, int *y)
+void	swapint(int *a, int *b)
 {
-  int	t;
+  int	c;
 
-  t = *x;
-  *x = *y;
-  *y = t;
+  c = *a;
+  *a = *b;
+  *b = c;
 }
 
-void		PutPixel(SDL_Surface *surface, int x, int y, unsigned long pixel)
+void		PutPixel(SDL_Surface *surface, int x, int y, Uint32 pixel)
 {
   int		bpp;
   unsigned char *p;
 
-  bpp = surface->format->BytesPerPixel;
-  p = (unsigned char *)surface->pixels + y * surface->pitch + x * bpp;
-  if (bpp == 4)
-    *(unsigned long *)p = pixel;
+  if (y < surface->h && x < surface->w)
+    {
+      bpp = surface->format->BytesPerPixel;
+      p = (unsigned char *)surface->pixels + y * surface->pitch + x * bpp;
+      if (bpp == 4)
+	*(unsigned long *)p = pixel;
+    }
 }
 
 unsigned long	convert_color(int R, int G, int B)

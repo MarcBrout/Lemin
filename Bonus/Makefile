@@ -1,4 +1,4 @@
-id		=				test
+NAME		=				visu-hex
 
 SRC		=	main.c							\
 			get_next_line.c				\
@@ -25,7 +25,7 @@ IFLAG   =       `sdl-config --cflags --libs` -lSDL_gfx -lSDL_image -lSDLmain -lS
 
 RM			=				rm -f
 
-CC			=				gcc -O1 $(IFLAG)
+CC			=				gcc $(IFLAG) -g
 
 ECHO		=				echo -e
 
@@ -34,7 +34,7 @@ GREEN	=	\033[1;32m
 WHITE	=	\033[0m
 
 all:						$(OBJ)
-								$(CC) -o $(id) $(OBJ)
+								$(CC) -o $(NAME) $(OBJ)
 
 clean:
 								$(RM) $(OBJ)

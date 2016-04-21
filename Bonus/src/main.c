@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:16:42 2016 THEIS Paul
-** Last update Wed Apr 20 18:43:23 2016 THEIS Paul
+** Last update Thu Apr 21 19:46:32 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -42,11 +42,8 @@ int		main(int argc, char *argv[])
 
   info = xalloc(sizeof(*info));
   memset(info, 0, sizeof(*info));
-  if (SDL_Init(SDL_INIT_VIDEO) == -1)
-    put_error("Error : SDL Init\n");
   atexit(SDL_Quit);
   quit = 0;
-  SDL_WM_SetCaption("My Little PONY", NULL);
   init(info);
   parse(info);
   update_screen(info);

@@ -5,12 +5,12 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:22:38 2016 THEIS Paul
-** Last update Sat Apr 23 15:17:46 2016 THEIS Paul
+** Last update Sat Apr 23 15:59:53 2016 THEIS Paul
 */
 
 #include "main.h"
 
-void		ml(SDL_Surface* surf, SDL_Rect *pos1, SDL_Rect *pos2)
+void		set_line(SDL_Surface* surf, SDL_Rect *pos1, SDL_Rect *pos2)
 {
   int d;
   int dx;
@@ -73,7 +73,7 @@ void		ml(SDL_Surface* surf, SDL_Rect *pos1, SDL_Rect *pos2)
 
 void	draw_line(SDL_Rect *pos1, SDL_Rect *pos2, t_info *info)
 {
-  ml(info->space, pos1, pos2);
+  set_line(info->space, pos1, pos2);
 }
 
 void	draw_tunel(char *id1, char *id2, t_info *info)
@@ -83,18 +83,18 @@ void	draw_tunel(char *id1, char *id2, t_info *info)
   SDL_Rect	*pos2;
 
   pos1 = xalloc(sizeof(SDL_Rect));
-  iniSDL_Rect(pos1);
+  init_SDL_Rect(pos1);
   pos2 = xalloc(sizeof(SDL_Rect));
-  iniSDL_Rect(pos2);
+  init_SDL_Rect(pos2);
   i = -1;
   while (++i < BUFF_SIZE)
     {
       if (info->elem[i].id != NULL)
       	{
       	  if (strcmp(info->elem[i].id, id1) == 0)
-	    grep_coor(i, pos1, info);
+	    get_coor(i, pos1, info);
       	  else if (strcmp(info->elem[i].id, id2) == 0)
-      	    grep_coor(i, pos2, info);
+      	    get_coor(i, pos2, info);
       	}
     }
   draw_line(pos1, pos2, info);

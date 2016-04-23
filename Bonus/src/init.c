@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Tue Apr 19 11:40:45 2016 THEIS Paul
-** Last update Thu Apr 21 20:23:27 2016 THEIS Paul
+** Last update Sat Apr 23 15:58:48 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -45,4 +45,10 @@ void	init_space(t_info *info)
   pos = set_pos(0 + SPACE_1, STATBAR_H + (SPACE_1 * 2));
   SDL_FillRect(info->space, NULL, SDL_MapRGB(info->screen->format, 40, 44, 52));
   SDL_BlitSurface(info->space, NULL, info->screen, &pos);
+}
+
+void	init_SDL_Rect(SDL_Rect *pos)
+{
+  pos->x = 0;
+  pos->y = 0;
 }

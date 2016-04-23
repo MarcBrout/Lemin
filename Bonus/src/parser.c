@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:19:44 2016 THEIS Paul
-** Last update Thu Apr 21 19:27:42 2016 THEIS Paul
+** Last update Sat Apr 23 16:32:56 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -32,8 +32,8 @@ void		tread_line(char *str, t_info *info)
   SDL_Rect	pos;
   SDL_Rect	flag;
 
-  iniSDL_Rect(&pos);
-  iniSDL_Rect(&flag);
+  init_SDL_Rect(&pos);
+  init_SDL_Rect(&flag);
   if (strcmp(str, "##start") == 0)
     info->opt = 1;
   else if (strcmp(str, "##end") == 0)
@@ -89,7 +89,8 @@ void		parse_path(char *str, t_info *info)
       i++;
     }
   if (nbr == strlen(str))
-    check_nbr_ants(str, info);
+    (atoi(str) >= 1023) ? (my_put_err("Error : Too much ants...\n", TRUE)) :
+      (info->nbr_ants = atoi(str));
   else if (flag == 0)
     {
       put_ants_room(info, info->nbr_ants);
@@ -98,26 +99,29 @@ void		parse_path(char *str, t_info *info)
   ants_path(str, info);
 }
 
-void	parse_thread(char *str, t_info *info, int i, int j)
+void		parse_decl(char *str, t_info *info, int opt, int cmptr)
 {
-  char	id2[BUFF_SIZE];
-  char	id1[BUFF_SIZE];
-  int	flag;
-  int	k;
+  char		id[BUFF_SIZE];
+  SDL_Rect	*pos1;
+  SDL_Rect	*pos2;
 
-  k = 0;
-  flag = 0;
-  while (str[i])
+  pos1 = xalloc(sizeof(SDL_Rect));
+  init_SDL_Rect(pos1);
+  pos2 = xalloc(sizeof(SDL_Rect));
+  init_SDL_Rect(pos2);
+  while (str[pos2->x])
     {
-      if (str[i] == '-')
-	flag++;
-      else if (flag == 0)
-	id1[j++] = str[i];
+      if (str[pos2->x] == C_SPACE)
+    	cmptr++;
+      else if (is_num(str[pos2->x]))
+    	((cmptr == 1) ? (pos1->x = pos1->x * 10 + (str[pos2->x] - '0')) :
+	 ((cmptr == 2) ? (pos1->y = pos1->y * 10 + (str[pos2->x] - '0')) :
+	  (id[pos2->y++] = str[pos2->x])));
       else
-	id2[k++] = str[i];
-      i++;
+	id[pos2->y++] = str[pos2->x];
+      pos2->x++;
     }
-  id1[j] = 0;
-  id2[k] = 0;
-  draw_tunel(id1, id2, info);
+  id[pos2->y] = 0;
+  (info->nbr_room >= BUFF_SIZE - 1) ? (my_put_err("Error : Too Much Room\n", TRUE)) : (info->nbr_room++);
+  save_room(id, pos1, info, opt);
 }

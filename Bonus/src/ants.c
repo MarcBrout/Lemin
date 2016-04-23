@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:20:38 2016 THEIS Paul
-** Last update Sat Apr 23 14:42:17 2016 THEIS Paul
+** Last update Sat Apr 23 16:29:36 2016 Paul THEIS
 */
 
 #include "main.h"
@@ -47,18 +47,17 @@ void	ants_path(char *str, t_info *info)
   info->round++;
 }
 
-void	set_property_ants_all(int total, t_info *info, char *id)
+void	set_ants(int total, t_info *info, char *id)
 {
   int	i;
 
-  i = 0;
-  while (i < total)
+  i = -1;
+  while (++i < total)
     {
       info->ants[i].id = xalloc(BUFF_SIZE * sizeof(char));
       sprintf(info->ants[i].id, "%d", i + 1);
       info->ants[i].room = xalloc(BUFF_SIZE * sizeof(char));
       sprintf(info->ants[i].room, "%s", id);
-      i++;
     }
 }
 
@@ -69,7 +68,7 @@ void	put_ants_room(t_info *info, int nbr)
   i = -1;
   while (++i < BUFF_SIZE)
     if (info->elem[i].id != NULL)
-	if (info->elem[i].nbr_ants == nbr)
-	    set_property_ants_all(info->elem[i].nbr_ants, info,
+      if (info->elem[i].nbr_ants == nbr)
+	set_ants(info->elem[i].nbr_ants, info,
 				  info->elem[i].id);
 }

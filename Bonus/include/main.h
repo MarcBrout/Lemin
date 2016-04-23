@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:30:56 2016 THEIS Paul
-** Last update Sat Apr 23 17:04:41 2016 THEIS Paul
+** Last update Sat Apr 23 17:31:11 2016 THEIS Paul
 */
 
 #ifndef MAIN_H
@@ -83,9 +83,11 @@ typedef struct	s_info
 /* TOOL */
 SDL_Rect	set_pos(int x, int y);
 bool		is_num(char c);
+bool		is_alpha(char c);
 void		get_coor(int i, SDL_Rect *pos, t_info *info);
 void		set_color(SDL_Color *color, int r, int g, int b);
 void		swap_int(Sint16 *x, Sint16 *y);
+unsigned long	setter_color(int R, int G, int B);
 /* INIT */
 void		init_struct(t_info *info);
 void		init_toolbar(t_info *info);
@@ -121,12 +123,9 @@ void		del_ant_in_room(char *id, t_info *info, char *room);
 void		add_ant_in_room(char *id, char *room, t_info *info);
 /* THREAD */
 void		aff_info_all(t_info *info);
-void		do_op(SDL_Rect *pos1, t_info *info, int i);
-void		redraw_thread(t_info *info);
 
 void		put_error(char *str);
 void		tread_line(char *str, t_info *info);
 void		update_all(char *id, char *room, t_info *info);
-unsigned long	setter_color(int R, int G, int B);
 
 #endif /* MAIN_H */

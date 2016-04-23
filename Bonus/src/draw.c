@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:22:03 2016 THEIS Paul
-** Last update Sat Apr 23 16:21:50 2016 THEIS Paul
+** Last update Sat Apr 23 17:21:27 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -22,9 +22,4 @@ void		set_pixel(SDL_Surface *surface, int x, int y, Uint32 pixel)
       if (bpp == 4)
 	*(unsigned long *)p = pixel;
     }
-}
-
-unsigned long	setter_color(int R, int G, int B)
-{
-  return ((65536*R) + (256*G) + (B));
 }

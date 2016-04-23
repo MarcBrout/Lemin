@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:19:44 2016 THEIS Paul
-** Last update Sat Apr 23 16:32:56 2016 THEIS Paul
+** Last update Sat Apr 23 17:35:28 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -42,14 +42,9 @@ void		tread_line(char *str, t_info *info)
     {
       while (str[pos.x])
 	{
-	  if (str[pos.x] == ' ')
-	    flag.x++;
-	  else if (str[pos.x] == '-')
-	    pos.y++;
-	  else if ((str[pos.x] >= 'a' && str[pos.x] <= 'z') ||
-		   (str[pos.x] >= 'A' && str[pos.x] <= 'Z'))
-	    flag.y++;
-	  pos.x++;
+	  ((str[pos.x] == C_SPACE) ? (flag.x++) : ((str[pos.x] == C_MIN) ?
+	    (pos.y++) : ((is_alpha) ? (flag.y++) : (0))));
+      	  pos.x++;
 	}
       decision(flag, pos, str, info);
       info->opt = 0;
@@ -58,18 +53,9 @@ void		tread_line(char *str, t_info *info)
 
 void	decision(SDL_Rect flag, SDL_Rect pos, char *str, t_info *info)
 {
-  if (flag.x == 2 && str[0] != 'P')
-    {
-      parse_decl(str, info, info->opt, 0);
-    }
-  else if (flag.x == 0 && pos.y != 0 && str[0] != 'P')
-    {
-      parse_thread(str, info, 0, 0);
-    }
-  else
-    {
-      parse_path(str, info);
-    }
+  ((flag.x == 2 && str[0] != C_FLAG) ? (parse_decl(str, info, info->opt, 0)) :
+   ((flag.x == 0 && pos.y != 0 && str[0] != C_FLAG) ?
+    (parse_thread(str, info, 0, 0)) : (parse_path(str, info))));
 }
 
 void		parse_path(char *str, t_info *info)
@@ -122,6 +108,7 @@ void		parse_decl(char *str, t_info *info, int opt, int cmptr)
       pos2->x++;
     }
   id[pos2->y] = 0;
-  (info->nbr_room >= BUFF_SIZE - 1) ? (my_put_err("Error : Too Much Room\n", TRUE)) : (info->nbr_room++);
+  (info->nbr_room >= BUFF_SIZE - 1) ?
+	  (my_put_err("Error : Too Much Room\n", TRUE)) : (info->nbr_room++);
   save_room(id, pos1, info, opt);
 }

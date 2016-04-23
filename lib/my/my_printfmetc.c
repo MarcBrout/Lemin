@@ -46,7 +46,7 @@ int	my_prints(const char *str, int *i)
   while (str[*i] == ' ')
     *i = *i + 1;
   if (str[*i - 1] == ' ' &&
-      (str[*i] == 'd' || str[*i] == 'i' || str[*i] == 'p'))
+      (str[*i] == 'd' || str[*i] == 'i' || str[*i] == 'P'))
     {
       my_putchar(' ');
       count++;

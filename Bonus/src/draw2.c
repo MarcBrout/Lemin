@@ -5,77 +5,75 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:22:38 2016 THEIS Paul
-** Last update Thu Apr 21 20:18:36 2016 THEIS Paul
+** Last update Sat Apr 23 15:59:53 2016 THEIS Paul
 */
 
 #include "main.h"
 
-void	check_nbr_room(t_info *info)
+void		set_line(SDL_Surface* surf, SDL_Rect *pos1, SDL_Rect *pos2)
 {
-  if (info->nbr_room >= BUFF_SIZE - 1)
-    {
-      exit (0);
-      printf("Error : Number maximum of room must be inferior at BUFF_SIZE\n");
-    }
-  else
-    info->nbr_room++;
-}
+  int d;
+  int dx;
+  int dy;
+  int aincr;
+  int bincr;
+  int xincr;
+  int yincr;
+  int x;
+  int y;
 
-void		parse_decl(char *str, t_info *info, int opt, int cmptr)
-{
-  char		id[4096];
-  SDL_Rect	*pos1;
-  SDL_Rect	*pos2;
+  if (abs(pos2->x - pos1->x) < abs(pos2->y - pos1->y)) {
+	if (pos1->y > pos2->y) {
+	  swap_int(&pos1->x, &pos2->x);
+	  swap_int(&pos1->y, &pos2->y);
+	}
+      xincr = (pos2->x > pos1->x) ? (1) : (-1);
+      dy = pos2->y - pos1->y;
+      dx = abs(pos2->x- pos1->x);
+      d = 2 * dx - dy;
+      aincr = 2 * (dx - dy);
+      bincr = 2 * dx;
+      x = pos1->x;
+      y = pos1->y;
+      set_pixel(surf, x, y, setter_color(0, 0, 255));
+	for (y = pos1->y + 1; y <= pos2->y; ++y) {
+	    if (d >= 0) {
+	      x += xincr;
+	      d += aincr;
+	    } else
+	    d += bincr;
 
-  pos1 = xalloc(sizeof(SDL_Rect));
-  iniSDL_Rect(pos1);
-  pos2 = xalloc(sizeof(SDL_Rect));
-  iniSDL_Rect(pos2);
-  while (str[pos2->x])
-    {
-      if (str[pos2->x] == ' ')
-    	cmptr++;
-      else if (str[pos2->x] >= '0' && str[pos2->x] <= '9')
-    	if (cmptr == 1)
-    	  pos1->x = pos1->x * 10 + (str[pos2->x] - '0');
-    	else if (cmptr == 2)
-    	  pos1->y = pos1->y * 10 + (str[pos2->x] - '0');
-    	else
-    	  id[pos2->y++] = str[pos2->x];
-      else
-	id[pos2->y++] = str[pos2->x];
-      pos2->x++;
-    }
-  id[pos2->y] = 0;
-  check_nbr_room(info);
-  save_room(id, pos1, info, opt);
-}
+        set_pixel(surf, x, y, setter_color(0, 0, 255));
+	}
+    } else {
+	if (pos1->x > pos2->x) {
+	  swap_int(&pos1->x, &pos2->x);
+	  swap_int(&pos1->y, &pos2->y);
+	}
+      yincr = pos2->y > pos1->y ? 1 : -1;
+      dx = pos2->x- pos1->x;
+      dy = abs(pos2->y - pos1->y);
+      d = 2 * dy - dx;
+      aincr = 2 * (dy - dx);
+      bincr = 2 * dy;
+      x = pos1->x;
+      y = pos1->y;
+      set_pixel(surf, x, y, setter_color(0, 0, 255));
+	for (x = pos1->x + 1; x <= pos2->x; ++x) {
+	    if (d >= 0) {
+	      y += yincr;
+	      d += aincr;
+	    } else
+              d += bincr;
 
-void		ml(SDL_Surface* surf, SDL_Rect *pos1, SDL_Rect *pos2)
-{
-  int		Dx;
-  int		Dy;
-  SDL_Rect	incr;
-
-  Dx = abs(pos2->x - pos1->x);
-  Dy = abs(pos2->y - pos1->y);
-  if (pos1->x < pos2->x)
-    incr.x = 1;
-  else
-    incr.x = -1;
-  if (pos1->y < pos2->y)
-    incr.y = 1;
-  else
-    incr.y = -1;
-  if (Dx > Dy)
-    step1(pos1, pos2, incr, surf);
-  else
-    step2(pos1, pos2, incr, surf);
+	  set_pixel(surf, x, y, setter_color(0, 0, 255));
+	    }
+  }
 }
 
 void	draw_line(SDL_Rect *pos1, SDL_Rect *pos2, t_info *info)
 {
-  ml(info->space, pos1, pos2);
+  set_line(info->space, pos1, pos2);
 }
 
 void	draw_tunel(char *id1, char *id2, t_info *info)
@@ -85,18 +83,18 @@ void	draw_tunel(char *id1, char *id2, t_info *info)
   SDL_Rect	*pos2;
 
   pos1 = xalloc(sizeof(SDL_Rect));
-  iniSDL_Rect(pos1);
+  init_SDL_Rect(pos1);
   pos2 = xalloc(sizeof(SDL_Rect));
-  iniSDL_Rect(pos2);
+  init_SDL_Rect(pos2);
   i = -1;
   while (++i < BUFF_SIZE)
     {
       if (info->elem[i].id != NULL)
       	{
       	  if (strcmp(info->elem[i].id, id1) == 0)
-	    grep_coor(i, pos1, info);
+	    get_coor(i, pos1, info);
       	  else if (strcmp(info->elem[i].id, id2) == 0)
-      	    grep_coor(i, pos2, info);
+      	    get_coor(i, pos2, info);
       	}
     }
   draw_line(pos1, pos2, info);

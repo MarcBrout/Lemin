@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:20:38 2016 THEIS Paul
-** Last update Thu Apr 21 20:29:35 2016 THEIS Paul
+** Last update Sat Apr 23 16:29:36 2016 Paul THEIS
 */
 
 #include "main.h"
@@ -28,17 +28,15 @@ void	ants_path(char *str, t_info *info)
   while (str[i])
     {
       j = 0;
-      if (str[i] == 'P')
+      if (str[i++] == C_FLAG)
 	{
-	  i++;
-	  while (str[i] != '-')
+	  while (str[i] != C_MIN)
 	    id[j++] = str[i++];
 	  id[j] = 0;
-	  if (str[i] == '-')
+	  if (str[i++] == C_MIN)
 	    {
-	      i++;
 	      j = 0;
-	      while (str[i] && str[i] != ' ')
+	      while (str[i] && str[i] != C_SPACE)
 		room[j++] = str[i++];
 	      room[j] = 0x00;
 	    }
@@ -49,18 +47,17 @@ void	ants_path(char *str, t_info *info)
   info->round++;
 }
 
-void	set_property_ants_all(int total, t_info *info, char *id)
+void	set_ants(int total, t_info *info, char *id)
 {
   int	i;
 
-  i = 0;
-  while (i < total)
+  i = -1;
+  while (++i < total)
     {
       info->ants[i].id = xalloc(BUFF_SIZE * sizeof(char));
       sprintf(info->ants[i].id, "%d", i + 1);
       info->ants[i].room = xalloc(BUFF_SIZE * sizeof(char));
       sprintf(info->ants[i].room, "%s", id);
-      i++;
     }
 }
 
@@ -71,7 +68,7 @@ void	put_ants_room(t_info *info, int nbr)
   i = -1;
   while (++i < BUFF_SIZE)
     if (info->elem[i].id != NULL)
-	if (info->elem[i].nbr_ants == nbr)
-	    set_property_ants_all(info->elem[i].nbr_ants, info,
+      if (info->elem[i].nbr_ants == nbr)
+	set_ants(info->elem[i].nbr_ants, info,
 				  info->elem[i].id);
 }

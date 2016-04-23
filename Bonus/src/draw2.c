@@ -5,17 +5,17 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:22:38 2016 THEIS Paul
-** Last update Thu Apr 21 18:02:02 2016 THEIS Paul
+** Last update Thu Apr 21 20:18:36 2016 THEIS Paul
 */
 
 #include "main.h"
 
 void	check_nbr_room(t_info *info)
 {
-  if (info->nbr_room >= 511)
+  if (info->nbr_room >= BUFF_SIZE - 1)
     {
       exit (0);
-      printf("Error : Number maximum of room must be inferior at 512\n");
+      printf("Error : Number maximum of room must be inferior at BUFF_SIZE\n");
     }
   else
     info->nbr_room++;
@@ -24,32 +24,31 @@ void	check_nbr_room(t_info *info)
 void		parse_decl(char *str, t_info *info, int opt, int cmptr)
 {
   char		id[4096];
-  SDL_Rect	pos;
-  SDL_Rect	pos2;
+  SDL_Rect	*pos1;
+  SDL_Rect	*pos2;
 
-  //pos = xalloc(sizeof(SDL_Rect));
-  //pos2 = xalloc(sizeof(SDL_Rect));
-  //init_t_pos(pos, pos2);
-  pos = set_pos(0, 0);
-  pos2 = set_pos(0, 0);
-  while (str[pos2.x])
+  pos1 = xalloc(sizeof(SDL_Rect));
+  iniSDL_Rect(pos1);
+  pos2 = xalloc(sizeof(SDL_Rect));
+  iniSDL_Rect(pos2);
+  while (str[pos2->x])
     {
-      if (str[pos2.x] == ' ')
+      if (str[pos2->x] == ' ')
     	cmptr++;
-      else if (str[pos2.x] >= '0' && str[pos2.x] <= '9')
+      else if (str[pos2->x] >= '0' && str[pos2->x] <= '9')
     	if (cmptr == 1)
-    	  pos.x = pos.x * 10 + (str[pos2.x] - '0');
+    	  pos1->x = pos1->x * 10 + (str[pos2->x] - '0');
     	else if (cmptr == 2)
-    	  pos.y = pos.y * 10 + (str[pos2.x] - '0');
+    	  pos1->y = pos1->y * 10 + (str[pos2->x] - '0');
     	else
-    	  id[pos2.y++] = str[pos2.x];
+    	  id[pos2->y++] = str[pos2->x];
       else
-	id[pos2.y++] = str[pos2.x];
-      pos2.x++;
+	id[pos2->y++] = str[pos2->x];
+      pos2->x++;
     }
-  id[pos2.y] = 0;
+  id[pos2->y] = 0;
   check_nbr_room(info);
-  save_room(id, &pos, info, opt);
+  save_room(id, pos1, info, opt);
 }
 
 void		ml(SDL_Surface* surf, SDL_Rect *pos1, SDL_Rect *pos2)
@@ -89,17 +88,16 @@ void	draw_tunel(char *id1, char *id2, t_info *info)
   iniSDL_Rect(pos1);
   pos2 = xalloc(sizeof(SDL_Rect));
   iniSDL_Rect(pos2);
-  i = 0;
-  while (i < 512)
+  i = -1;
+  while (++i < BUFF_SIZE)
     {
-      if (info->element[i].id != NULL)
+      if (info->elem[i].id != NULL)
       	{
-      	  if (strcmp(info->element[i].id, id1) == 0)
+      	  if (strcmp(info->elem[i].id, id1) == 0)
 	    grep_coor(i, pos1, info);
-      	  else if (strcmp(info->element[i].id, id2) == 0)
+      	  else if (strcmp(info->elem[i].id, id2) == 0)
       	    grep_coor(i, pos2, info);
       	}
-      i++;
     }
   draw_line(pos1, pos2, info);
   aff_room(id1, pos1->x, pos1->y, info);

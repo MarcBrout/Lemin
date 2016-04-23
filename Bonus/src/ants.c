@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:20:38 2016 THEIS Paul
-** Last update Wed Apr 20 13:27:11 2016 THEIS Paul
+** Last update Thu Apr 21 20:29:35 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -17,11 +17,14 @@ void	update_all(char *id, char *room, t_info *info)
   update_screen(info);
 }
 
-void	ants_path(char *str, t_info *info, int i, int j)
+void	ants_path(char *str, t_info *info)
 {
-  char	id[4096];
-  char	room[4096];
+  char	id[BUFF_SIZE];
+  char	room[BUFF_SIZE];
+  int	i;
+  int	j;
 
+  i = 0;
   while (str[i])
     {
       j = 0;
@@ -35,13 +38,13 @@ void	ants_path(char *str, t_info *info, int i, int j)
 	    {
 	      i++;
 	      j = 0;
-	      while (str[i] != ' ' && str[i])
+	      while (str[i] && str[i] != ' ')
 		room[j++] = str[i++];
-	      room[j] = 0;
+	      room[j] = 0x00;
 	    }
 	  update_all(id, room, info);
 	}
-      i++;
+      i += ((str[i]) ? (1) : (0));
     }
   info->round++;
 }
@@ -53,9 +56,9 @@ void	set_property_ants_all(int total, t_info *info, char *id)
   i = 0;
   while (i < total)
     {
-      info->ants[i].id = xalloc(512 * sizeof(char));
+      info->ants[i].id = xalloc(BUFF_SIZE * sizeof(char));
       sprintf(info->ants[i].id, "%d", i + 1);
-      info->ants[i].room = xalloc(512 * sizeof(char));
+      info->ants[i].room = xalloc(BUFF_SIZE * sizeof(char));
       sprintf(info->ants[i].room, "%s", id);
       i++;
     }
@@ -65,17 +68,10 @@ void	put_ants_room(t_info *info, int nbr)
 {
   int	i;
 
-  i = 0;
-  while (i < 512)
-    {
-      if (info->element[i].id != NULL)
-	{
-	  if (info->element[i].nbr_ants == nbr)
-	    {
-	      set_property_ants_all(info->element[i].nbr_ants, info,
-				    info->element[i].id);
-	    }
-	}
-      i++;
-    }
+  i = -1;
+  while (++i < BUFF_SIZE)
+    if (info->elem[i].id != NULL)
+	if (info->elem[i].nbr_ants == nbr)
+	    set_property_ants_all(info->elem[i].nbr_ants, info,
+				  info->elem[i].id);
 }

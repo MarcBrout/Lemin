@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:19:44 2016 THEIS Paul
-** Last update Wed Apr 20 11:40:16 2016 THEIS Paul
+** Last update Thu Apr 21 19:27:42 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -15,10 +15,10 @@ void	parse(t_info *info)
   int	fd;
   char	*tmp;
 
+  fd = 0;
   info->current = 0;
   info->nbr_room = 0;
-  tmp = xalloc(4096 * sizeof(*tmp));
-  fd = 0;
+  tmp = xalloc(sizeof(*tmp) * (BUFF_SIZE + 1));
   while ((tmp = get_next_line(fd)) != NULL)
     {
       tread_line(tmp, info);
@@ -95,15 +95,15 @@ void		parse_path(char *str, t_info *info)
       put_ants_room(info, info->nbr_ants);
       flag = 1;
     }
-  ants_path(str, info, 0, 0);
+  ants_path(str, info);
 }
 
 void	parse_thread(char *str, t_info *info, int i, int j)
 {
+  char	id2[BUFF_SIZE];
+  char	id1[BUFF_SIZE];
   int	flag;
   int	k;
-  char	id1[4096];
-  char	id2[4096];
 
   k = 0;
   flag = 0;

@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:24:29 2016 THEIS Paul
-** Last update Thu Apr 21 17:50:54 2016 THEIS Paul
+** Last update Thu Apr 21 20:19:37 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -15,11 +15,11 @@ int	sort_id(t_info *info, char *id)
   int	i;
 
   i = 0;
-  while (i < 512)
+  while (i < BUFF_SIZE)
     {
-      if (info->element[i].id != NULL)
+      if (info->elem[i].id != NULL)
 	{
-	  if (strcmp(info->element[i].id, id) == 0)
+	  if (strcmp(info->elem[i].id, id) == 0)
 	    return (i);
 	}
       i++;
@@ -56,17 +56,17 @@ void	set_color(SDL_Color *color, int r, int g, int b)
 void	save_room(char *id, SDL_Rect *pos, t_info *info, int opt)
 {
   if (opt == 1)
-    info->element[info->nbr_room].nbr_ants = info->nbr_ants;
+    info->elem[info->nbr_room].nbr_ants = info->nbr_ants;
   else
-    info->element[info->nbr_room].nbr_ants = 0;
-  info->element[info->nbr_room].x = pos->x * 40 + 80;
-  info->element[info->nbr_room].y = pos->y * 40 + 80;
-  info->element[info->nbr_room].opt = opt;
-  info->element[info->nbr_room].id = xalloc((strlen(id) + 1)
+    info->elem[info->nbr_room].nbr_ants = 0;
+  info->elem[info->nbr_room].x = pos->x * 50 + 100;
+  info->elem[info->nbr_room].y = pos->y * 50 + 100;
+  info->elem[info->nbr_room].opt = opt;
+  info->elem[info->nbr_room].id = xalloc((strlen(id) + 1)
 					    * sizeof(*id));
-  memset(info->element[info->nbr_room].id, 0,
+  memset(info->elem[info->nbr_room].id, 0,
 	 (strlen(id) + 1) * sizeof(*id));
-  strcpy(info->element[info->nbr_room].id, id);
+  strcpy(info->elem[info->nbr_room].id, id);
 }
 
 void	iniSDL_Rect(SDL_Rect *pos)

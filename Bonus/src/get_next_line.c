@@ -1,58 +1,82 @@
 /*
-** get_next_line.c for GetNextLine in /home/theis_p/Getnextline
+** get_next_line.c for gnl
 **
-** Made by Paul THEIS
-** Login   <theis_p@epitech.net>
+** Made by marc brout
+** Login   <brout_m@epitech.net>
 **
-** Started on  Fri Nov 20 18:44:03 2015 Paul THEIS
-** Last update Wed Apr 20 12:00:36 2016 THEIS Paul
+** Started on  Mon Jan  4 10:27:46 2016 marc brout
+** Last update Sat Apr  2 16:54:11 2016 marc brout
 */
 
-#include        "get_next_line.h"
+#include <stdio.h>
+#include "get_next_line.h"
 
-static char     *set_line(char *line, int flag, char *buff, int *start)
+char		*my_realloc(char *str, int size)
 {
-  char          *tmp_elem;
-  int           prev_len;
+  char		*tmp;
+  int		i;
 
-  prev_len = (line) ? my_strlen(line) : (0);
-  if ((tmp_elem = malloc((prev_len + flag + 1) * sizeof(*tmp_elem))) == NULL)
+  if ((tmp = malloc(size + 1)) == NULL)
     return (NULL);
-  my_strncpy(tmp_elem, (line) ? (line) : (""), prev_len);
-  my_strncpy(tmp_elem + prev_len, buff + *start, flag);
-  tmp_elem[prev_len + flag] = 0;
-  if (line)
-    free(line);
-  *start += flag + 1;
-  return (tmp_elem);
+  i = -1;
+  while (str && str[++i] &&  i < size)
+    tmp[i] = str[i];
+  while (i <= size)
+    tmp[i++] = 0;
+  if (str != NULL)
+    free(str);
+  return (tmp);
 }
 
-char            *get_next_line(const int fd)
+char		*get_last_buff(char *buff, int *ret, int *i, int *j)
 {
-  static char   buff[READ_SIZE + 1];
-  static int    nbread = 0;
-  static int    start;
-  char          *line;
-  int           flag;
+  int		size;
+  char		*str;
 
-  line = 0;
-  flag = 0;
-  while (42)
+  if ((str = malloc(1)) == NULL)
+    return (NULL);
+  if (*ret == 0)
     {
-      if (start >= nbread)
-        {
-          start = 0;
-          if (!(nbread = read(fd, buff, READ_SIZE)))
-            return (line);
-          if (nbread == -1)
-            return (NULL);
-          flag = 0;
-        }
-      if (buff[start + flag] == '\n')
-        return (line = set_line(line, flag, buff, &start));
-      if (start + flag == nbread - 1)
-        if ((line = set_line(line, flag + 1, buff, &start)) == NULL)
-	    return (NULL);
-      ++flag;
+      free(str);
+      return (NULL);
     }
+  str[0] = 0;
+  size = 0;
+  if (*i < READ_SIZE && *i != -1)
+    while (buff[++*i] && buff[*i] != '\n' && (size += 1))
+      {
+	if ((str = my_realloc(str, size)) == NULL)
+	  return (NULL);
+	str[++*j] = buff[*i];
+      }
+  return (str);
+}
+
+char		*get_next_line(const int fd)
+{
+  static char	buf[READ_SIZE + 1];
+  static int	i = -1;
+  static int	r = -1;
+  char		*str;
+  int		size;
+  int		j;
+
+  str = NULL;
+  if ((((fd < 0) || (j = -1) > 0 || READ_SIZE < 1 ||
+	!(str = get_last_buff(buf, &r, &i, &j)) ||
+	buf[i] == 10)) && buf[i])
+    return (str);
+  size = j + 1;
+  while (buf[i] != 10 && (r = read(fd, buf, READ_SIZE)) > 0 &&
+	 (size += r) && !(buf[r] = 0))
+    {
+      if ((str = my_realloc(str, size)) == NULL)
+	return (NULL);
+      i = -1;
+      while (buf[++i] && buf[i] != '\n' && (str[++j] = buf[i]));
+    }
+  if (size)
+    return (str);
+  free(str);
+  return (((i = -1) && (r = -1)) ? NULL : NULL);
 }

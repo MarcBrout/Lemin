@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:25:04 2016 THEIS Paul
-** Last update Thu Apr 21 17:50:54 2016 THEIS Paul
+** Last update Thu Apr 21 20:21:06 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -30,17 +30,17 @@ void		aff_info(char *id_room, int x, int y, t_info *info)
 {
   SDL_Rect	pos;
   SDL_Surface	*txt;
-  char		final[4096];
-  int		id;
   SDL_Color	color;
+  int		id;
+  char		str[BUFF_SIZE];
 
   id = sort_id(info, id_room);
-  (info->element[id].opt == 1) ? (set_color(&color, 255, 0, 0)) :
-      ((info->element[id].opt == 2) ? (set_color(&color, 0, 255, 0)) :
-       set_color(&color, 230, 230, 230));
-  sprintf(final, "[%s] %d ants", id_room, info->element[id].nbr_ants);
-  txt = TTF_RenderText_Blended(info->font, final, color);
-  pos = set_pos(x, y - 30);
+  ((info->elem[id].opt == 1) ? (set_color(&color, 255, 0, 0)) :
+      ((info->elem[id].opt == 2) ? (set_color(&color, 0, 255, 0)) :
+       set_color(&color, 230, 230, 230)));
+  sprintf(str, "#%s - %d ants", id_room, 1);//info->elem[id].nbr_ants);
+  txt = TTF_RenderText_Blended(info->font, str, color);
+  pos = set_pos(x, y);
   SDL_BlitSurface(txt, NULL, info->screen, &pos);
   free(txt);
 }
@@ -50,10 +50,10 @@ void		aff_room(char *id_room, int x, int y, t_info *info)
   SDL_Rect	pos;
   SDL_Surface	*room;
 
-  pos = set_pos(x, y + 25);
   info->nbr = 0;
-  aff_info(id_room, x + 25, y + 25, info);
-  room = IMG_Load("img/house.png");
+  pos = set_pos(x + 25, y + 25);
+  aff_info(id_room, pos.x, pos.y, info);
+  room = IMG_Load("img/room.png");
   SDL_BlitSurface(room, NULL, info->space, &pos);
   free(room);
 }
@@ -66,6 +66,6 @@ void	init_t_pos(SDL_Rect *pos1, SDL_Rect *pos2)
 
 void	grep_coor(int i, SDL_Rect *pos, t_info *info)
 {
-  pos->x = info->element[i].x;
-  pos->y = info->element[i].y;
+  pos->x = info->elem[i].x;
+  pos->y = info->elem[i].y;
 }

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Tue Apr 12 14:47:52 2016 benjamin duhieu
-** Last update Wed Apr 20 22:28:18 2016 marc brout
+** Last update Sat Apr 23 12:25:01 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -35,7 +35,8 @@ int		chk_id(char *name, t_larg *elem)
   return (0);
 }
 
-int		copy_new_pile(t_tube *tub, t_larg *act, t_larg *root)
+int		copy_new_pile(t_tube *tub, t_larg *act,
+			      t_larg *root)
 {
   if (add_path(act, root))
     return (1);

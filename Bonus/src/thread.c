@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:24:04 2016 THEIS Paul
-** Last update Wed Apr 20 17:50:40 2016 THEIS Paul
+** Last update Thu Apr 21 18:39:22 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -17,14 +17,14 @@ void		do_op(SDL_Rect *pos1, t_info *info, int i)
 
   j = 0;
   pos2 = xalloc(sizeof(*pos2));
-  while (j < 512)
+  while (j < BUFF_SIZE)
     {
-      if (info->element[j].id != NULL)
+      if (info->elem[j].id != NULL)
 	{
-	  if (strcmp(info->element[i].id, info->element[j].id) != 0)
+	  if (strcmp(info->elem[i].id, info->elem[j].id) != 0)
 	    {
-	      pos2->x = info->element[j].x;
-	      pos2->y = info->element[j].y;
+	      pos2->x = info->elem[j].x;
+	      pos2->y = info->elem[j].y;
 	      draw_line(pos1, pos2, info);
 	    }
 	}
@@ -40,12 +40,12 @@ void	redraw_thread(t_info *info)
 
   pos1 = xalloc(sizeof(*pos1));
   i = 0;
-  while (i < 512)
+  while (i < BUFF_SIZE)
     {
-      if (info->element[i].id != NULL)
+      if (info->elem[i].id != NULL)
 	{
-	  pos1->x = info->element[i].x;
-	  pos1->y = info->element[i].y;
+	  pos1->x = info->elem[i].x;
+	  pos1->y = info->elem[i].y;
 	  do_op(pos1, info, i);
 	}
       i++;
@@ -58,14 +58,14 @@ void	aff_info_all(t_info *info)
   int	i;
 
   i = 0;
-  while (i < 512)
+  while (i < BUFF_SIZE)
     {
-      if (info->element[i].id != NULL)
+      if (info->elem[i].id != NULL)
 	{
-	  aff_info(info->element[i].id, info->element[i].x,
-		   info->element[i].y, info);
-	  if (info->element[i].nbr_ants >= 1)
-	    put_ant_screen(info->element[i].x, info->element[i].y, info);
+	  aff_info(info->elem[i].id, info->elem[i].x,
+		   info->elem[i].y, info);
+	  if (info->elem[i].nbr_ants >= 1)
+	    put_ant_screen(info->elem[i].x, info->elem[i].y, info);
 	}
       i++;
     }

@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:30:56 2016 THEIS Paul
-** Last update Thu Apr 21 17:55:02 2016 THEIS Paul
+** Last update Thu Apr 21 20:28:59 2016 THEIS Paul
 */
 
 #ifndef MAIN_H
@@ -65,7 +65,7 @@ typedef struct	s_info
   SDL_Surface	*statbar;
   SDL_Surface	*toolbar;
   TTF_Font	*font;
-  t_elem		element[512];
+  t_elem	elem[BUFF_SIZE];
   int		current;
   int		nbr;
   int		nbr_room;
@@ -77,7 +77,6 @@ typedef struct	s_info
   int		opt;
   int		speed;
   SDL_Color	black;
-  SDL_Color	white;
 }		t_info;
 
 /* TOOL */
@@ -109,7 +108,7 @@ void		decision(SDL_Rect flag, SDL_Rect pos, char *str, t_info *info);
 void		parse_path(char *str, t_info *info);
 void		parse_thread(char *str, t_info *info, int i, int j);
 void		swapint(int *x, int *y);
-void		PutPixel(SDL_Surface *surface, int x, int y, unsigned long pixel);
+void		PutPixel(SDL_Surface *surface, int x, int y, Uint32 pixel);
 void		step2(SDL_Rect *pos1, SDL_Rect *pos2, SDL_Rect incr, SDL_Surface *surf);
 void		step1(SDL_Rect *pos1, SDL_Rect *pos2, SDL_Rect incr, SDL_Surface *surf);
 void		parse_decl(char *str, t_info *info, int opt, int cmptr);
@@ -118,7 +117,7 @@ void		draw_line(SDL_Rect *pos1, SDL_Rect *pos2, t_info *info);
 void		draw_tunel(char *id1, char *id2, t_info *info);
 void		update_all(char *id, char *room, t_info *info);
 unsigned long	convert_color(int R, int G, int B);
-void		ants_path(char *str, t_info *info, int i, int j);
+void		ants_path(char *str, t_info *info);
 void		set_property_ants_all(int total, t_info *info, char *id);
 void		put_ants_room(t_info *info, int nbr);
 void		put_ants_room(t_info *info, int nbr);

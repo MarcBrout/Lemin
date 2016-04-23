@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Thu Apr 21 18:17:56 2016 marc brout
+** Last update Sat Apr 23 12:27:32 2016 marc brout
 */
 
 #ifndef LEMIN_H_
@@ -229,6 +229,7 @@ int			check_existing_room(t_room *root,
 int			set_root(t_data *data);
 int			add_tube(t_room *base, t_room *target);
 t_room			*search_room(t_room *root, char *room);
+int			already_linked(t_room *room1, t_room *room2);
 int			link_rooms(t_room *root, char *room1,
 				   char *room2);
 int			prepare_rooms(char *str, t_room *root);

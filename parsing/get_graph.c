@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Apr 11 14:03:02 2016 marc brout
-** Last update Thu Apr 21 18:17:44 2016 marc brout
+** Last update Thu Apr 21 19:51:29 2016 marc brout
 */
 
 #include "get_next_line.h"
@@ -118,18 +118,17 @@ int		get_all(t_data *data)
   while (!get_next_str(&line))
     {
       if (next < 0 && (next = (!my_strcmp(line, "##end")) ? 1 :
-	   (!my_strcmp(line, "##start")) ? 0 : -1) >= 0)
+		       (!my_strcmp(line, "##start")) ? 0 : -1) >= 0)
 	{
 	  free(line);
 	  continue;
 	}
       if (next >= 0 && !my_strncmp("##", line, 1))
 	return (my_put_error(MISSING_LINE), 2);
-      if ((ret = get_this_line(data, &next, &tmp, line)))
+      if (my_strncmp("##", line, 1) &&
+	  (ret = get_this_line(data, &next, &tmp, line)))
 	return (ret);
       free(line);
     }
-  if (tmp.id < 2)
-    return (my_put_error(MISSING_ROOM), 2);
-  return (0);
+  return ((tmp.id < 2 ) ? my_put_error(MISSING_ROOM), 2 : 0);
 }

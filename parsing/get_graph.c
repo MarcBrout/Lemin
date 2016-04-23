@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Apr 11 14:03:02 2016 marc brout
-** Last update Thu Apr 21 19:51:29 2016 marc brout
+** Last update Sat Apr 23 12:23:59 2016 marc brout
 */
 
 #include "get_next_line.h"
@@ -130,5 +130,5 @@ int		get_all(t_data *data)
 	return (ret);
       free(line);
     }
-  return ((tmp.id < 2 ) ? my_put_error(MISSING_ROOM), 2 : 0);
+  return ((tmp.id < 2) ? my_put_error(MISSING_ROOM), 2 : 0);
 }

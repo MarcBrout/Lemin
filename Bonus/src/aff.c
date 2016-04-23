@@ -5,10 +5,24 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:25:04 2016 THEIS Paul
-** Last update Sat Apr 23 16:29:00 2016 Paul THEIS
+** Last update Sat Apr 23 17:12:45 2016 THEIS Paul
 */
 
 #include "main.h"
+
+int		get_room(t_info *info, bool a)
+{
+  int		i;
+
+  i = -1;
+  while (++i < BUFF_SIZE)
+    {
+      if (a && (info->elem[i].opt == 1))
+	return (info->elem[i].nbr_ants);
+      else if (!a && (info->elem[i].opt == 2))
+	return (info->elem[i].nbr_ants);
+    }
+}
 
 void		aff_round(t_info *info)
 {
@@ -17,8 +31,8 @@ void		aff_round(t_info *info)
   SDL_Color	color;
   char		str[BUFF_SIZE];
 
-  sprintf(str, "Round : %d   |   Room: %d   |   Ants: %d",
-	  info->round, info->nbr_room, info->nbr_ants);
+  sprintf(str, "Round : %d   |   Room: %d   |   Ants: %d              {Ant Man}              Start: %d    |    End: %d    |    Between: %d",
+	  info->round, info->nbr_room, info->nbr_ants, get_room(info, TRUE), get_room(info, FALSE), info->nbr_ants - (get_room(info, TRUE) + get_room(info, FALSE)));
   set_color(&color, 230, 230, 230);
   txt = TTF_RenderText_Blended(info->font, str, color);
   txt = rotozoomSurface(txt, 0, 2, 1);

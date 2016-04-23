@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:16:42 2016 THEIS Paul
-** Last update Sat Apr 23 16:33:56 2016 THEIS Paul
+** Last update Sat Apr 23 16:36:12 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -30,7 +30,6 @@ int		main(int argc, char *argv[])
   init(info);
   parse(info);
   update_screen(info);
-  //SDL_EnableKeyRepeat(10, 10);
   while (!(quit))
     {
       SDL_WaitEvent(&event);

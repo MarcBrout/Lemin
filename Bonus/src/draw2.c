@@ -5,75 +5,92 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:22:38 2016 THEIS Paul
-** Last update Sat Apr 23 15:59:53 2016 THEIS Paul
+** Last update Sat Apr 23 16:56:30 2016 THEIS Paul
 */
 
 #include "main.h"
 
-void		set_line(SDL_Surface* surf, SDL_Rect *pos1, SDL_Rect *pos2)
+void		line1(SDL_Surface* surf, SDL_Rect *pos1, SDL_Rect *pos2)
 {
   int d;
-  int dx;
-  int dy;
-  int aincr;
-  int bincr;
-  int xincr;
-  int yincr;
-  int x;
-  int y;
+  SDL_Rect	posd;
+  SDL_Rect	inc;
+  SDL_Rect	posinc;
+  SDL_Rect	pos;
 
-  if (abs(pos2->x - pos1->x) < abs(pos2->y - pos1->y)) {
-	if (pos1->y > pos2->y) {
+  posinc.x = (pos2->x > pos1->x) ? (1) : (-1);
+  posd.y = pos2->y - pos1->y;
+  posd.x = abs(pos2->x- pos1->x);
+  d = 2 * posd.x - posd.y;
+  inc.x = 2 * (posd.x - posd.y);
+  inc.y = 2 * posd.x;
+  pos.x = pos1->x;
+  pos.y = pos1->y;
+  set_pixel(surf, pos.x, pos.y, setter_color(0, 0, 255));
+  pos.y = pos1->y;
+  while (++pos.y <= pos2->y)
+    {
+      if (d >= 0)
+	{
+	  pos.x += posinc.x;
+	  d += inc.x;
+	}
+      else
+	d += inc.y;
+      set_pixel(surf, pos.x, pos.y, setter_color(0, 0, 255));
+    }
+}
+
+void		line2(SDL_Surface* surf, SDL_Rect *pos1, SDL_Rect *pos2)
+{
+  int d;
+  SDL_Rect	posd;
+  SDL_Rect	inc;
+  SDL_Rect	posinc;
+  SDL_Rect	pos;
+
+  posinc.y = pos2->y > pos1->y ? 1 : -1;
+  posd.x = pos2->x- pos1->x;
+  posd.y = abs(pos2->y - pos1->y);
+  d = 2 * posd.y - posd.x;
+  inc.x = 2 * (posd.y - posd.x);
+  inc.y = 2 * posd.y;
+  pos.x = pos1->x;
+  pos.y = pos1->y;
+  set_pixel(surf, pos.x, pos.y, setter_color(0, 0, 255));
+  pos.x = pos1->x;
+  while (++pos.x <= pos2->x)
+    {
+      if (d >= 0)
+	{
+	  pos.y += posinc.y;
+	  d += inc.x;
+	}
+      else
+	d += inc.y;
+      set_pixel(surf, pos.x, pos.y, setter_color(0, 0, 255));
+    }
+}
+
+void		draw_line(SDL_Rect *pos1, SDL_Rect *pos2, t_info *info)
+{
+  if (abs(pos2->x - pos1->x) < abs(pos2->y - pos1->y))
+    {
+      if (pos1->y > pos2->y)
+	{
 	  swap_int(&pos1->x, &pos2->x);
 	  swap_int(&pos1->y, &pos2->y);
 	}
-      xincr = (pos2->x > pos1->x) ? (1) : (-1);
-      dy = pos2->y - pos1->y;
-      dx = abs(pos2->x- pos1->x);
-      d = 2 * dx - dy;
-      aincr = 2 * (dx - dy);
-      bincr = 2 * dx;
-      x = pos1->x;
-      y = pos1->y;
-      set_pixel(surf, x, y, setter_color(0, 0, 255));
-	for (y = pos1->y + 1; y <= pos2->y; ++y) {
-	    if (d >= 0) {
-	      x += xincr;
-	      d += aincr;
-	    } else
-	    d += bincr;
-
-        set_pixel(surf, x, y, setter_color(0, 0, 255));
-	}
-    } else {
+	line1(info->space, pos1, pos2);
+    }
+    else
+    {
 	if (pos1->x > pos2->x) {
 	  swap_int(&pos1->x, &pos2->x);
 	  swap_int(&pos1->y, &pos2->y);
 	}
-      yincr = pos2->y > pos1->y ? 1 : -1;
-      dx = pos2->x- pos1->x;
-      dy = abs(pos2->y - pos1->y);
-      d = 2 * dy - dx;
-      aincr = 2 * (dy - dx);
-      bincr = 2 * dy;
-      x = pos1->x;
-      y = pos1->y;
-      set_pixel(surf, x, y, setter_color(0, 0, 255));
-	for (x = pos1->x + 1; x <= pos2->x; ++x) {
-	    if (d >= 0) {
-	      y += yincr;
-	      d += aincr;
-	    } else
-              d += bincr;
-
-	  set_pixel(surf, x, y, setter_color(0, 0, 255));
-	    }
-  }
-}
-
-void	draw_line(SDL_Rect *pos1, SDL_Rect *pos2, t_info *info)
-{
-  set_line(info->space, pos1, pos2);
+      line2(info->space, pos1, pos2);
+    }
 }
 
 void	draw_tunel(char *id1, char *id2, t_info *info)

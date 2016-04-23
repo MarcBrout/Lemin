@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:30:56 2016 THEIS Paul
-** Last update Sat Apr 23 16:35:42 2016 THEIS Paul
+** Last update Sat Apr 23 17:04:41 2016 THEIS Paul
 */
 
 #ifndef MAIN_H
@@ -114,7 +114,6 @@ void		put_ants_room(t_info *info, int nbr);
 /* DRAW */
 void		draw_line(SDL_Rect *pos1, SDL_Rect *pos2, t_info *info);
 void		draw_tunel(char *id1, char *id2, t_info *info);
-void		set_line(SDL_Surface* surf, SDL_Rect *pos1, SDL_Rect *pos2);
 void		set_pixel(SDL_Surface *surface, int x, int y, Uint32 pixel);
 /* REFRESH */
 void		anim_ant(int id_room_start, int id_room_end, t_info *info);

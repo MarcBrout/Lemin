@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Sat Apr 23 12:27:32 2016 marc brout
+** Last update Sat Apr 23 16:01:01 2016 benjamin duhieu
 */
 
 #ifndef LEMIN_H_
@@ -277,7 +277,7 @@ void			swap_value(t_larg *pile1,
 				   t_larg *pile2);
 void			tri_piles_by_branch(t_larg *piles);
 void			tri_piles_by_length(t_larg *piles, char id);
-t_tube			*copy_maillon(t_tube *cur, t_tube **tmp, bool *i);
+t_tube			*copy_maillon(t_tube *cur, t_tube **tmp);
 t_tube			*copy_pile(t_tube *pile);
 
 /*

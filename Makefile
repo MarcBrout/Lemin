@@ -5,7 +5,7 @@
 ## Login   <duhieu_b@epitech.net>
 ## 
 ## Started on  Fri Apr  8 15:45:04 2016 benjamin duhieu
-## Last update Sat Apr 23 12:26:25 2016 marc brout
+## Last update Sat Apr 23 17:10:51 2016 benjamin duhieu
 ##
 
 # USEFUL VARIABLES
@@ -84,7 +84,7 @@ IFLAG	=	-Iinclude/
 
 CFLAGS  =	-W -Wall -Wextra
 
-CC      =	gcc -g $(CFLAGS) $(IFLAG)
+CC      =	gcc $(CFLAGS) $(IFLAG)
 
 
 # PROJECT RULES

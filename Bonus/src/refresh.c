@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:21:24 2016 THEIS Paul
-** Last update Thu Apr 21 19:58:08 2016 THEIS Paul
+** Last update Sat Apr 23 15:24:17 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -16,7 +16,7 @@ void		update_screen(t_info *info)
 
   pos.x = 0 + SPACE_1;
   pos.y = 0 + SPACE_1;
-  SDL_FillRect(info->screen, NULL, convert_color(0, 0, 0));
+  SDL_FillRect(info->screen, NULL, setter_color(0, 0, 0));
   SDL_BlitSurface(info->space, NULL, info->screen, &pos);
   init_toolbar(info);
   aff_round(info);
@@ -29,7 +29,7 @@ void		put_ant_screen(int x, int y, t_info *info)
   SDL_Surface	*ant;
   SDL_Surface	*tmp;
 
-  pos = set_pos(x + (76 / 2), y);
+  pos = set_pos(x - 50 + (76 / 2), y - 50);
   tmp = IMG_Load("img/ant.png");
   ant = rotozoomSurface(tmp, 0, 0.5, 1);
   SDL_BlitSurface(ant, NULL, info->screen, &pos);

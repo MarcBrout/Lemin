@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:20:38 2016 THEIS Paul
-** Last update Thu Apr 21 20:29:35 2016 THEIS Paul
+** Last update Sat Apr 23 14:42:17 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -28,17 +28,15 @@ void	ants_path(char *str, t_info *info)
   while (str[i])
     {
       j = 0;
-      if (str[i] == 'P')
+      if (str[i++] == C_FLAG)
 	{
-	  i++;
-	  while (str[i] != '-')
+	  while (str[i] != C_MIN)
 	    id[j++] = str[i++];
 	  id[j] = 0;
-	  if (str[i] == '-')
+	  if (str[i++] == C_MIN)
 	    {
-	      i++;
 	      j = 0;
-	      while (str[i] && str[i] != ' ')
+	      while (str[i] && str[i] != C_SPACE)
 		room[j++] = str[i++];
 	      room[j] = 0x00;
 	    }

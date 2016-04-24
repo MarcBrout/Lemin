@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:30:56 2016 THEIS Paul
-** Last update Sun Apr 24 14:47:18 2016 THEIS Paul
+** Last update Sun Apr 24 16:11:51 2016 THEIS Paul
 */
 
 #ifndef MAIN_H
@@ -99,14 +99,14 @@ void		aff_round(t_info *info);
 void		aff_info(char *id_room, int x, int y, t_info *info);
 void		aff_room(char *id_room, int x, int y, t_info *info);
 /* SORT */
-int		sort_id(t_info *info, char *id);
-int		sort_id_ant(t_info *info, char *id);
+int		verif_id(t_info *info, char *id);
+int		verif_id_ant(t_info *info, char *id);
 void		save_room(char *id, SDL_Rect *pos, t_info *info, int opt);
 /* PARSER*/
 void		parse_path(char *str, t_info *info);
 void		parse(t_info *info);
 void		parse_decl(char *str, t_info *info, int opt, int cmptr);
-void		parse_thread(char *str, t_info *info, int i, int j);
+void		parse_thread(char *str, t_info *info);
 void		parse_it(SDL_Rect flag, SDL_Rect pos, char *str, t_info *info);
 /* ANTS */
 void		set_ants(int total, t_info *info, char *id);

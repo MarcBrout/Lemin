@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:25:04 2016 THEIS Paul
-** Last update Sun Apr 24 15:27:33 2016 THEIS Paul
+** Last update Sun Apr 24 16:06:56 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -52,7 +52,7 @@ void		aff_info(char *id_room, int x, int y, t_info *info)
   int		id;
   char		str[BUFF_SIZE];
 
-  id = sort_id(info, id_room);
+  id = verif_id(info, id_room);
   ((info->elem[id].opt == 1) ? (set_color(&color, 255, 0, 0)) :
    ((info->elem[id].opt == 2) ? (set_color(&color, 0, 255, 0)) :
     set_color(&color, 230, 230, 230)));

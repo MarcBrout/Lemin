@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Mar 30 20:02:33 2016 THEIS Paul
-** Last update Wed Apr 20 11:36:54 2016 THEIS Paul
+** Last update Sun Apr 24 16:50:32 2016 benjamin duhieu
 */
 
 #include "main.h"
@@ -22,14 +22,15 @@ char		*my_strndup(const char *s, size_t n)
   len = strnlen(s, n);
   new = xalloc(len + 1);
   if (new == NULL)
-    return NULL;
+    return (NULL);
   new[len] = 0x00;
-  return (memcpy (new, s, len));
+  return (memcpy(new, s, len));
 }
 
 /*
 ** Fonction qui duplique un str compris entre a et b
 */
+
 char		*my_strset(size_t size, char c)
 {
   size_t	i;
@@ -40,13 +41,14 @@ char		*my_strset(size_t size, char c)
   while (i <= size)
     str[i++] = c;
   return (str);
-  }
+}
 
 /*
 ** Cherche le message associe a grep dans une string
 ** Return msg; message associe a grep, renvoie void
 ** si rien n est trouve.
 */
+
 char	*finder(char **env, char *grep)
 {
   int	i;
@@ -69,6 +71,7 @@ char	*finder(char **env, char *grep)
 /*
 ** Ecrit str dans la sortie standar
 */
+
 int	my_putstr(char *str)
 {
   return (write(1, str, my_strlen(str)));
@@ -77,6 +80,7 @@ int	my_putstr(char *str)
 /*
 ** Converti un char en string.
 */
+
 char	*my_char_to_string(char c)
 {
   char	*str;

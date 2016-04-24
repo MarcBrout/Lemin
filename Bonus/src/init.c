@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Tue Apr 19 11:40:45 2016 THEIS Paul
-** Last update Sun Apr 24 14:24:35 2016 THEIS Paul
+** Last update Sun Apr 24 16:39:25 2016 benjamin duhieu
 */
 
 #include "main.h"
@@ -13,10 +13,9 @@
 void	init_struct(t_info *info)
 {
   info->speed = 5;
-  info->black = (SDL_Color) {0, 0, 0};
   info->opt = 0;
   info->round = 0;
-  if(TTF_Init() == -1)
+  if (TTF_Init() == -1)
   {
     fprintf(stderr, "Erreur d'init de TTF_Init : %s\n", TTF_GetError());
     exit(EXIT_FAILURE);

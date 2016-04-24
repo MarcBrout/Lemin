@@ -5,15 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:19:44 2016 THEIS Paul
-<<<<<<< HEAD
-<<<<<<< HEAD
-** Last update Sat Apr 23 19:41:23 2016 benjamin duhieu
-=======
-** Last update Sun Apr 24 13:48:48 2016 THEIS Paul
->>>>>>> 73b0862f14ca32db4b3470887ea057e9bee55244
-=======
-** Last update Sun Apr 24 15:42:09 2016 THEIS Paul
->>>>>>> 114140939418effc5751a14a72c7d5f217ed652b
+** Last update Sun Apr 24 16:41:10 2016 benjamin duhieu
 */
 
 #include "main.h"
@@ -51,7 +43,8 @@ void		tread_line(char *str, t_info *info)
     {
       while (str[pos.x])
 	{
-	  ((str[pos.x] == C_SPACE) ? (flag.x++) : ((str[pos.x] == C_MIN) ?
+	  ((str[pos.x] == C_SPACE) ? (flag.x++) :
+	   ((str[pos.x] == C_MIN) ?
 	    (pos.y++) : ((is_alpha) ? (flag.y++) : (0))));
       	  pos.x++;
 	}
@@ -64,7 +57,7 @@ void	parse_it(SDL_Rect flag, SDL_Rect pos, char *str, t_info *info)
 {
   ((flag.x == 2 && str[0] != C_FLAG) ? (parse_decl(str, info, info->opt, 0)) :
    ((flag.x == 0 && pos.y != 0 && str[0] != C_FLAG) ?
-    (parse_thread(str, info, 0, 0)) : (parse_path(str, info))));
+    (parse_thread(str, info)) : (parse_path(str, info))));
 }
 
 void		parse_path(char *str, t_info *info)
@@ -77,15 +70,15 @@ void		parse_path(char *str, t_info *info)
   i = 0;
   while (str[i])
     {
-      if (str[i] >= '0' && str[i] <= '9')
+      if (is_num(str[i]))
 	nbr++;
       else
 	nbr = 0;
       i++;
     }
   if (nbr == strlen(str))
-    (atoi(str) >= 1023) ? (my_put_err("Error : Too much ants...\n", TRUE)) :
-      (info->nbr_ants = atoi(str));
+    (atoi(str) >= (BUFF_SIZE/4) - 1) ?
+	  (my_put_err("Too much ants.\n", TRUE)) : (info->nbr_ants = atoi(str));
   else if (flag == 0)
     {
       put_ants_room(info, info->nbr_ants);
@@ -101,8 +94,8 @@ void		parse_decl(char *str, t_info *info, int opt, int nb)
   SDL_Rect	*pos2;
 
   pos1 = xalloc(sizeof(SDL_Rect));
-  init_SDL_Rect(pos1);
   pos2 = xalloc(sizeof(SDL_Rect));
+  init_SDL_Rect(pos1);
   init_SDL_Rect(pos2);
   while (str[pos2->x])
     {

@@ -8,7 +8,7 @@ SRC		=	main.c							\
 			draw.c								\
 			parser.c							\
 			thread.c							\
-			sort.c								\
+			verif.c								\
 			aff.c									\
 			init.c 								\
 			str.c 								\

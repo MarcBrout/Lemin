@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Tue Apr  5 01:42:14 2016 THEIS Paul
-** Last update Wed Apr 20 11:37:12 2016 THEIS Paul
+** Last update Sun Apr 24 16:53:21 2016 benjamin duhieu
 */
 
 #include "main.h"
@@ -20,8 +20,8 @@ int		my_char_pos(char *str, char c, bool ret)
   int		i;
   int		flag;
 
-  if(!str)
-    return(0);
+  if (!str)
+    return (0);
   i = -1;
   flag = FALSE;
   while (str[++i] != '\0')
@@ -50,7 +50,8 @@ char		*my_strcut(char const *s, size_t a, size_t len)
 }
 
 /*
-** Fonction qui renvoie une string composé des Strings str1 quivit de str2.
+** Fonction qui renvoie une string composé des Strings str1
+** qui vit de str2.
 */
 
 char		*my_strjoin(char *str1, char *str2)

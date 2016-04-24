@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:24:04 2016 THEIS Paul
-** Last update Sun Apr 24 15:07:17 2016 THEIS Paul
+** Last update Sun Apr 24 16:25:20 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -30,16 +30,19 @@ void	aff_info_all(t_info *info)
     }
 }
 
-void	parse_thread(char *str, t_info *info, int i, int j)
+void	parse_thread(char *str, t_info *info)
 {
   char	id2[BUFF_SIZE];
   char	id1[BUFF_SIZE];
   int	flag;
   int	k;
+  int	i;
+  int	j;
 
   k = 0;
   flag = 0;
-  --i;
+  i = -1;
+  j = 0;
   while (str[++i])
       ((str[i] == C_MIN) ? (++flag) : ((flag == 0) ? id1[j++] = str[i] :
 	(id2[k++] = str[i])));

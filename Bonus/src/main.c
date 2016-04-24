@@ -5,11 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:16:42 2016 THEIS Paul
-<<<<<<< HEAD
-** Last update Sat Apr 23 20:15:25 2016 benjamin duhieu
-=======
-** Last update Sat Apr 23 20:14:36 2016 marc brout
->>>>>>> 73b0862f14ca32db4b3470887ea057e9bee55244
+** Last update Sun Apr 24 16:55:50 2016 benjamin duhieu
 */
 
 #include "main.h"
@@ -41,5 +37,5 @@ int		main(int argc, char *argv[])
 	quit = 1;
     }
   SDL_Quit();
-  return 0;
+  return (0);
 }

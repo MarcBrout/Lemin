@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:20:38 2016 THEIS Paul
-** Last update Sun Apr 24 15:34:42 2016 THEIS Paul
+** Last update Sun Apr 24 16:33:43 2016 benjamin duhieu
 */
 
 #include "main.h"
@@ -25,9 +25,8 @@ void	ants_path(char *str, t_info *info)
   int	j;
 
   i = 0;
-  while (str[i])
+  while (str[i] && !(j = 0))
     {
-      j = 0;
       if (str[i++] == C_FLAG)
 	{
 	  while (str[i] != C_MIN)

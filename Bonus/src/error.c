@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.net>
 **
 ** Started on  Mon Feb 29 20:49:46 2016 Paul THEIS
-** Last update Thu Mar 24 22:51:35 2016 THEIS Paul
+** Last update Sun Apr 24 16:38:05 2016 benjamin duhieu
 */
 
 #include "main.h"
@@ -34,10 +34,10 @@ void	*xalloc(const size_t size)
   void	*p;
 
   p = malloc(size);
-    if (p  == NULL)
-      my_put_err("malloc error\n", TRUE);
-    return (p);
-  }
+  if (p  == NULL)
+    my_put_err("malloc error\n", TRUE);
+  return (p);
+}
 
 /*
 ** Fait un realloc tout en le verifiant

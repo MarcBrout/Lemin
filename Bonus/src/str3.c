@@ -1,11 +1,11 @@
 /*
-** str3.c for minishell in /home/theis_p/git/PSU/PSU_2015_minishell2/src/
+** str3.c for minishell
 **
 ** Made by THEIS Paul
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Mar 30 20:02:44 2016 THEIS Paul
-** Last update Sun Apr 10 00:26:55 2016 THEIS Paul
+** Last update Sun Apr 24 16:51:55 2016 benjamin duhieu
 */
 
 #include "main.h"
@@ -51,7 +51,7 @@ int	count_line(char *str)
 
 char	sting_to_char(char *str, size_t i)
 {
-  return(str[i]);
+  return (str[i]);
 }
 
 /*
@@ -61,6 +61,6 @@ char	sting_to_char(char *str, size_t i)
 void	drop_char(char *str, int i)
 {
   --i;
-  while(str[++i])
+  while (str[++i])
     str[i] = str[i + 1];
 }

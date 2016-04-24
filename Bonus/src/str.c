@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Mar 30 19:57:04 2016 THEIS Paul
-** Last update Sun Apr 10 00:27:03 2016 THEIS Paul
+** Last update Sun Apr 24 16:57:43 2016 benjamin duhieu
 */
 
 #include "main.h"
@@ -15,9 +15,9 @@
 ** Return: i, le nombre de caractere d'une string
 */
 
-int     my_strlen(char *str)
+int	my_strlen(char *str)
 {
-  int           i;
+  int	i;
 
   i = -1;
   if (!(str))
@@ -62,7 +62,7 @@ char	*my_strcat(char *dest, char *src)
 ** Return: dest
 */
 
-char   	*my_strcpy(char *dest, char *src)
+char	*my_strcpy(char *dest, char *src)
 {
   int	i;
 
@@ -78,7 +78,8 @@ char   	*my_strcpy(char *dest, char *src)
 ** Return: un entier negatif, nul, ou positif,
 ** si s1 est respectivement inferieur, egale ou superieur a s2
 */
-int     my_strncmp(char *s1, char *s2, int n)
+
+int	my_strncmp(char *s1, char *s2, int n)
 {
   int   x;
   int   y;

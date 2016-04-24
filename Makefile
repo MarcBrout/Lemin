@@ -5,7 +5,7 @@
 ## Login   <duhieu_b@epitech.net>
 ## 
 ## Started on  Fri Apr  8 15:45:04 2016 benjamin duhieu
-## Last update Sun Apr 24 16:52:28 2016 marc brout
+## Last update Sun Apr 24 17:13:49 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -20,8 +20,6 @@ ECHO		=	echo -e
 
 
 # LEM_IN VARIABLES
-
-VISU		=	Bonus/
 
 PARSING		=	parsing/
 
@@ -48,29 +46,6 @@ SRC		=	$(PARSING)parsing.c \
 			$(ALGO)aff_ant.c \
 			$(ALGO)free_pil.c \
 			$(ALGO)get_short_path.c \
-
-SRCVISU		=	main.c \
-			get_next_line.c	\
-			refresh.c \
-			ants.c \
-			draw2.c	\
-			draw.c \
-			parser.c \
-			thread.c \
-			sort.c \
-			aff.c \
-			init.c \
-			str.c \
-			str2.c \
-			str3.c \
-			str4.c \
-			str5.c \
-			error.c	\
-			tool.c \
-			tool2.c
-
-
-OBJSVISU	=	$(addprefix Bonus/src/, $(SRCVISU:.c=.o))
 
 OBJS    	=	$(SRC:.c=.o)
 
@@ -116,8 +91,6 @@ VISUFLAG	=	`sdl-config --cflags --libs` -lSDL_gfx -lSDL_image -lSDLmain -lSDL_tt
 
 VISULDF		=	-I$(VISU)include/
 
-BONUS		=	Bonus/visu-hex
-
 CC		=	gcc $(CFLAGS) $(IFLAG)
 
 # PROJECT RULES
@@ -125,11 +98,6 @@ CC		=	gcc $(CFLAGS) $(IFLAG)
 .c.o		:
 			@$(CC) -c $< -o $@
 			@$(ECHO) "$(GREEN)[OK] > $<\t \t $(WHITE)"
-
-$(BONUS)	:	$(OBJSVISU)
-			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>>\n\n> Linking \"$(BONUS)\"\n\twith \
-\"$(CCVISU)\"\n\n>>>>>>>>>>>>>>>\t DONE\n$(WHITE)"
-			@$(CCVISU) -o $(BONUS) $(OBJSVISU) $(VISUFLAG)
 
 $(NAME)		: 	$(LIB) $(OBJS)
 			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>>\n\n> Linking \"$(NAME)\"\n\twith \
@@ -143,20 +111,21 @@ $(LIB)		:	$(OBJSLIB)
 			@cp $(LIBPATH)/my/get_next_line.h include/
 			@$(ECHO) "$(GREEN)\n> Compiling Library\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
-all		:	$(NAME)
+bonus		:	
+			make -C Bonus/
 
-bonus		:	$(BONUS)
+all		:	$(NAME)
 
 clean		:
 			@$(RM) $(OBJS)
 			@$(RM) $(OBJSLIB)
-			@$(RM) $(OBJSVISU)
+			make clean -C Bonus
 			@$(ECHO) "$(GREEN)\n> Cleaning repository\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
 fclean		: 	clean
 			@$(RM) $(NAME)
 			@$(RM) $(LIBPATH)/libmy.a
-			@$(RM) $(BONUS)
+			@$(RM) Bonus/visu-hex
 			@$(ECHO) "$(GREEN)\n> Cleaning exec\t\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
 re		:	fclean all

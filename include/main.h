@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:30:56 2016 THEIS Paul
-** Last update Sat Apr 23 20:16:33 2016 marc brout
+** Last update Sun Apr 24 16:11:51 2016 THEIS Paul
 */
 
 #ifndef MAIN_H
@@ -68,6 +68,7 @@ typedef struct	s_info
   SDL_Surface	*toolbar;
   TTF_Font	*font;
   SDL_Rect	pos;
+  SDL_Rect	spacer;
   SDL_Color	black;
   t_elem	elem[BUFF_SIZE];
   t_ants	ants[BUFF_SIZE / 4];
@@ -98,15 +99,15 @@ void		aff_round(t_info *info);
 void		aff_info(char *id_room, int x, int y, t_info *info);
 void		aff_room(char *id_room, int x, int y, t_info *info);
 /* SORT */
-int		sort_id(t_info *info, char *id);
-int		sort_id_ant(t_info *info, char *id);
+int		verif_id(t_info *info, char *id);
+int		verif_id_ant(t_info *info, char *id);
 void		save_room(char *id, SDL_Rect *pos, t_info *info, int opt);
 /* PARSER*/
 void		parse_path(char *str, t_info *info);
 void		parse(t_info *info);
 void		parse_decl(char *str, t_info *info, int opt, int cmptr);
-void		parse_thread(char *str, t_info *info, int i, int j);
-void		decision(SDL_Rect flag, SDL_Rect pos, char *str, t_info *info);
+void		parse_thread(char *str, t_info *info);
+void		parse_it(SDL_Rect flag, SDL_Rect pos, char *str, t_info *info);
 /* ANTS */
 void		set_ants(int total, t_info *info, char *id);
 void		put_ant_screen(int x, int y, t_info *info);
@@ -127,5 +128,6 @@ void		aff_info_all(t_info *info);
 void		put_error(char *str);
 void		tread_line(char *str, t_info *info);
 void		update_all(char *id, char *room, t_info *info);
+void	find_max(t_info *info);
 
 #endif /* MAIN_H */

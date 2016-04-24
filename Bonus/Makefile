@@ -5,7 +5,7 @@
 ## Login   <brout_m@epitech.net>
 ## 
 ## Started on  Sun Apr 24 17:02:29 2016 marc brout
-## Last update Sun Apr 24 18:08:56 2016 marc brout
+## Last update Sun Apr 24 18:58:34 2016 marc brout
 ##
 
 NAME		=	visu-hex
@@ -38,7 +38,7 @@ RM			= rm -f
 
 CFLAGS			= -W -Wall -Wextra
 
-CC			= gcc -g $(IFLAG) $(CFLAGS)
+CC			= gcc $(IFLAG) $(CFLAGS)
 
 ECHO			= echo -e
 

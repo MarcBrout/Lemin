@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:19:44 2016 THEIS Paul
-** Last update Sat Apr 23 17:35:28 2016 THEIS Paul
+** Last update Sat Apr 23 20:03:49 2016 marc brout
 */
 
 #include "main.h"
@@ -18,13 +18,14 @@ void	parse(t_info *info)
   fd = 0;
   info->current = 0;
   info->nbr_room = 0;
-  tmp = xalloc(sizeof(*tmp) * (BUFF_SIZE + 1));
+  /* tmp = xalloc(sizeof(*tmp) * (BUFF_SIZE + 1)); */
   while ((tmp = get_next_line(fd)) != NULL)
     {
       tread_line(tmp, info);
       info->current++;
     }
-  free(tmp);
+  if (tmp)
+    free(tmp);
 }
 
 void		tread_line(char *str, t_info *info)

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:14:52 2016 benjamin duhieu
-** Last update Sun Apr 24 14:07:51 2016 benjamin duhieu
+** Last update Sun Apr 24 14:39:20 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -51,5 +51,7 @@ int		start(t_room *room, t_ant *ant, int nb)
   if (!(ant = list_ant(way, nb)))
     return (1);
   start_ant(ant, nb_path);
+  free_path(root);
+  free_ant(ant, way);
   return (0);
 }

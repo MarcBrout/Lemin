@@ -5,12 +5,12 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:30:56 2016 THEIS Paul
-** Last update Sat Apr 23 17:31:11 2016 THEIS Paul
+** Last update Sat Apr 23 20:16:33 2016 marc brout
 */
 
 #ifndef MAIN_H
 # define MAIN_H
-#define	W_W	1280
+#define	W_W 1280
 #define STATBAR_H 50
 #define TOOLBAR_H 120
 #define SPACE_H 600

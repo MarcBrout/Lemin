@@ -5,7 +5,11 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:19:44 2016 THEIS Paul
+<<<<<<< HEAD
 ** Last update Sat Apr 23 19:41:23 2016 benjamin duhieu
+=======
+** Last update Sun Apr 24 13:48:48 2016 THEIS Paul
+>>>>>>> 73b0862f14ca32db4b3470887ea057e9bee55244
 */
 
 #include "main.h"
@@ -18,7 +22,7 @@ void	parse(t_info *info)
   fd = 0;
   info->current = 0;
   info->nbr_room = 0;
-  tmp = xalloc(sizeof(*tmp) * (BUFF_SIZE + 1));
+  /* tmp = xalloc(sizeof(*tmp) * (BUFF_SIZE + 1)); */
   while ((tmp = get_next_line(fd)) != NULL)
     {
       tread_line(tmp, info);

@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Sat Apr 23 12:25:17 2016 marc brout
-** Last update Sat Apr 23 12:26:38 2016 marc brout
+** Last update Sun Apr 24 13:44:04 2016 marc brout
 */
 
 #include "lemin.h"
@@ -43,7 +43,12 @@ int		prepare_rooms(char *str, t_room *root)
   if (!(room2 = my_getfirst_name(str, &i, '-')))
     return (1);
   if (!my_strcmp(room1, room2))
-    return (my_printf("%s-%s\n", room1, room2), 0);
+    {
+      my_printf("%s-%s\n", room1, room2);
+      free(room1);
+      free(room2);
+      return (0);
+    }
   if ((i = link_rooms(root, room1, room2)))
     return (i);
   my_printf("%s-%s\n", room1, room2);

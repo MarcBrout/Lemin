@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:25:04 2016 THEIS Paul
-** Last update Sat Apr 23 20:02:38 2016 marc brout
+** Last update Sun Apr 24 16:06:56 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -52,16 +52,16 @@ void		aff_info(char *id_room, int x, int y, t_info *info)
   int		id;
   char		str[BUFF_SIZE];
 
-  id = sort_id(info, id_room);
+  id = verif_id(info, id_room);
   ((info->elem[id].opt == 1) ? (set_color(&color, 255, 0, 0)) :
    ((info->elem[id].opt == 2) ? (set_color(&color, 0, 255, 0)) :
     set_color(&color, 230, 230, 230)));
   sprintf(str, "#%s - %d ants", id_room, info->elem[id].nbr_ants);
   txt = NULL;
-  if (x >= 0 && x < info->screen->w && y >= 0 && y < info->screen->h)
+  pos = set_pos(x - 25, y + 30);
+  if (pos.x >= 0 && pos.x < W_W && pos.y >= 0 && pos.y < W_H)
     {
       txt = TTF_RenderText_Blended(info->font, str, color);
-      pos = set_pos(x - 25, y + 30);
       SDL_BlitSurface(txt, NULL, info->screen, &pos);
     }
   if (txt)
@@ -73,11 +73,10 @@ void		aff_room(char *id_room, int x, int y, t_info *info)
   SDL_Rect	pos;
   SDL_Surface	*room;
 
-  if (x >= 0 && x < info->screen->w && y >= 0 && y < info->screen->h)
+  info->nbr = 0;
+  pos = set_pos(x -25, y -25);
+  if (pos.x >= 0 && pos.x < W_W && pos.y >= 0 && pos.y < W_H)
     {
-      info->nbr = 0;
-      pos = set_pos(x - 25, y - 25);
-      aff_info(id_room, pos.x, pos.y, info);
       room = IMG_Load("img/room.png");
       SDL_BlitSurface(room, NULL, info->space, &pos);
       free(room);

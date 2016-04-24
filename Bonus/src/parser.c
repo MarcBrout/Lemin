@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:19:44 2016 THEIS Paul
-** Last update Sun Apr 24 13:48:48 2016 THEIS Paul
+** Last update Sun Apr 24 16:25:41 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -18,7 +18,7 @@ void	parse(t_info *info)
   fd = 0;
   info->current = 0;
   info->nbr_room = 0;
-  /* tmp = xalloc(sizeof(*tmp) * (BUFF_SIZE + 1)); */
+  tmp = xalloc(sizeof(*tmp) * (BUFF_SIZE + 1));
   while ((tmp = get_next_line(fd)) != NULL)
     {
       tread_line(tmp, info);
@@ -47,16 +47,16 @@ void		tread_line(char *str, t_info *info)
 	    (pos.y++) : ((is_alpha) ? (flag.y++) : (0))));
       	  pos.x++;
 	}
-      decision(flag, pos, str, info);
+      parse_it(flag, pos, str, info);
       info->opt = 0;
     }
 }
 
-void	decision(SDL_Rect flag, SDL_Rect pos, char *str, t_info *info)
+void	parse_it(SDL_Rect flag, SDL_Rect pos, char *str, t_info *info)
 {
   ((flag.x == 2 && str[0] != C_FLAG) ? (parse_decl(str, info, info->opt, 0)) :
    ((flag.x == 0 && pos.y != 0 && str[0] != C_FLAG) ?
-    (parse_thread(str, info, 0, 0)) : (parse_path(str, info))));
+    (parse_thread(str, info)) : (parse_path(str, info))));
 }
 
 void		parse_path(char *str, t_info *info)
@@ -69,15 +69,15 @@ void		parse_path(char *str, t_info *info)
   i = 0;
   while (str[i])
     {
-      if (str[i] >= '0' && str[i] <= '9')
+      if (is_num(str[i]))
 	nbr++;
       else
 	nbr = 0;
       i++;
     }
   if (nbr == strlen(str))
-    (atoi(str) >= 1023) ? (my_put_err("Error : Too much ants...\n", TRUE)) :
-      (info->nbr_ants = atoi(str));
+    (atoi(str) >= (BUFF_SIZE/4) - 1) ?
+	  (my_put_err("Too much ants.\n", TRUE)) : (info->nbr_ants = atoi(str));
   else if (flag == 0)
     {
       put_ants_room(info, info->nbr_ants);
@@ -86,23 +86,23 @@ void		parse_path(char *str, t_info *info)
   ants_path(str, info);
 }
 
-void		parse_decl(char *str, t_info *info, int opt, int cmptr)
+void		parse_decl(char *str, t_info *info, int opt, int nb)
 {
   char		id[BUFF_SIZE];
   SDL_Rect	*pos1;
   SDL_Rect	*pos2;
 
   pos1 = xalloc(sizeof(SDL_Rect));
-  init_SDL_Rect(pos1);
   pos2 = xalloc(sizeof(SDL_Rect));
+  init_SDL_Rect(pos1);
   init_SDL_Rect(pos2);
   while (str[pos2->x])
     {
       if (str[pos2->x] == C_SPACE)
-    	cmptr++;
+    	++nb;
       else if (is_num(str[pos2->x]))
-    	((cmptr == 1) ? (pos1->x = pos1->x * 10 + (str[pos2->x] - '0')) :
-	 ((cmptr == 2) ? (pos1->y = pos1->y * 10 + (str[pos2->x] - '0')) :
+    	((nb == 1) ? (pos1->x = pos1->x * 10 + (str[pos2->x] - '0')) :
+	 ((nb == 2) ? (pos1->y = pos1->y * 10 + (str[pos2->x] - '0')) :
 	  (id[pos2->y++] = str[pos2->x])));
       else
 	id[pos2->y++] = str[pos2->x];

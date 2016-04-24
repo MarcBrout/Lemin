@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:22:38 2016 THEIS Paul
-** Last update Sat Apr 23 16:56:30 2016 THEIS Paul
+** Last update Sun Apr 24 16:30:24 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -19,13 +19,10 @@ void		line1(SDL_Surface* surf, SDL_Rect *pos1, SDL_Rect *pos2)
   SDL_Rect	pos;
 
   posinc.x = (pos2->x > pos1->x) ? (1) : (-1);
-  posd.y = pos2->y - pos1->y;
-  posd.x = abs(pos2->x- pos1->x);
+  posd = set_pos(abs(pos2->x- pos1->x), pos2->y - pos1->y);
   d = 2 * posd.x - posd.y;
-  inc.x = 2 * (posd.x - posd.y);
-  inc.y = 2 * posd.x;
-  pos.x = pos1->x;
-  pos.y = pos1->y;
+  inc = set_pos(2 * (posd.x - posd.y), 2 * posd.x);
+  pos = set_pos(pos1->x, pos1->y);
   set_pixel(surf, pos.x, pos.y, setter_color(0, 0, 255));
   pos.y = pos1->y;
   while (++pos.y <= pos2->y)
@@ -50,13 +47,10 @@ void		line2(SDL_Surface* surf, SDL_Rect *pos1, SDL_Rect *pos2)
   SDL_Rect	pos;
 
   posinc.y = pos2->y > pos1->y ? 1 : -1;
-  posd.x = pos2->x- pos1->x;
-  posd.y = abs(pos2->y - pos1->y);
+  posd = set_pos(pos2->x- pos1->x, abs(pos2->y - pos1->y));
   d = 2 * posd.y - posd.x;
-  inc.x = 2 * (posd.y - posd.x);
-  inc.y = 2 * posd.y;
-  pos.x = pos1->x;
-  pos.y = pos1->y;
+  inc = set_pos(2 * (posd.y - posd.x), 2 * posd.y);
+  pos = set_pos(pos1->x, pos1->y);
   set_pixel(surf, pos.x, pos.y, setter_color(0, 0, 255));
   pos.x = pos1->x;
   while (++pos.x <= pos2->x)
@@ -108,12 +102,16 @@ void	draw_tunel(char *id1, char *id2, t_info *info)
     {
       if (info->elem[i].id != NULL)
       	{
-      	  if (strcmp(info->elem[i].id, id1) == 0)
-	    get_coor(i, pos1, info);
-      	  else if (strcmp(info->elem[i].id, id2) == 0)
-      	    get_coor(i, pos2, info);
+      	  ((strcmp(info->elem[i].id, id1) == 0) ? (get_coor(i, pos1, info)) :
+	   ((strcmp(info->elem[i].id, id2) == 0) ? (get_coor(i, pos2, info)) :
+	   (0)));
       	}
     }
+  find_max(info);
+  pos1->x = pos1->x * info->spacer.x + 50;
+  pos1->y = pos1->y * info->spacer.y + 50;
+  pos2->x = pos2->x * info->spacer.x + 50;
+  pos2->y = pos2->y * info->spacer.y + 50;
   draw_line(pos1, pos2, info);
   aff_room(id1, pos1->x, pos1->y, info);
   aff_room(id2, pos2->x, pos2->y, info);

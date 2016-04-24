@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 NAME		=	visu-hex
 
 SRC		=	main.c \
@@ -18,6 +19,28 @@ SRC		=	main.c \
 			str5.c \
 			error.c	\
 			tool.c \
+=======
+NAME		=				visu-hex
+
+SRC		=	main.c							\
+			get_next_line.c				\
+			refresh.c							\
+			ants.c								\
+			draw2.c								\
+			draw.c								\
+			parser.c							\
+			thread.c							\
+			verif.c								\
+			aff.c									\
+			init.c 								\
+			str.c 								\
+			str2.c 								\
+			str3.c 								\
+			str4.c 								\
+			str5.c 								\
+			error.c 							\
+			tool.c								\
+>>>>>>> 701f3bbe10c87b43382f557309531486a2e09795
 			tool2.c
 
 OBJ			= $(addprefix src/, $(SRC:.c=.o))

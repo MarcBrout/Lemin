@@ -1,50 +1,61 @@
-NAME		=				visu-hex
+##
+## Makefile for Makefile in /home/duhieu_b/CPE/CPE_2015_Lemin/Bonus
+## 
+## Made by benjamin duhieu
+## Login   <duhieu_b@epitech.net>
+## 
+## Started on  Sun Apr 24 17:02:46 2016 benjamin duhieu
+## Last update Sun Apr 24 17:09:37 2016 benjamin duhieu
+##
 
-SRC		=	main.c							\
-			get_next_line.c				\
-			refresh.c							\
-			ants.c								\
-			draw2.c								\
-			draw.c								\
-			parser.c							\
-			thread.c							\
-			verif.c								\
-			aff.c									\
-			init.c 								\
-			str.c 								\
-			str2.c 								\
-			str3.c 								\
-			str4.c 								\
-			str5.c 								\
-			error.c 							\
-			tool.c								\
-			tool2.c
+NAME		=	visu-hex
 
-OBJ			=				$(addprefix src/, $(SRC:.c=.o))
+SRC		=	main.c \
+			get_next_line.c	\
+			refresh.c \
+			ants.c \
+			draw2.c	\
+			draw.c \
+			parser.c \
+			thread.c \
+			verif.c \
+			aff.c \
+			init.c \
+			str.c \
+			str2.c \
+			str3.c \
+			str4.c \
+			str5.c \
+			error.c	\
+			tool.c \
 
-IFLAG   =       `sdl-config --cflags --libs` -lSDL_gfx -lSDL_image -lSDLmain -lSDL_ttf  -Iinclude/
+OBJ			= $(addprefix src/, $(SRC:.c=.o))
 
-RM			=				rm -f
+IFLAG   		=       `sdl-config --cflags --libs` -lSDL_gfx -lSDL_image -lSDLmain -lSDL_ttf  -Iinclude/
 
-CC			=				gcc $(IFLAG) -g
+RM			= rm -f
 
-ECHO		=				echo -e
+CC			= gcc $(IFLAG) -g
 
-GREEN	=	\033[1;32m
+ECHO			= echo -e
 
-WHITE	=	\033[0m
+GREEN			= \033[1;32m
 
-all:						$(OBJ)
-								$(CC) -o $(NAME) $(OBJ)
+WHITE			= \033[0m
+
+.c.o:	
+			@$(CC) -c $< -o $@
+			@$(ECHO) "$(GREEN)[OK] > $<\t \t $(WHITE)"
+
+$(NAME):		$(OBJ)
+			$(CC) -o $(NAME) $(OBJ)
+
+all:			$(NAME)
 
 clean:
-								$(RM) $(OBJ)
+			$(RM) $(OBJ)
 
-fclean:					clean
-								$(RM) $(id)
+fclean:			clean
+			$(RM) $(NAME)
 
-re:							fclean all
-
-.c.o:
-								@$(CC) -c $< -o $@
-								@$(ECHO) "$(GREEN)[OK] > $<\t \t $(WHITE)"
+re:			fclean all

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri Apr  8 15:14:52 2016 benjamin duhieu
-** Last update Sun Apr 24 13:55:55 2016 marc brout
+** Last update Sun Apr 24 15:55:03 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -41,8 +41,8 @@ int		start(t_room *room, t_ant *ant, int nb)
     return (my_put_error(MALLOC_ERR), 1);
   root->prev = root;
   root->next = root;
-  if ((nb_path = path(room, root)) == -1)
-    return (1);
+  if ((nb_path = path(room, root)) <= 0)
+    return (free_path(root), 1);
   if (!(way = malloc(sizeof(t_path *) * (nb_path + 1))))
     return (my_put_error(MALLOC_ERR), -1);
   way[nb_path] = NULL;

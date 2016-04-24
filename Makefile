@@ -5,20 +5,23 @@
 ## Login   <duhieu_b@epitech.net>
 ## 
 ## Started on  Fri Apr  8 15:45:04 2016 benjamin duhieu
-## Last update Sat Apr 23 12:26:25 2016 marc brout
+## Last update Sun Apr 24 16:52:28 2016 marc brout
 ##
 
 # USEFUL VARIABLES
 
-RM      =	rm -rf
+RM		=	rm -rf
 
-GREEN	=	\033[1;32m
+GREEN		=	\033[1;32m
 
-WHITE	=	\033[0m
+WHITE		=	\033[0m
 
-ECHO	=	echo -e
+ECHO		=	echo -e
 
-# COREWAR VARIABLES
+
+# LEM_IN VARIABLES
+
+VISU		=	Bonus/
 
 PARSING		=	parsing/
 
@@ -46,48 +49,87 @@ SRC		=	$(PARSING)parsing.c \
 			$(ALGO)free_pil.c \
 			$(ALGO)get_short_path.c \
 
+SRCVISU		=	main.c \
+			get_next_line.c	\
+			refresh.c \
+			ants.c \
+			draw2.c	\
+			draw.c \
+			parser.c \
+			thread.c \
+			sort.c \
+			aff.c \
+			init.c \
+			str.c \
+			str2.c \
+			str3.c \
+			str4.c \
+			str5.c \
+			error.c	\
+			tool.c \
+			tool2.c
+
+
+OBJSVISU	=	$(addprefix Bonus/src/, $(SRCVISU:.c=.o))
+
 OBJS    	=	$(SRC:.c=.o)
 
 
 # LIBRARY VARIABLES
 
-LIBPATH =       lib/
+LIBPATH		=       lib/
 
-LIB	=	lib/libmy.a
+LIB		=	lib/libmy.a
 
-SRCLIB	=	$(LIBPATH)my/get_next_line.c \
-		$(LIBPATH)my/my_getnbr.c \
-		$(LIBPATH)my/my_power_rec.c \
-		$(LIBPATH)my/my_printf.c \
-		$(LIBPATH)my/my_printfcsspb.c \
-		$(LIBPATH)my/my_printfdiouxx.c \
-		$(LIBPATH)my/my_printfmetc.c \
-		$(LIBPATH)my/my_putchar.c \
-		$(LIBPATH)my/my_put_nbr.c \
-		$(LIBPATH)my/my_putstr.c \
-		$(LIBPATH)my/my_revstr.c \
-		$(LIBPATH)my/my_strcmp.c \
-		$(LIBPATH)my/my_strdup.c \
-		$(LIBPATH)my/my_strlen.c \
-		$(LIBPATH)my/my_strncmp.c \
+SRCLIB		=	$(LIBPATH)my/get_next_line.c \
+			$(LIBPATH)my/my_getnbr.c \
+			$(LIBPATH)my/my_power_rec.c \
+			$(LIBPATH)my/my_printf.c \
+			$(LIBPATH)my/my_printfcsspb.c \
+			$(LIBPATH)my/my_printfdiouxx.c \
+			$(LIBPATH)my/my_printfmetc.c \
+			$(LIBPATH)my/my_putchar.c \
+			$(LIBPATH)my/my_put_nbr.c \
+			$(LIBPATH)my/my_putstr.c \
+			$(LIBPATH)my/my_revstr.c \
+			$(LIBPATH)my/my_strcmp.c \
+			$(LIBPATH)my/my_strdup.c \
+			$(LIBPATH)my/my_strlen.c \
+			$(LIBPATH)my/my_strncmp.c \
 
-LDFLAGS =       -lmy -L$(LIBPATH)
+LDFLAGS		=       -lmy -L$(LIBPATH)
 
-OBJSLIB	=	$(SRCLIB:.c=.o)
+OBJSLIB		=	$(SRCLIB:.c=.o)
 
 
 # PROJECT VARIABLES
 
-NAME	=	lem_in
+NAME		=	lem_in
 
-IFLAG	=	-Iinclude/
+IFLAG		=	-Iinclude/
 
-CFLAGS  =	-W -Wall -Wextra
+CFLAGS		=	-W -Wall -Wextra
 
-CC      =	gcc -g $(CFLAGS) $(IFLAG)
+# BONUS VARIABLES
 
+VISUFLAG	=	`sdl-config --cflags --libs` -lSDL_gfx -lSDL_image -lSDLmain -lSDL_ttf
+
+VISULDF		=	-I$(VISU)include/
+
+BONUS		=	Bonus/visu-hex
+
+CC		=	gcc $(CFLAGS) $(IFLAG)
 
 # PROJECT RULES
+
+.c.o		:
+			@$(CC) -c $< -o $@
+			@$(ECHO) "$(GREEN)[OK] > $<\t \t $(WHITE)"
+
+$(BONUS)	:	$(OBJSVISU)
+			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>>\n\n> Linking \"$(BONUS)\"\n\twith \
+\"$(CCVISU)\"\n\n>>>>>>>>>>>>>>>\t DONE\n$(WHITE)"
+			@$(CCVISU) -o $(BONUS) $(OBJSVISU) $(VISUFLAG)
 
 $(NAME)		: 	$(LIB) $(OBJS)
 			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>>\n\n> Linking \"$(NAME)\"\n\twith \
@@ -101,21 +143,20 @@ $(LIB)		:	$(OBJSLIB)
 			@cp $(LIBPATH)/my/get_next_line.h include/
 			@$(ECHO) "$(GREEN)\n> Compiling Library\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
-
 all		:	$(NAME)
+
+bonus		:	$(BONUS)
 
 clean		:
 			@$(RM) $(OBJS)
 			@$(RM) $(OBJSLIB)
+			@$(RM) $(OBJSVISU)
 			@$(ECHO) "$(GREEN)\n> Cleaning repository\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
 fclean		: 	clean
 			@$(RM) $(NAME)
 			@$(RM) $(LIBPATH)/libmy.a
+			@$(RM) $(BONUS)
 			@$(ECHO) "$(GREEN)\n> Cleaning exec\t\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
 re		:	fclean all
-
-.c.o		:
-			@$(CC) -c $< -o $@
-			@$(ECHO) "$(GREEN)[OK] > $<\t \t $(WHITE)"

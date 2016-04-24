@@ -1,50 +1,48 @@
-NAME		=				visu-hex
+NAME		=	visu-hex
 
-SRC		=	main.c							\
-			get_next_line.c				\
-			refresh.c							\
-			ants.c								\
-			draw2.c								\
-			draw.c								\
-			parser.c							\
-			thread.c							\
-			sort.c								\
-			aff.c									\
-			init.c 								\
-			str.c 								\
-			str2.c 								\
-			str3.c 								\
-			str4.c 								\
-			str5.c 								\
-			error.c 							\
-			tool.c								\
+SRC		=	main.c \
+			get_next_line.c	\
+			refresh.c \
+			ants.c \
+			draw2.c	\
+			draw.c \
+			parser.c \
+			thread.c \
+			sort.c \
+			aff.c \
+			init.c \
+			str.c \
+			str2.c \
+			str3.c \
+			str4.c \
+			str5.c \
+			error.c	\
+			tool.c \
 			tool2.c
 
-OBJ			=				$(addprefix src/, $(SRC:.c=.o))
+OBJ			= $(addprefix src/, $(SRC:.c=.o))
 
-IFLAG   =       `sdl-config --cflags --libs` -lSDL_gfx -lSDL_image -lSDLmain -lSDL_ttf  -Iinclude/
+IFLAG   		=       `sdl-config --cflags --libs` -lSDL_gfx -lSDL_image -lSDLmain -lSDL_ttf  -Iinclude/
 
-RM			=				rm -f
+RM			= rm -f
 
-CC			=				gcc $(IFLAG) -g
+CC			= gcc $(IFLAG) -g
 
-ECHO		=				echo -e
+ECHO			= echo -e
 
-GREEN	=	\033[1;32m
+GREEN			= \033[1;32m
 
-WHITE	=	\033[0m
+WHITE			= \033[0m
 
-all:						$(OBJ)
-								$(CC) -o $(NAME) $(OBJ)
+all:			$(OBJ)
+			$(CC) -o $(NAME) $(OBJ)
 
-clean:
-								$(RM) $(OBJ)
+clean:			$(RM) $(OBJ)
 
-fclean:					clean
-								$(RM) $(id)
+fclean:			clean
+			$(RM) $(id)
 
-re:							fclean all
+re:			fclean all
 
-.c.o:
-								@$(CC) -c $< -o $@
-								@$(ECHO) "$(GREEN)[OK] > $<\t \t $(WHITE)"
+.c.o:			@$(CC) -c $< -o $@
+			@$(ECHO) "$(GREEN)[OK] > $<\t \t $(WHITE)"

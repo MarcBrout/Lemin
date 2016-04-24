@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:19:44 2016 THEIS Paul
-** Last update Sat Apr 23 17:35:28 2016 THEIS Paul
+** Last update Sun Apr 24 13:47:03 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -24,7 +24,8 @@ void	parse(t_info *info)
       tread_line(tmp, info);
       info->current++;
     }
-  free(tmp);
+  if (tmp)
+    free(tmp);
 }
 
 void		tread_line(char *str, t_info *info)

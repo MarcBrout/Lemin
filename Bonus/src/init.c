@@ -5,14 +5,14 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Tue Apr 19 11:40:45 2016 THEIS Paul
-** Last update Sat Apr 23 20:12:05 2016 marc brout
+** Last update Sun Apr 24 14:24:35 2016 THEIS Paul
 */
 
 #include "main.h"
 
 void	init_struct(t_info *info)
 {
-  info->speed = 200;
+  info->speed = 5;
   info->black = (SDL_Color) {0, 0, 0};
   info->opt = 0;
   info->round = 0;

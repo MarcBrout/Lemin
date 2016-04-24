@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:22:38 2016 THEIS Paul
-** Last update Sat Apr 23 16:56:30 2016 THEIS Paul
+** Last update Sun Apr 24 15:10:46 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -114,6 +114,11 @@ void	draw_tunel(char *id1, char *id2, t_info *info)
       	    get_coor(i, pos2, info);
       	}
     }
+  find_max(info);
+  pos1->x = pos1->x * info->spacer.x + 50;
+  pos1->y = pos1->y * info->spacer.y + 50;
+  pos2->x = pos2->x * info->spacer.x + 50;
+  pos2->y = pos2->y * info->spacer.y + 50;
   draw_line(pos1, pos2, info);
   aff_room(id1, pos1->x, pos1->y, info);
   aff_room(id2, pos2->x, pos2->y, info);

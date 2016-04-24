@@ -1,19 +1,15 @@
 /*
-** str2.c for minishell in /home/theis_p/git/PSU/PSU_2015_minishell2/src/
+** str2.c for minishell in ~/git/PSU/PSU_2015_minishell2/src/
 **
 ** Made by THEIS Paul
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Mar 30 20:02:33 2016 THEIS Paul
-** Last update Wed Apr 20 11:36:54 2016 THEIS Paul
+** Last update Sun Apr 24 17:52:20 2016 marc brout
 */
 
 #include "main.h"
 
-/*
-** La fonction renvoie un pointeur sur une nouvelle chaîne de caractères
-** qui est dupliquée depuis s, en fonctiond de n
-*/
 char		*my_strndup(const char *s, size_t n)
 {
   size_t	len;
@@ -22,14 +18,11 @@ char		*my_strndup(const char *s, size_t n)
   len = strnlen(s, n);
   new = xalloc(len + 1);
   if (new == NULL)
-    return NULL;
+    return (NULL);
   new[len] = 0x00;
-  return (memcpy (new, s, len));
+  return (memcpy(new, s, len));
 }
 
-/*
-** Fonction qui duplique un str compris entre a et b
-*/
 char		*my_strset(size_t size, char c)
 {
   size_t	i;
@@ -40,13 +33,8 @@ char		*my_strset(size_t size, char c)
   while (i <= size)
     str[i++] = c;
   return (str);
-  }
+}
 
-/*
-** Cherche le message associe a grep dans une string
-** Return msg; message associe a grep, renvoie void
-** si rien n est trouve.
-*/
 char	*finder(char **env, char *grep)
 {
   int	i;
@@ -66,17 +54,11 @@ char	*finder(char **env, char *grep)
   return (path_home);
 }
 
-/*
-** Ecrit str dans la sortie standar
-*/
 int	my_putstr(char *str)
 {
   return (write(1, str, my_strlen(str)));
 }
 
-/*
-** Converti un char en string.
-*/
 char	*my_char_to_string(char c)
 {
   char	*str;

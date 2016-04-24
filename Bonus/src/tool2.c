@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Sat Apr 23 17:19:12 2016 THEIS Paul
-** Last update Sat Apr 23 17:23:57 2016 THEIS Paul
+** Last update Sun Apr 24 16:58:01 2016 benjamin duhieu
 */
 
 #include "main.h"
@@ -18,5 +18,5 @@ bool		is_num(char c)
 bool		is_alpha(char c)
 {
   return (((c >= 'a' && c <= 'z') ||
-         (c >= 'A' && c <= 'Z')) ? (TRUE) : (FALSE));
+	   (c >= 'A' && c <= 'Z')) ? (TRUE) : (FALSE));
 }

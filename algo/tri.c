@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Apr 12 15:38:47 2016 marc brout
-** Last update Wed Apr 20 22:46:15 2016 marc brout
+** Last update Sat Apr 23 16:00:38 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -71,7 +71,7 @@ void		tri_piles_by_length(t_larg *piles, char id)
     }
 }
 
-t_tube		*copy_maillon(t_tube *cur, t_tube **tmp, bool *i)
+t_tube		*copy_maillon(t_tube *cur, t_tube **tmp)
 {
   t_tube	*first;
 
@@ -81,7 +81,6 @@ t_tube		*copy_maillon(t_tube *cur, t_tube **tmp, bool *i)
   first->room = cur->room;
   first->ants = cur->ants;
   *tmp = first;
-  *i = true;
   return (first);
 }
 
@@ -90,25 +89,22 @@ t_tube		*copy_pile(t_tube *pile)
   t_tube	*cur;
   t_tube	*tmp;
   t_tube	*first;
-  bool		i;
   t_tube	*elem;
 
   cur = pile;
-  i = false;
+  first = NULL;
+  if (!(first = copy_maillon(cur, &tmp)))
+    return (NULL);
+  cur = cur->next;
   while (cur)
     {
-      if (!i)
-	{
-	  if (!(first = copy_maillon(cur, &tmp, &i)))
-	    return (NULL);
-	}
-      else
-	{
-	  if (!(elem = malloc(sizeof(t_tube))))
-	    return (my_put_error(MALLOC_ERR), NULL);
-	  elem->next = NULL, elem->room = cur->room;
-	  elem->ants = cur->ants, tmp->next = elem, tmp = elem;
-	}
+      if (!(elem = malloc(sizeof(t_tube))))
+	return (my_put_error(MALLOC_ERR), NULL);
+      elem->next = NULL;
+      elem->room = cur->room;
+      elem->ants = cur->ants;
+      tmp->next = elem;
+      tmp = elem;
       cur = cur->next;
     }
   return (first);

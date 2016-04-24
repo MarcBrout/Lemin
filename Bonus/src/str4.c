@@ -1,27 +1,22 @@
 /*
-** str4.c for minishell in /home/theis_p/git/PSU/PSU_2015_minishell2/src/
+** str4.c for minishell in ~/git/PSU/PSU_2015_minishell2/src/
 **
 ** Made by THEIS Paul
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Tue Apr  5 01:42:14 2016 THEIS Paul
-** Last update Wed Apr 20 11:37:12 2016 THEIS Paul
+** Last update Sun Apr 24 17:53:09 2016 marc brout
 */
 
 #include "main.h"
-
-/*
-** Fonction qui cherche c dans str et renvoie sa pos, sinon renvoie 0.
-**
-*/
 
 int		my_char_pos(char *str, char c, bool ret)
 {
   int		i;
   int		flag;
 
-  if(!str)
-    return(0);
+  if (!str)
+    return (0);
   i = -1;
   flag = FALSE;
   while (str[++i] != '\0')
@@ -44,14 +39,10 @@ char		*my_strcut(char const *s, size_t a, size_t len)
   str = xalloc(sizeof(char) * (len + 1));
   i = -1;
   while (++i < len && s[a + i] != 0x00)
-      str[i] = s[a + i];
+    str[i] = s[a + i];
   str[i] = 0x00;
   return (str);
 }
-
-/*
-** Fonction qui renvoie une string composé des Strings str1 quivit de str2.
-*/
 
 char		*my_strjoin(char *str1, char *str2)
 {
@@ -64,11 +55,6 @@ char		*my_strjoin(char *str1, char *str2)
   my_strcat(str, str2);
   return (str);
 }
-
-/*
-** Fonction qui compare c a tout les chars de str.
-** Renvoie la pos du char de str si égalité, sinon renvoie -1.
-*/
 
 int		my_charcmp(char c, char *str)
 {

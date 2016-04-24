@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:16:42 2016 THEIS Paul
-** Last update Sat Apr 23 20:14:36 2016 marc brout
+** Last update Sun Apr 24 17:17:37 2016 marc brout
 */
 
 #include "main.h"
@@ -18,7 +18,7 @@ void		init(t_info *info)
   init_space(info);
 }
 
-int		main(int argc, char *argv[])
+int		main()
 {
   SDL_Event	event;
   int		quit;
@@ -37,5 +37,5 @@ int		main(int argc, char *argv[])
 	quit = 1;
     }
   SDL_Quit();
-  return 0;
+  return (0);
 }

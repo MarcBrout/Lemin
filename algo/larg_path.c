@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Tue Apr 12 14:47:52 2016 benjamin duhieu
-** Last update Sun Apr 24 15:33:23 2016 marc brout
+** Last update Sun Apr 24 18:06:39 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -60,7 +60,7 @@ int		browse_graph(t_larg *root)
     {
       while (new_elem != root)
 	{
-	  if (count_paths(root) > 100)
+	  if (count_paths(root) > 30000)
 	    return (0);
 	  if (!new_elem->valid)
 	    {

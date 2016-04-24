@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sat Apr 16 14:31:05 2016 benjamin duhieu
-** Last update Wed Apr 20 22:48:11 2016 marc brout
+** Last update Sun Apr 24 17:41:00 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -66,7 +66,7 @@ int		add_pil(t_larg *elem, t_larg *root)
       if (chk_id(new_elem->room->name, elem))
 	{
 	  new_elem = new_elem->next;
-	  continue ;
+	  continue;
 	}
       if (copy_new_pile(new_elem, elem, root))
 	return (1);

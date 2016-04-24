@@ -5,14 +5,14 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:22:38 2016 THEIS Paul
-** Last update Sun Apr 24 16:30:24 2016 THEIS Paul
+** Last update Sun Apr 24 17:58:17 2016 marc brout
 */
 
 #include "main.h"
 
 void		line1(SDL_Surface* surf, SDL_Rect *pos1, SDL_Rect *pos2)
 {
-  int d;
+  int		d;
   SDL_Rect	posd;
   SDL_Rect	inc;
   SDL_Rect	posinc;
@@ -40,7 +40,7 @@ void		line1(SDL_Surface* surf, SDL_Rect *pos1, SDL_Rect *pos2)
 
 void		line2(SDL_Surface* surf, SDL_Rect *pos1, SDL_Rect *pos2)
 {
-  int d;
+  int		d;
   SDL_Rect	posd;
   SDL_Rect	inc;
   SDL_Rect	posinc;
@@ -75,11 +75,12 @@ void		draw_line(SDL_Rect *pos1, SDL_Rect *pos2, t_info *info)
 	  swap_int(&pos1->x, &pos2->x);
 	  swap_int(&pos1->y, &pos2->y);
 	}
-	line1(info->space, pos1, pos2);
+      line1(info->space, pos1, pos2);
     }
-    else
+  else
     {
-	if (pos1->x > pos2->x) {
+      if (pos1->x > pos2->x)
+	{
 	  swap_int(&pos1->x, &pos2->x);
 	  swap_int(&pos1->y, &pos2->y);
 	}
@@ -87,7 +88,7 @@ void		draw_line(SDL_Rect *pos1, SDL_Rect *pos2, t_info *info)
     }
 }
 
-void	draw_tunel(char *id1, char *id2, t_info *info)
+void		draw_tunel(char *id1, char *id2, t_info *info)
 {
   int		i;
   SDL_Rect	*pos1;
@@ -99,22 +100,19 @@ void	draw_tunel(char *id1, char *id2, t_info *info)
   init_SDL_Rect(pos2);
   i = -1;
   while (++i < BUFF_SIZE)
-    {
-      if (info->elem[i].id != NULL)
-      	{
-      	  ((strcmp(info->elem[i].id, id1) == 0) ? (get_coor(i, pos1, info)) :
-	   ((strcmp(info->elem[i].id, id2) == 0) ? (get_coor(i, pos2, info)) :
-	   (0)));
-      	}
-    }
+    if (info->elem[i].id != NULL)
+      {
+	((strcmp(info->elem[i].id, id1) == 0) ?
+	 (get_coor(i, pos1, info)) :
+	 ((strcmp(info->elem[i].id, id2) == 0) ?
+	  (get_coor(i, pos2, info)) : (0)));
+      }
   find_max(info);
   pos1->x = pos1->x * info->spacer.x + 50;
   pos1->y = pos1->y * info->spacer.y + 50;
   pos2->x = pos2->x * info->spacer.x + 50;
   pos2->y = pos2->y * info->spacer.y + 50;
-  draw_line(pos1, pos2, info);
-  aff_room(id1, pos1->x, pos1->y, info);
-  aff_room(id2, pos2->x, pos2->y, info);
-  free(pos1);
-  free(pos2);
+  draw_line(pos1, pos2, info), aff_room(pos1->x, pos1->y, info);
+  aff_room(pos2->x, pos2->y, info);
+  free(pos1), free(pos2);
 }

@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:20:38 2016 THEIS Paul
-** Last update Sun Apr 24 15:34:42 2016 THEIS Paul
+** Last update Sun Apr 24 17:56:52 2016 marc brout
 */
 
 #include "main.h"
@@ -25,9 +25,8 @@ void	ants_path(char *str, t_info *info)
   int	j;
 
   i = 0;
-  while (str[i])
+  while (str[i] && !(j = 0))
     {
-      j = 0;
       if (str[i++] == C_FLAG)
 	{
 	  while (str[i] != C_MIN)
@@ -70,5 +69,5 @@ void	put_ants_room(t_info *info, int nbr)
     if (info->elem[i].id != NULL)
       if (info->elem[i].nbr_ants == nbr)
 	set_ants(info->elem[i].nbr_ants, info,
-				  info->elem[i].id);
+		 info->elem[i].id);
 }

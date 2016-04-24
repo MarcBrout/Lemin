@@ -5,7 +5,7 @@
 ## Login   <brout_m@epitech.net>
 ## 
 ## Started on  Sun Apr 24 17:02:29 2016 marc brout
-## Last update Sun Apr 24 17:15:34 2016 marc brout
+## Last update Sun Apr 24 18:08:56 2016 marc brout
 ##
 
 NAME		=	visu-hex
@@ -38,7 +38,7 @@ RM			= rm -f
 
 CFLAGS			= -W -Wall -Wextra
 
-CC			= gcc $(IFLAG) $(CFLAGS)
+CC			= gcc -g $(IFLAG) $(CFLAGS)
 
 ECHO			= echo -e
 
@@ -46,7 +46,7 @@ GREEN			= \033[1;32m
 
 WHITE			= \033[0m
 
-.c.o:
+.c.o:	
 			@$(CC) -c $< -o $@
 			@$(ECHO) "$(GREEN)[OK] > $<\t \t $(WHITE)"
 
@@ -59,6 +59,6 @@ clean:
 			$(RM) $(OBJ)
 
 fclean:			clean
-			$(RM) $(id)
+			$(RM) $(NAME)
 
 re:			fclean all

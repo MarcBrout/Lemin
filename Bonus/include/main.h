@@ -1,11 +1,11 @@
 /*
-** main.h for bonus in /home/theis_p/git/CPE/CPE_2015_Lemin/Bonus/include/
+** main.h for bonus in ~/git/CPE/CPE_2015_Lemin/Bonus/include/
 **
 ** Made by THEIS Paul
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:30:56 2016 THEIS Paul
-** Last update Sun Apr 24 16:11:51 2016 THEIS Paul
+** Last update Sun Apr 24 17:47:55 2016 marc brout
 */
 
 #ifndef MAIN_H
@@ -44,7 +44,6 @@ typedef unsigned char		bool;
 # include "str.h"
 # include "get_next_line.h"
 # include "display.h"
-
 
 typedef struct 	s_elem
 {
@@ -97,17 +96,19 @@ void		init_SDL_Rect(SDL_Rect *pos);
 /* AFF */
 void		aff_round(t_info *info);
 void		aff_info(char *id_room, int x, int y, t_info *info);
-void		aff_room(char *id_room, int x, int y, t_info *info);
+void		aff_room(int x, int y, t_info *info);
 /* SORT */
 int		verif_id(t_info *info, char *id);
 int		verif_id_ant(t_info *info, char *id);
-void		save_room(char *id, SDL_Rect *pos, t_info *info, int opt);
+void		save_room(char *id, SDL_Rect *pos, t_info *info,
+			  int opt);
 /* PARSER*/
 void		parse_path(char *str, t_info *info);
 void		parse(t_info *info);
 void		parse_decl(char *str, t_info *info, int opt, int cmptr);
 void		parse_thread(char *str, t_info *info);
-void		parse_it(SDL_Rect flag, SDL_Rect pos, char *str, t_info *info);
+void		parse_it(SDL_Rect flag, SDL_Rect pos, char *str,
+			 t_info *info);
 /* ANTS */
 void		set_ants(int total, t_info *info, char *id);
 void		put_ant_screen(int x, int y, t_info *info);
@@ -117,9 +118,11 @@ void		put_ants_room(t_info *info, int nbr);
 /* DRAW */
 void		draw_line(SDL_Rect *pos1, SDL_Rect *pos2, t_info *info);
 void		draw_tunel(char *id1, char *id2, t_info *info);
-void		set_pixel(SDL_Surface *surface, int x, int y, Uint32 pixel);
+void		set_pixel(SDL_Surface *surface, int x, int y,
+			  Uint32 pixel);
 /* REFRESH */
-void		anim_ant(int id_room_start, int id_room_end, t_info *info);
+void		anim_ant(int id_room_start, int id_room_end,
+			 t_info *info);
 void		del_ant_in_room(char *id, t_info *info, char *room);
 void		add_ant_in_room(char *id, char *room, t_info *info);
 /* THREAD */
@@ -128,6 +131,6 @@ void		aff_info_all(t_info *info);
 void		put_error(char *str);
 void		tread_line(char *str, t_info *info);
 void		update_all(char *id, char *room, t_info *info);
-void	find_max(t_info *info);
+void		find_max(t_info *info);
 
 #endif /* MAIN_H */

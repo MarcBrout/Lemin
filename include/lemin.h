@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri Apr  1 15:55:58 2016 marc brout
-** Last update Sun Apr 24 13:25:16 2016 marc brout
+** Last update Sun Apr 24 17:46:35 2016 marc brout
 */
 
 #ifndef LEMIN_H_
@@ -148,14 +148,13 @@ int			get_next_str(char **str);
 */
 
 int			start(t_room *room, t_ant *ant, int nb);
-t_path			**fill_tab(t_larg *root, t_path **way, int nb_path);
+t_path			**fill_tab(t_larg *root, t_path **way,
+				   int nb_path);
 
 /*
 ** all_path.c
 */
 
-/* int			all_ways(t_tube *, t_tube *, */
-/* 				 t_path ***, t_tube *); */
 int			path(t_room *prem, t_larg *root);
 
 /*
@@ -268,6 +267,7 @@ void			free_path(t_larg *root);
 ** free_pile.c
 */
 
+void			free_ant(t_ant *ant, t_path **way);
 void			free_pil(t_tube *pile);
 
 /*
@@ -278,7 +278,7 @@ void			swap_value(t_larg *pile1,
 				   t_larg *pile2);
 void			tri_piles_by_branch(t_larg *piles);
 void			tri_piles_by_length(t_larg *piles, char id);
-t_tube			*copy_maillon(t_tube *cur, t_tube **tmp, bool *i);
+t_tube			*copy_maillon(t_tube *cur, t_tube **tmp);
 t_tube			*copy_pile(t_tube *pile);
 
 /*

@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:19:44 2016 THEIS Paul
-** Last update Sun Apr 24 16:25:41 2016 THEIS Paul
+** Last update Sun Apr 24 18:02:17 2016 marc brout
 */
 
 #include "main.h"
@@ -43,8 +43,9 @@ void		tread_line(char *str, t_info *info)
     {
       while (str[pos.x])
 	{
-	  ((str[pos.x] == C_SPACE) ? (flag.x++) : ((str[pos.x] == C_MIN) ?
-	    (pos.y++) : ((is_alpha) ? (flag.y++) : (0))));
+	  ((str[pos.x] == C_SPACE) ? (flag.x++) :
+	   ((str[pos.x] == C_MIN) ?
+	    (pos.y++) : ((is_alpha(str[pos.x])) ? (flag.y++) : (0))));
       	  pos.x++;
 	}
       parse_it(flag, pos, str, info);
@@ -54,7 +55,8 @@ void		tread_line(char *str, t_info *info)
 
 void	parse_it(SDL_Rect flag, SDL_Rect pos, char *str, t_info *info)
 {
-  ((flag.x == 2 && str[0] != C_FLAG) ? (parse_decl(str, info, info->opt, 0)) :
+  ((flag.x == 2 && str[0] != C_FLAG) ?
+   (parse_decl(str, info, info->opt, 0)) :
    ((flag.x == 0 && pos.y != 0 && str[0] != C_FLAG) ?
     (parse_thread(str, info)) : (parse_path(str, info))));
 }
@@ -77,7 +79,8 @@ void		parse_path(char *str, t_info *info)
     }
   if (nbr == strlen(str))
     (atoi(str) >= (BUFF_SIZE/4) - 1) ?
-	  (my_put_err("Too much ants.\n", TRUE)) : (info->nbr_ants = atoi(str));
+      (my_put_err("Too much ants.\n", TRUE)) :
+      (info->nbr_ants = atoi(str));
   else if (flag == 0)
     {
       put_ants_room(info, info->nbr_ants);
@@ -110,6 +113,7 @@ void		parse_decl(char *str, t_info *info, int opt, int nb)
     }
   id[pos2->y] = 0;
   (info->nbr_room >= BUFF_SIZE - 1) ?
-	  (my_put_err("Error : Too Much Room\n", TRUE)) : (info->nbr_room++);
+	  (my_put_err("Error : Too Much Room\n", TRUE)) :
+    (info->nbr_room++);
   save_room(id, pos1, info, opt);
 }

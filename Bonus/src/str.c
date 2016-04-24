@@ -5,19 +5,14 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Mar 30 19:57:04 2016 THEIS Paul
-** Last update Sun Apr 10 00:27:03 2016 THEIS Paul
+** Last update Sun Apr 24 17:51:54 2016 marc brout
 */
 
 #include "main.h"
 
-/*
-** Compte le nombre de caractere d'une string
-** Return: i, le nombre de caractere d'une string
-*/
-
-int     my_strlen(char *str)
+int	my_strlen(char *str)
 {
-  int           i;
+  int	i;
 
   i = -1;
   if (!(str))
@@ -26,11 +21,6 @@ int     my_strlen(char *str)
   return (i);
 }
 
-/*
-** Duplique une string dans une autre
-** Return: ret, copie de str
-*/
-
 char	*my_strdup(char *str)
 {
   char	*rsl;
@@ -38,16 +28,10 @@ char	*my_strdup(char *str)
   if (str != NULL)
     {
       if ((rsl = malloc(sizeof(char) * (my_strlen(str) + 1))) != NULL)
-	  return (my_strcpy(rsl, str));
+	return (my_strcpy(rsl, str));
     }
   return (NULL);
 }
-
-/*
-** Rajoute la string src a la fin de la string dest
-** en ecrasant le caractere nul a la fin de dest
-** Return: dest, string additione
-*/
 
 char	*my_strcat(char *dest, char *src)
 {
@@ -57,12 +41,7 @@ char	*my_strcat(char *dest, char *src)
   return (dest);
 }
 
-/*
-** Remplace la string dest par la string src
-** Return: dest
-*/
-
-char   	*my_strcpy(char *dest, char *src)
+char	*my_strcpy(char *dest, char *src)
 {
   int	i;
 
@@ -73,12 +52,7 @@ char   	*my_strcpy(char *dest, char *src)
   return (dest);
 }
 
-/*
-** Compare les strings s1 et s2.
-** Return: un entier negatif, nul, ou positif,
-** si s1 est respectivement inferieur, egale ou superieur a s2
-*/
-int     my_strncmp(char *s1, char *s2, int n)
+int	my_strncmp(char *s1, char *s2, int n)
 {
   int   x;
   int   y;

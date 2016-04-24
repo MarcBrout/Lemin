@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Apr 11 17:13:12 2016 marc brout
-** Last update Mon Apr 11 17:17:09 2016 marc brout
+** Last update Sun Apr 24 13:27:27 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -53,4 +53,20 @@ void		free_pile(t_tube *root)
       free(cur);
       cur = tmp;
     }
+}
+
+void		free_path(t_larg *root)
+{
+  t_larg	*tmp;
+  t_larg	*cur;
+
+  cur = root->next;
+  while (cur && cur != root)
+    {
+      tmp = cur->next;
+      free_tubes(cur->pile);
+      free(cur);
+      cur = tmp;
+    }
+  free(root);
 }

@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:16:42 2016 THEIS Paul
-** Last update Sat Apr 23 16:36:12 2016 THEIS Paul
+** Last update Sat Apr 23 20:14:36 2016 marc brout
 */
 
 #include "main.h"
@@ -24,8 +24,8 @@ int		main(int argc, char *argv[])
   int		quit;
   t_info	*info;
 
-  info = xalloc(sizeof(*info));
-  memset(info, 0, sizeof(*info));
+  info = xalloc(sizeof(t_info));
+  memset(info, 0, sizeof(t_info));
   quit = 0;
   init(info);
   parse(info);

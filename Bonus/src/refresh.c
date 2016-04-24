@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:21:24 2016 THEIS Paul
-** Last update Sat Apr 23 16:12:37 2016 THEIS Paul
+** Last update Sat Apr 23 20:09:19 2016 marc brout
 */
 
 #include "main.h"
@@ -50,7 +50,8 @@ void	anim_ant(int id_room_start, int id_room_end, t_info *info)
   c_y = (info->elem[id_room_end].pos.y - info->elem[id_room_start].pos.y) / 5;
   x = 0;
   y = 0;
-  while (i  <= 5)
+  i = 0;
+  while (i <= 5)
     {
       update_screen(info);
       put_ant_screen(info->elem[id_room_start].pos.x + (i * c_x),

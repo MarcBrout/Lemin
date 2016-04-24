@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Tue Apr 19 11:40:45 2016 THEIS Paul
-** Last update Sat Apr 23 17:15:27 2016 THEIS Paul
+** Last update Sat Apr 23 20:12:05 2016 marc brout
 */
 
 #include "main.h"
@@ -23,7 +23,7 @@ void	init_struct(t_info *info)
   }
   info->screen = SDL_SetVideoMode(W_W, W_H, 32, SDL_HWSURFACE);
   if ((info->font = TTF_OpenFont("font/font.ttf", 35)) == NULL)
-    return;
+    return ;
   SDL_WM_SetCaption("Ant Man", NULL);
 }
 

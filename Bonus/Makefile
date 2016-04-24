@@ -17,7 +17,8 @@ SRC		=	main.c							\
 			str4.c 								\
 			str5.c 								\
 			error.c 							\
-			tool.c
+			tool.c								\
+			tool2.c
 
 OBJ			=				$(addprefix src/, $(SRC:.c=.o))
 

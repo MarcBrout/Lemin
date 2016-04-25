@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:19:44 2016 THEIS Paul
-** Last update Mon Apr 25 15:00:22 2016 THEIS Paul
+** Last update Mon Apr 25 15:31:06 2016 marc brout
 */
 
 #include "main.h"
@@ -22,7 +22,8 @@ int	parse(t_info *info)
     return (1);
   while ((tmp = get_next_line(fd)) != NULL)
     {
-      tread_line(tmp, info);
+      if (tread_line(tmp, info))
+	return (1);
       info->current++;
     }
   if (tmp)
@@ -30,7 +31,7 @@ int	parse(t_info *info)
   return (0);
 }
 
-void		tread_line(char *str, t_info *info)
+int		tread_line(char *str, t_info *info)
 {
   SDL_Rect	pos;
   SDL_Rect	flag;
@@ -50,55 +51,60 @@ void		tread_line(char *str, t_info *info)
 	    (pos.y++) : ((is_alpha(str[pos.x])) ? (flag.y++) : (0))));
       	  pos.x++;
 	}
-      parse_it(flag, pos, str, info);
+      if (parse_it(flag, pos, str, info))
+	return (1);
       info->opt = 0;
     }
+  return (0);
 }
 
-void	parse_it(SDL_Rect flag, SDL_Rect pos, char *str, t_info *info)
+int	parse_it(SDL_Rect flag, SDL_Rect pos, char *str, t_info *info)
 {
-  ((flag.x == 2 && str[0] != C_FLAG) ?
-   (parse_decl(str, info, info->opt, 0)) :
-   ((flag.x == 0 && pos.y != 0 && str[0] != C_FLAG) ?
-    (parse_thread(str, info)) : (parse_path(str, info))));
+  if (flag.x == 2 && str[0] != C_FLAG)
+    return (parse_decl(str, info, info->opt, 0));
+  else if (flag.x == 0 && pos.y != 0 && str[0] != C_FLAG)
+    return (parse_thread(str, info));
+  return (parse_path(str, info));
 }
 
-void		parse_path(char *str, t_info *info)
+int		parse_path(char *str, t_info *info)
 {
   int		i;
   unsigned int	nbr;
   static int	n = 0;
 
   nbr = 0;
-  i = 0;
-  while (str[i])
+  i = -1;
+  while (str[++i])
+    if (is_num(str[i]))
+      nbr++;
+    else
+      nbr = 0;
+  if (nbr == strlen(str))
     {
-      if (is_num(str[i]))
-	nbr++;
+      if (my_getnbr(str) >= (BUFF_SIZE/4) - 1)
+	return (my_put_error("Too much ants.\n"), 1);
       else
-	nbr = 0;
-      i++;
+	info->nbr_ants = my_getnbr(str);
     }
-  if (nbr == my_strlen(str))
-    (my_getnbr(str) >= (BUFF_SIZE / 4) - 1) ?
-      (my_put_err("Too much ants.\n", TRUE)) :
-      (info->nbr_ants = my_getnbr(str));
   else if (n == 0)
     {
-      put_ants_room(info, info->nbr_ants);
+      if (put_ants_room(info, info->nbr_ants))
+	return (1);
       n = 1;
     }
-  ants_path(str, info);
+  return (ants_path(str, info));
 }
 
-void		parse_decl(char *str, t_info *info, int opt, int nb)
+int		parse_decl(char *str, t_info *info, int opt, int nb)
 {
   char		id[BUFF_SIZE];
   SDL_Rect	*pos1;
   SDL_Rect	*pos2;
 
-  pos1 = xalloc(sizeof(SDL_Rect));
-  pos2 = xalloc(sizeof(SDL_Rect));
+  if (!(pos1 = xalloc(sizeof(SDL_Rect))) ||
+      !(pos2 = xalloc(sizeof(SDL_Rect))))
+    return (1);
   init_SDL_Rect(pos1);
   init_SDL_Rect(pos2);
   while (str[pos2->x])
@@ -116,7 +122,5 @@ void		parse_decl(char *str, t_info *info, int opt, int nb)
   id[pos2->y] = 0;
   if (info->nbr_room >= BUFF_SIZE - 1)
     return (my_put_error("Error : Too Much Room\n"), 1);
-  info->nbr_room++;
-  save_room(id, pos1, info, opt);
-  return (0);
+  return (info->nbr_room++, save_room(id, pos1, info, opt));
 }

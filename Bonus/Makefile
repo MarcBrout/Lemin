@@ -1,11 +1,11 @@
 ##
 ## Makefile for lemin in /home/brout_m/RENDU/CPE/CPE_2015_Lemin
-## 
+##
 ## Made by marc brout
 ## Login   <brout_m@epitech.net>
-## 
+##
 ## Started on  Sun Apr 24 17:02:29 2016 marc brout
-## Last update Mon Apr 25 15:14:53 2016 Paul THEIS
+## Last update Mon Apr 25 15:40:30 2016 THEIS Paul
 ##
 
 NAME		=	visu-hex
@@ -48,7 +48,7 @@ GREEN			= \033[1;32m
 
 WHITE			= \033[0m
 
-.c.o:	
+.c.o:
 			@$(CC) -c $< -o $@
 			@$(ECHO) "$(GREEN)[OK] > $<\t \t $(WHITE)"
 

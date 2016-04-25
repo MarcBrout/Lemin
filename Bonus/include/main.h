@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:30:56 2016 THEIS Paul
-** Last update Mon Apr 25 15:43:30 2016 THEIS Paul
+** Last update Mon Apr 25 15:45:06 2016 THEIS Paul
 */
 
 #ifndef MAIN_H
@@ -108,8 +108,7 @@ int		aff_room(int x, int y, t_info *info);
 char		*text_round(t_info *info);
 char		*concat_str_int(char *tmp, char *tmp2, char *str, int nb);
 char		*my_strcat(char *tmp, char *tmp2);
-char		*my_pitnbr_char(int nb);
-
+char		*my_putnbr_char(int nb);
 /*
 **VERIF
 */

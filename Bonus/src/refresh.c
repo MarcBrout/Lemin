@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:21:24 2016 THEIS Paul
-** Last update Sun Apr 24 18:21:30 2016 marc brout
+** Last update Mon Apr 25 15:05:20 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -82,7 +82,7 @@ void	del_ant_in_room(char *id_del, t_info *info, char *room)
   id = verif_id_ant(info, id_del);
   id_room_target = verif_id(info, room);
   id_room = verif_id(info, info->ants[id].room);
-  info->elem[id_room].nbr_ants -= 1;
+  info->elem[id_room].nbr_ants--;
   anim_ant(id_room, id_room_target, info);
 }
 
@@ -94,7 +94,7 @@ void	add_ant_in_room(char *id_add, char *room, t_info *info)
   id_room = verif_id(info, room);
   id = verif_id_ant(info, id_add);
   sprintf(info->ants[id].room, "%s", room);
-  info->elem[id_room].nbr_ants += 1;
+  info->elem[id_room].nbr_ants++;
   update_screen(info);
   SDL_Flip(info->screen);
 }

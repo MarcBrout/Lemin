@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Thu Apr 21 17:32:59 2016 THEIS Paul
-** Last update Sat Apr 23 17:21:36 2016 THEIS Paul
+** Last update Mon Apr 25 15:04:51 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -37,7 +37,7 @@ void		swap_int(Sint16 *a, Sint16 *b)
 
 unsigned long	setter_color(int R, int G, int B)
 {
-  return ((65536*R) + (256*G) + (B));
+  return ((65536 * R) + (256 * G) + (B));
 }
 
 void		get_coor(int i, SDL_Rect *pos, t_info *info)

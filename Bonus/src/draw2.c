@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:22:38 2016 THEIS Paul
-** Last update Mon Apr 25 15:26:05 2016 marc brout
+** Last update Mon Apr 25 15:42:58 2016 marc brout
 */
 
 #include "main.h"
@@ -115,6 +115,7 @@ int		draw_tunel(char *id1, char *id2, t_info *info)
   pos2->x = pos2->x * info->spacer.x + 50;
   pos2->y = pos2->y * info->spacer.y + 50;
   draw_line(pos1, pos2, info), aff_room(pos1->x, pos1->y, info);
-  aff_room(pos2->x, pos2->y, info);
+  if (aff_room(pos2->x, pos2->y, info))
+    return (1);
   return (free(pos1), free(pos2), 0);
 }

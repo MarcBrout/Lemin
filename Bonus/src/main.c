@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:16:42 2016 THEIS Paul
-** Last update Mon Apr 25 15:15:22 2016 marc brout
+** Last update Mon Apr 25 15:32:30 2016 marc brout
 */
 
 #include "main.h"
@@ -19,6 +19,25 @@ int		init(t_info *info)
   return (0);
 }
 
+void	my_putnbr_char(int nb)
+{
+  char	str[20];
+  int	i;
+
+  i = 0;
+  while (nb != 0)
+    {
+      if (nb >= 10)
+	{
+	  nb = nb / 10;
+	  nb = nb % 10;
+	}
+      else
+	  str[i++] = nb + '0';
+    }
+  my_putstr(str);
+}
+
 int		main()
 {
   SDL_Event	event;
@@ -28,6 +47,7 @@ int		main()
   if (!(info = xalloc(sizeof(t_info))))
     return (1);
   my_bzero(info, sizeof(t_info), 0);
+      my_putnbr_char(12345);
   quit = 0;
   if (init(info) ||  parse(info) || update_screen(info))
     return (1);

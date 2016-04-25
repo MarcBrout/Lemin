@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:20:38 2016 THEIS Paul
-** Last update Mon Apr 25 15:12:50 2016 marc brout
+** Last update Mon Apr 25 15:33:12 2016 marc brout
 */
 
 #include "main.h"
@@ -60,7 +60,7 @@ int	set_ants(int total, t_info *info, char *id)
 	  !(sprintf(info->ants[i].id, "%d", i + 1)) ||
 	  !(info->ants[i].room =
 	    xalloc(BUFF_SIZE * sizeof(char))) ||
-	  !(sprintf(info->ants[i].room, "%s", id)))
+	  !(info->ants[i].room = my_strdup(id)))
 	return (1);
     }
   return (0);

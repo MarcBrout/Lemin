@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:25:04 2016 THEIS Paul
-** Last update Mon Apr 25 15:06:14 2016 marc brout
+** Last update Mon Apr 25 15:33:52 2016 marc brout
 */
 
 #include "main.h"
@@ -32,13 +32,14 @@ int		aff_round(t_info *info)
   SDL_Color	color;
   char		str[BUFF_SIZE];
 
-  sprintf(str, "Round : %d   |   Room: %d   |   Ants: %d"\
-	  "{Ant Man}"\
-	  "              Start: %d    |    End: %d    |    Between: %d",
-	  info->round, info->nbr_room, info->nbr_ants,
-	  get_room(info, TRUE),
-	  get_room(info, FALSE), info->nbr_ants -
-	  (get_room(info, TRUE) + get_room(info, FALSE)));
+  /* sprintf(str, "Round : %d   |   Room: %d   |   Ants: %d"\ */
+  /* 	  "{Ant Man}"\ */
+  /* 	  "              Start: %d    |    End: %d    |    Between: %d", */
+  /* 	  info->round, info->nbr_room, info->nbr_ants, */
+  /* 	  get_room(info, TRUE), */
+  /* 	  get_room(info, FALSE), info->nbr_ants - */
+  /* 	  (get_room(info, TRUE) + get_room(info, FALSE))); */
+  str = text_round(info);
   set_color(&color, 230, 230, 230);
   if (!(txt = TTF_RenderText_Blended(info->font, str, color)) ||
       !(txt = rotozoomSurface(txt, 0, 2, 1)))
@@ -61,11 +62,11 @@ int		aff_info(char *id_room, int x, int y, t_info *info)
 
   if ((id = verif_id(info, id_room)) < 0)
     return (1);
+  txt = NULL;
   ((info->elem[id].opt == 1) ? (set_color(&color, 255, 0, 0)) :
    ((info->elem[id].opt == 2) ? (set_color(&color, 0, 255, 0)) :
     set_color(&color, 230, 230, 230)));
   sprintf(str, "#%s - %d ants", id_room, info->elem[id].nbr_ants);
-  txt = NULL;
   if (x >= 0 && x < info->screen->w && y >= 0 && y < info->screen->h)
     pos = set_pos(x - 25, y + 30);
   if (pos.x >= 0 && pos.x < W_W && pos.y >= 0 && pos.y < W_H)

@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:19:44 2016 THEIS Paul
-** Last update Mon Apr 25 15:21:41 2016 marc brout
+** Last update Mon Apr 25 15:31:06 2016 marc brout
 */
 
 #include "main.h"
@@ -71,7 +71,7 @@ int		parse_path(char *str, t_info *info)
 {
   int		i;
   unsigned int	nbr;
-  static int	flag = 0;
+  static int	n = 0;
 
   nbr = 0;
   i = -1;
@@ -87,11 +87,11 @@ int		parse_path(char *str, t_info *info)
       else
 	info->nbr_ants = my_getnbr(str);
     }
-  else if (flag == 0)
+  else if (n == 0)
     {
       if (put_ants_room(info, info->nbr_ants))
 	return (1);
-      flag = 1;
+      n = 1;
     }
   return (ants_path(str, info));
 }

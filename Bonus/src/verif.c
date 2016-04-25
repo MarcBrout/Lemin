@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:24:29 2016 THEIS Paul
-** Last update Mon Apr 25 14:43:31 2016 marc brout
+** Last update Mon Apr 25 15:28:33 2016 marc brout
 */
 
 #include "main.h"
@@ -36,10 +36,9 @@ int	verif_id_ant(t_info *info, char *id)
 
 int	save_room(char *id, SDL_Rect *pos, t_info *info, int opt)
 {
-  if (opt == 1)
-    info->elem[info->nbr_room].nbr_ants = info->nbr_ants;
-  else
-    info->elem[info->nbr_room].nbr_ants = 0;
+  (opt == 1) ? (info->elem[info->nbr_room].nbr_ants = info->nbr_ants) :
+	       (info->elem[info->nbr_room].nbr_ants = 0);
+  info->elem[info->nbr_room].opt = opt;
   info->elem[info->nbr_room].pos.x = pos->x;
   info->elem[info->nbr_room].pos.y = pos->y;
   info->elem[info->nbr_room].opt = opt;

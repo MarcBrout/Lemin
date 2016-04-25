@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:22:38 2016 THEIS Paul
-** Last update Mon Apr 25 15:56:30 2016 marc brout
+** Last update Mon Apr 25 17:14:52 2016 marc brout
 */
 
 #include "main.h"
@@ -94,21 +94,18 @@ int		draw_tunel(char *id1, char *id2, t_info *info)
   SDL_Rect	*pos1;
   SDL_Rect	*pos2;
 
-  if (!(pos1 = xalloc(sizeof(SDL_Rect))))
+  if (!(pos1 = xalloc(sizeof(SDL_Rect))) ||
+      !(pos2 = xalloc(sizeof(SDL_Rect))))
     return (1);
   init_SDL_Rect(pos1);
-  if (!(pos2 = xalloc(sizeof(SDL_Rect))))
-    return (1);
   init_SDL_Rect(pos2);
   i = -1;
   while (++i < BUFF_SIZE)
     if (info->elem[i].id != NULL)
-      {
-	((my_strcmp(info->elem[i].id, id1) == 0) ?
-	 (get_coor(i, pos1, info)) :
-	 ((my_strcmp(info->elem[i].id, id2) == 0) ?
-	  (get_coor(i, pos2, info)) : (0)));
-      }
+      ((my_strcmp(info->elem[i].id, id1) == 0) ?
+       (get_coor(i, pos1, info)) :
+       ((my_strcmp(info->elem[i].id, id2) == 0) ?
+	(get_coor(i, pos2, info)) : (0)));
   find_max(info);
   pos1->x = pos1->x * info->spacer.x + 50;
   pos1->y = pos1->y * info->spacer.y + 50;

@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:30:56 2016 THEIS Paul
-** Last update Mon Apr 25 15:40:29 2016 benjamin duhieu
+** Last update Mon Apr 25 15:47:46 2016 marc brout
 */
 
 #ifndef MAIN_H
@@ -122,7 +122,7 @@ int		save_room(char *id, SDL_Rect *pos, t_info *info,
 int		parse_path(char *str, t_info *info);
 int		parse(t_info *info);
 int		parse_decl(char *str, t_info *info, int opt, int cmptr);
-void		parse_thread(char *str, t_info *info);
+int		parse_thread(char *str, t_info *info);
 int		parse_it(SDL_Rect flag, SDL_Rect pos, char *str,
 			 t_info *info);
 /*
@@ -138,7 +138,7 @@ int		put_ants_room(t_info *info, int nbr);
 **DRAW
 */
 void		draw_line(SDL_Rect *pos1, SDL_Rect *pos2, t_info *info);
-void		draw_tunel(char *id1, char *id2, t_info *info);
+int		draw_tunel(char *id1, char *id2, t_info *info);
 void		set_pixel(SDL_Surface *surface, int x, int y,
 			  Uint32 pixel);
 /*

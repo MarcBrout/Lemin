@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:25:04 2016 THEIS Paul
-** Last update Mon Apr 25 15:40:47 2016 THEIS Paul
+** Last update Mon Apr 25 15:49:25 2016 marc brout
 */
 
 #include "main.h"
@@ -30,7 +30,7 @@ int		aff_round(t_info *info)
   SDL_Rect	pos;
   SDL_Surface	*txt;
   SDL_Color	color;
-  char		str[BUFF_SIZE];
+  char		*str;
 
   /* sprintf(str, "Round : %d   |   Room: %d   |   Ants: %d"\ */
   /* 	  "{Ant Man}"\ */
@@ -39,7 +39,8 @@ int		aff_round(t_info *info)
   /* 	  get_room(info, TRUE), */
   /* 	  get_room(info, FALSE), info->nbr_ants - */
   /* 	  (get_room(info, TRUE) + get_room(info, FALSE))); */
-  str = text_round(info);
+  if (!(str = text_round(info)))
+    return (1);
   set_color(&color, 230, 230, 230);
   if (!(txt = TTF_RenderText_Blended(info->font, str, color)) ||
       !(txt = rotozoomSurface(txt, 0, 2, 1)))

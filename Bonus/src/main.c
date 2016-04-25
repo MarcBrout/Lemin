@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:16:42 2016 THEIS Paul
-** Last update Mon Apr 25 15:44:57 2016 marc brout
+** Last update Mon Apr 25 15:46:12 2016 marc brout
 */
 
 #include "main.h"
@@ -21,10 +21,13 @@ int		init(t_info *info)
 
 char	*my_putnbr_char(int nb)
 {
-  char	str[20];
+  char	*str;
   int	i;
 
   i = 0;
+  if (!(str = malloc(21)))
+    return (NULL);
+  my_bzero(str, 21, 0);
   while (nb != 0)
     {
       if (nb >= 10)

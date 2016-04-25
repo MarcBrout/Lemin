@@ -5,7 +5,7 @@
 ## Login   <brout_m@epitech.net>
 ##
 ## Started on  Sun Apr 24 17:02:29 2016 marc brout
-## Last update Mon Apr 25 15:40:30 2016 THEIS Paul
+## Last update Mon Apr 25 15:50:05 2016 marc brout
 ##
 
 NAME		=	visu-hex
@@ -30,7 +30,8 @@ SRC		=	main.c		\
 			tool.c		\
 			tool2.c		\
 			my_bzero.c	\
-			my_strcmp.c
+			my_strcmp.c	\
+			text.c
 
 OBJ			= $(addprefix src/, $(SRC:.c=.o))
 

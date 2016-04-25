@@ -5,13 +5,14 @@
 ## Login   <brout_m@epitech.net>
 ## 
 ## Started on  Sun Apr 24 17:02:29 2016 marc brout
-## Last update Mon Apr 25 13:06:18 2016 marc brout
+## Last update Mon Apr 25 15:13:31 2016 benjamin duhieu
 ##
 
 NAME		=	visu-hex
 
 SRC		=	main.c \
 			get_next_line.c	\
+			text.c \
 			refresh.c \
 			ants.c \
 			draw2.c	\

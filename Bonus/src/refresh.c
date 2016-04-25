@@ -1,11 +1,11 @@
-/*
+é/*
 ** refresh.c for bonus in ~/git/CPE/CPE_2015_Lemin/Bonus/src/
 **
 ** Made by THEIS Paul
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:21:24 2016 THEIS Paul
-** Last update Sun Apr 24 18:21:30 2016 marc brout
+** Last update Mon Apr 25 15:18:42 2016 benjamin duhieu
 */
 
 #include "main.h"

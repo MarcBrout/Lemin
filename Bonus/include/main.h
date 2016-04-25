@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:30:56 2016 THEIS Paul
-** Last update Mon Apr 25 13:38:16 2016 marc brout
+** Last update Mon Apr 25 15:18:25 2016 benjamin duhieu
 */
 
 #ifndef MAIN_H
@@ -94,6 +94,10 @@ int		init_toolbar(t_info *info);
 int		init_space(t_info *info);
 void		init_SDL_Rect(SDL_Rect *pos);
 /* AFF */
+char		*text_round(t_info *info);
+char		*concat_str_int(char *tmp, char *tmp2, char *str, int nb);
+char		*my_strcat(char *tmp, char *tmp2);
+char		*my_pitnbr_char(int nb);
 void		aff_round(t_info *info);
 void		aff_info(char *id_room, int x, int y, t_info *info);
 void		aff_room(int x, int y, t_info *info);

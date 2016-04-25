@@ -5,7 +5,7 @@
 ## Login   <duhieu_b@epitech.net>
 ## 
 ## Started on  Fri Apr  8 15:45:04 2016 benjamin duhieu
-## Last update Mon Apr 25 20:10:00 2016 marc brout
+## Last update Mon Apr 25 20:43:21 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -113,14 +113,19 @@ $(LIB)		:	$(OBJSLIB)
 
 all		:	$(NAME)
 
+bonus		:
+			make -C Bonus
+
 clean		:
 			@$(RM) $(OBJS)
 			@$(RM) $(OBJSLIB)
+			make clean -C Bonus
 			@$(ECHO) "$(GREEN)\n> Cleaning repository\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
 fclean		: 	clean
 			@$(RM) $(NAME)
 			@$(RM) $(LIBPATH)/libmy.a
+			@$(RM) Bonus/visu-hex
 			@$(ECHO) "$(GREEN)\n> Cleaning exec\t\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
 re		:	fclean all

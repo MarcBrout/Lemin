@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:30:56 2016 THEIS Paul
-** Last update Mon Apr 25 13:40:58 2016 marc brout
+** Last update Mon Apr 25 13:43:57 2016 THEIS Paul
 */
 
 #ifndef MAIN_H
@@ -97,7 +97,7 @@ void		init_SDL_Rect(SDL_Rect *pos);
 void		aff_round(t_info *info);
 void		aff_info(char *id_room, int x, int y, t_info *info);
 void		aff_room(int x, int y, t_info *info);
-/* SORT */
+/* VERIF */
 int		verif_id(t_info *info, char *id);
 int		verif_id_ant(t_info *info, char *id);
 void		save_room(char *id, SDL_Rect *pos, t_info *info,

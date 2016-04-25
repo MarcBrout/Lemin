@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:19:44 2016 THEIS Paul
-** Last update Mon Apr 25 13:42:56 2016 marc brout
+** Last update Mon Apr 25 15:00:22 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -67,7 +67,7 @@ void		parse_path(char *str, t_info *info)
 {
   int		i;
   unsigned int	nbr;
-  static int	flag = 0;
+  static int	n = 0;
 
   nbr = 0;
   i = 0;
@@ -79,14 +79,14 @@ void		parse_path(char *str, t_info *info)
 	nbr = 0;
       i++;
     }
-  if (nbr == strlen(str))
-    (atoi(str) >= (BUFF_SIZE/4) - 1) ?
+  if (nbr == my_strlen(str))
+    (my_getnbr(str) >= (BUFF_SIZE / 4) - 1) ?
       (my_put_err("Too much ants.\n", TRUE)) :
       (info->nbr_ants = my_getnbr(str));
-  else if (flag == 0)
+  else if (n == 0)
     {
       put_ants_room(info, info->nbr_ants);
-      flag = 1;
+      n = 1;
     }
   ants_path(str, info);
 }

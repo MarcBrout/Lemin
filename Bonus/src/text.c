@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Apr 25 13:48:01 2016 benjamin duhieu
-** Last update Mon Apr 25 20:14:18 2016 benjamin duhieu
+** Last update Mon Apr 25 20:16:16 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -48,7 +48,6 @@ char	*concat_str(char *tmp, char *tmp2)
 
 char	*concat_str_int(char *tmp, char *tmp2, char *str, int nb)
 {
-  free(tmp2);
   if (!(tmp2 = my_strdup(str)))
     return (NULL);
   if (!(tmp = concat_str(tmp, tmp2)))

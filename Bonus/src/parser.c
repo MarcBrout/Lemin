@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:19:44 2016 THEIS Paul
-** Last update Mon Apr 25 19:04:46 2016 benjamin duhieu
+** Last update Mon Apr 25 20:31:17 2016 marc brout
 */
 
 #include "main.h"
@@ -82,10 +82,9 @@ int		parse_path(char *str, t_info *info)
       nbr = 0;
   if (nbr == (unsigned int)my_strlen(str))
     {
-      if (my_getnbr(str) >= (BUFF_SIZE/4) - 1)
+      if ((info->nbr_ants = my_getnbr(str)) >= (BUFF_SIZE/4) - 1 ||
+	  info->nbr_ants > 50)
 	return (my_put_error("Too much ants.\n"), 1);
-      else
-	info->nbr_ants = my_getnbr(str);
     }
   else if (n == 0)
     {
@@ -120,7 +119,7 @@ int		parse_decl(char *str, t_info *info, int opt, int nb)
       pos2->x++;
     }
   id[pos2->y] = 0;
-  if (info->nbr_room >= BUFF_SIZE - 1)
+  if (info->nbr_room >= BUFF_SIZE - 1 || info->nbr_room >= 50)
     return (my_put_error("Error : Too Much Room\n"), 1);
   return (info->nbr_room++, save_room(id, pos1, info, opt));
 }

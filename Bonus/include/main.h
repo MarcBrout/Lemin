@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:30:56 2016 THEIS Paul
-** Last update Mon Apr 25 13:38:16 2016 marc brout
+** Last update Mon Apr 25 13:40:58 2016 marc brout
 */
 
 #ifndef MAIN_H
@@ -134,5 +134,6 @@ void		update_all(char *id, char *room, t_info *info);
 void		find_max(t_info *info);
 void		my_bzero(void *ptr, int size, char val);
 int		my_strcmp(char *str, char *str2);
+void		my_put_error(char *str);
 
 #endif /* MAIN_H */

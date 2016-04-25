@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:25:04 2016 THEIS Paul
-** Last update Mon Apr 25 15:33:52 2016 marc brout
+** Last update Mon Apr 25 15:40:47 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -87,7 +87,7 @@ int		aff_room(int x, int y, t_info *info)
 
   info->nbr = 0;
   pos = set_pos(x -25, y -25);
-  if (pos.x >= 0 && pos.x < W_W && pos.y >= 0 && pos.y < W_H)
+  if ((pos.x >= 0 && pos.x < W_W) && (pos.y >= 0 && pos.y < W_H))
     {
       if (!(room = IMG_Load("img/room.png")))
 	return (my_put_error("Room.png not found\n"), 1);

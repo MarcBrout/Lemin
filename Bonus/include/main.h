@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:30:56 2016 THEIS Paul
-** Last update Mon Apr 25 13:40:58 2016 marc brout
+** Last update Mon Apr 25 15:23:12 2016 marc brout
 */
 
 #ifndef MAIN_H
@@ -94,43 +94,43 @@ int		init_toolbar(t_info *info);
 int		init_space(t_info *info);
 void		init_SDL_Rect(SDL_Rect *pos);
 /* AFF */
-void		aff_round(t_info *info);
-void		aff_info(char *id_room, int x, int y, t_info *info);
-void		aff_room(int x, int y, t_info *info);
+int		aff_round(t_info *info);
+int		aff_info(char *id_room, int x, int y, t_info *info);
+int		aff_room(int x, int y, t_info *info);
 /* SORT */
 int		verif_id(t_info *info, char *id);
 int		verif_id_ant(t_info *info, char *id);
-void		save_room(char *id, SDL_Rect *pos, t_info *info,
+int		save_room(char *id, SDL_Rect *pos, t_info *info,
 			  int opt);
 /* PARSER*/
-void		parse_path(char *str, t_info *info);
+int		parse_path(char *str, t_info *info);
 int		parse(t_info *info);
-void		parse_decl(char *str, t_info *info, int opt, int cmptr);
+int		parse_decl(char *str, t_info *info, int opt, int cmptr);
 void		parse_thread(char *str, t_info *info);
-void		parse_it(SDL_Rect flag, SDL_Rect pos, char *str,
+int		parse_it(SDL_Rect flag, SDL_Rect pos, char *str,
 			 t_info *info);
 /* ANTS */
-void		set_ants(int total, t_info *info, char *id);
-void		put_ant_screen(int x, int y, t_info *info);
-void		update_screen(t_info *info);
-void		ants_path(char *str, t_info *info);
-void		put_ants_room(t_info *info, int nbr);
+int		set_ants(int total, t_info *info, char *id);
+int		put_ant_screen(int x, int y, t_info *info);
+int		update_screen(t_info *info);
+int		ants_path(char *str, t_info *info);
+int		put_ants_room(t_info *info, int nbr);
 /* DRAW */
 void		draw_line(SDL_Rect *pos1, SDL_Rect *pos2, t_info *info);
 void		draw_tunel(char *id1, char *id2, t_info *info);
 void		set_pixel(SDL_Surface *surface, int x, int y,
 			  Uint32 pixel);
 /* REFRESH */
-void		anim_ant(int id_room_start, int id_room_end,
+int		anim_ant(int id_room_start, int id_room_end,
 			 t_info *info);
-void		del_ant_in_room(char *id, t_info *info, char *room);
-void		add_ant_in_room(char *id, char *room, t_info *info);
+int		del_ant_in_room(char *id, t_info *info, char *room);
+int		add_ant_in_room(char *id, char *room, t_info *info);
 /* THREAD */
-void		aff_info_all(t_info *info);
+int		aff_info_all(t_info *info);
 
 void		put_error(char *str);
-void		tread_line(char *str, t_info *info);
-void		update_all(char *id, char *room, t_info *info);
+int		tread_line(char *str, t_info *info);
+int		update_all(char *id, char *room, t_info *info);
 void		find_max(t_info *info);
 void		my_bzero(void *ptr, int size, char val);
 int		my_strcmp(char *str, char *str2);

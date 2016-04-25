@@ -5,12 +5,12 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:24:04 2016 THEIS Paul
-** Last update Sun Apr 24 17:54:53 2016 marc brout
+** Last update Mon Apr 25 15:27:32 2016 marc brout
 */
 
 #include "main.h"
 
-void	aff_info_all(t_info *info)
+int	aff_info_all(t_info *info)
 {
   int	i;
 
@@ -20,20 +20,23 @@ void	aff_info_all(t_info *info)
     {
       if (info->elem[i].id != NULL)
 	{
-	  aff_info(info->elem[i].id, info->elem[i].pos.x *
-		   info->spacer.x
-		   + 50,
-		   info->elem[i].pos.y * info->spacer.y + 50, info);
+	  if (aff_info(info->elem[i].id, info->elem[i].pos.x *
+		       info->spacer.x
+		       + 50,
+		       info->elem[i].pos.y * info->spacer.y + 50, info))
+	    return (1);
 	  if (info->elem[i].nbr_ants >= 1)
-	    put_ant_screen(info->elem[i].pos.x * info->spacer.x + 50,
-			   info->elem[i].pos.y * info->spacer.y + 50,
-			   info);
+	    if (put_ant_screen(info->elem[i].pos.x *
+			       info->spacer.x + 50,
+			       info->elem[i].pos.y *
+			       info->spacer.y + 50, info))
+	      return (1);
 	}
       i++;
     }
 }
 
-void	parse_thread(char *str, t_info *info)
+int	parse_thread(char *str, t_info *info)
 {
   char	id2[BUFF_SIZE];
   char	id1[BUFF_SIZE];
@@ -51,5 +54,7 @@ void	parse_thread(char *str, t_info *info)
 				     (id2[k++] = str[i])));
   id1[j] = 0;
   id2[k] = 0;
-  draw_tunel(id1, id2, info);
+  if (draw_tunel(id1, id2, info))
+    return (1);
+  return (0);
 }

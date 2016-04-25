@@ -5,12 +5,12 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:21:24 2016 THEIS Paul
-** Last update Sun Apr 24 18:21:30 2016 marc brout
+** Last update Mon Apr 25 15:17:31 2016 marc brout
 */
 
 #include "main.h"
 
-void		put_ant_screen(int x, int y, t_info *info)
+int		put_ant_screen(int x, int y, t_info *info)
 {
   SDL_Rect	pos;
   SDL_Surface	*ant;
@@ -18,12 +18,14 @@ void		put_ant_screen(int x, int y, t_info *info)
 
   pos = set_pos(x - 50 + (76 / 2), y - 50);
   if (!(tmp = IMG_Load("img/ant.png")))
-    my_put_err("ant.png not found\n", TRUE);
-  ant = rotozoomSurface(tmp, 0, 0.5, 1);
-  SDL_BlitSurface(ant, NULL, info->screen, &pos);
-  SDL_Flip(info->screen);
+    return (my_put_error("ant.png not found\n"), 1);
+  if (!(ant = rotozoomSurface(tmp, 0, 0.5, 1)) ||
+      0 > SDL_BlitSurface(ant, NULL, info->screen, &pos) ||
+      0 > SDL_Flip(info->screen))
+    return (1);
   free(tmp);
   free(ant);
+  return (0);
 }
 
 void	find_max(t_info *info)
@@ -47,7 +49,7 @@ void	find_max(t_info *info)
   info->spacer.y = (W_H - TOOLBAR_H - 100) / info->spacer.y;
 }
 
-void	anim_ant(int id_room_start, int id_room_end, t_info *info)
+int	anim_ant(int id_room_start, int id_room_end, t_info *info)
 {
   int	i;
   int	c_x;
@@ -64,37 +66,42 @@ void	anim_ant(int id_room_start, int id_room_end, t_info *info)
   while (++i <= info->speed)
     {
       update_screen(info);
-      put_ant_screen(info->elem[id_room_start].pos.x * info->spacer.x +
-		     (i * c_x) + 50,
-		     info->elem[id_room_start].pos.y * info->spacer.y +
-		     (i * c_y) + 50, info);
+      if (put_ant_screen(info->elem[id_room_start].pos.x *
+			 info->spacer.x + (i * c_x) + 50,
+			 info->elem[id_room_start].pos.y *
+			 info->spacer.y +
+			 (i * c_y) + 50, info))
+	return (1);
       usleep(info->speed);
     }
-  SDL_Flip(info->screen);
+  return ((SDL_Flip(info->screen) < 0) ? 1 : 0);
 }
 
-void	del_ant_in_room(char *id_del, t_info *info, char *room)
+int	del_ant_in_room(char *id_del, t_info *info, char *room)
 {
   int	id;
   int	id_room;
   int	id_room_target;
 
-  id = verif_id_ant(info, id_del);
-  id_room_target = verif_id(info, room);
-  id_room = verif_id(info, info->ants[id].room);
+  if (0 > (id = verif_id_ant(info, id_del)) ||
+      0 > (id_room_target = verif_id(info, room)) ||
+      0 > (id_room = verif_id(info, info->ants[id].room)))
+    return (1);
   info->elem[id_room].nbr_ants -= 1;
-  anim_ant(id_room, id_room_target, info);
+  return (anim_ant(id_room, id_room_target, info));
 }
 
-void	add_ant_in_room(char *id_add, char *room, t_info *info)
+int	add_ant_in_room(char *id_add, char *room, t_info *info)
 {
   int	id;
   int	id_room;
 
-  id_room = verif_id(info, room);
-  id = verif_id_ant(info, id_add);
-  sprintf(info->ants[id].room, "%s", room);
+  if (0 > (id_room = verif_id(info, room)) ||
+      0 > (id = verif_id_ant(info, id_add)) ||
+      !(info->ants[id].room = my_strdup(room)))
+    return (1);
   info->elem[id_room].nbr_ants += 1;
-  update_screen(info);
-  SDL_Flip(info->screen);
+  if (update_screen(info))
+    return (1);
+  return ((SDL_Flip(info->screen) < 0) ? 1 : 0);
 }

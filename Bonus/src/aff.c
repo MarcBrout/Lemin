@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:25:04 2016 THEIS Paul
-** Last update Mon Apr 25 13:11:55 2016 marc brout
+** Last update Mon Apr 25 15:06:14 2016 marc brout
 */
 
 #include "main.h"
@@ -25,7 +25,7 @@ int		get_room(t_info *info, bool a)
   return (0);
 }
 
-void		aff_round(t_info *info)
+int		aff_round(t_info *info)
 {
   SDL_Rect	pos;
   SDL_Surface	*txt;
@@ -40,15 +40,18 @@ void		aff_round(t_info *info)
 	  get_room(info, FALSE), info->nbr_ants -
 	  (get_room(info, TRUE) + get_room(info, FALSE)));
   set_color(&color, 230, 230, 230);
-  txt = TTF_RenderText_Blended(info->font, str, color);
-  txt = rotozoomSurface(txt, 0, 2, 1);
+  if (!(txt = TTF_RenderText_Blended(info->font, str, color)) ||
+      !(txt = rotozoomSurface(txt, 0, 2, 1)))
+    return (1);
   pos = set_pos(20, W_H - 90);
-  SDL_BlitSurface(txt, NULL, info->screen, &pos);
+  if (SDL_BlitSurface(txt, NULL, info->screen, &pos) < 0)
+    return (1);
   if (txt)
     free(txt);
+  return (0);
 }
 
-void		aff_info(char *id_room, int x, int y, t_info *info)
+int		aff_info(char *id_room, int x, int y, t_info *info)
 {
   SDL_Rect	pos;
   SDL_Surface	*txt;
@@ -56,7 +59,8 @@ void		aff_info(char *id_room, int x, int y, t_info *info)
   int		id;
   char		str[BUFF_SIZE];
 
-  id = verif_id(info, id_room);
+  if ((id = verif_id(info, id_room)) < 0)
+    return (1);
   ((info->elem[id].opt == 1) ? (set_color(&color, 255, 0, 0)) :
    ((info->elem[id].opt == 2) ? (set_color(&color, 0, 255, 0)) :
     set_color(&color, 230, 230, 230)));
@@ -66,14 +70,16 @@ void		aff_info(char *id_room, int x, int y, t_info *info)
     pos = set_pos(x - 25, y + 30);
   if (pos.x >= 0 && pos.x < W_W && pos.y >= 0 && pos.y < W_H)
     {
-      txt = TTF_RenderText_Blended(info->font, str, color);
-      SDL_BlitSurface(txt, NULL, info->screen, &pos);
+      if (!(txt = TTF_RenderText_Blended(info->font, str, color)) ||
+	  SDL_BlitSurface(txt, NULL, info->screen, &pos) < 0)
+	return (1);
     }
   if (txt)
     free(txt);
+  return (0);
 }
 
-void		aff_room(int x, int y, t_info *info)
+int		aff_room(int x, int y, t_info *info)
 {
   SDL_Rect	pos;
   SDL_Surface	*room;
@@ -83,8 +89,10 @@ void		aff_room(int x, int y, t_info *info)
   if (pos.x >= 0 && pos.x < W_W && pos.y >= 0 && pos.y < W_H)
     {
       if (!(room = IMG_Load("img/room.png")))
-	my_put_err("Room.png not found\n", TRUE);
-      SDL_BlitSurface(room, NULL, info->space, &pos);
+	return (my_put_error("Room.png not found\n"), 1);
+      if (SDL_BlitSurface(room, NULL, info->space, &pos) < 0)
+	return (1);
       free(room);
     }
+  return (0);
 }

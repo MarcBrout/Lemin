@@ -5,19 +5,21 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:20:38 2016 THEIS Paul
-** Last update Sun Apr 24 17:56:52 2016 marc brout
+** Last update Mon Apr 25 15:12:50 2016 marc brout
 */
 
 #include "main.h"
 
-void	update_all(char *id, char *room, t_info *info)
+int	update_all(char *id, char *room, t_info *info)
 {
-  del_ant_in_room(id, info, room);
-  add_ant_in_room(id, room, info);
-  update_screen(info);
+  if (del_ant_in_room(id, info, room) ||
+      add_ant_in_room(id, room, info) ||
+      update_screen(info))
+    return (1);
+  return (0);
 }
 
-void	ants_path(char *str, t_info *info)
+int	ants_path(char *str, t_info *info)
 {
   char	id[BUFF_SIZE];
   char	room[BUFF_SIZE];
@@ -32,42 +34,51 @@ void	ants_path(char *str, t_info *info)
 	  while (str[i] != C_MIN)
 	    id[j++] = str[i++];
 	  id[j] = 0;
-	  if (str[i++] == C_MIN)
+	  if (str[i++] == C_MIN && !(j = 0))
 	    {
-	      j = 0;
 	      while (str[i] && str[i] != C_SPACE)
 		room[j++] = str[i++];
 	      room[j] = 0x00;
 	    }
-	  update_all(id, room, info);
+	  if (update_all(id, room, info))
+	    return (1);
 	}
       i += ((str[i]) ? (1) : (0));
     }
-  info->round++;
+  return (info->round++, 0);
 }
 
-void	set_ants(int total, t_info *info, char *id)
+int	set_ants(int total, t_info *info, char *id)
 {
   int	i;
 
   i = -1;
   while (++i < total)
     {
-      info->ants[i].id = xalloc(BUFF_SIZE * sizeof(char));
-      sprintf(info->ants[i].id, "%d", i + 1);
-      info->ants[i].room = xalloc(BUFF_SIZE * sizeof(char));
-      sprintf(info->ants[i].room, "%s", id);
+      if (!(info->ants[i].id =
+	    xalloc(BUFF_SIZE * sizeof(char))) ||
+	  !(sprintf(info->ants[i].id, "%d", i + 1)) ||
+	  !(info->ants[i].room =
+	    xalloc(BUFF_SIZE * sizeof(char))) ||
+	  !(sprintf(info->ants[i].room, "%s", id)))
+	return (1);
     }
+  return (0);
 }
 
-void	put_ants_room(t_info *info, int nbr)
+int	put_ants_room(t_info *info, int nbr)
 {
   int	i;
 
-  i = -1;
-  while (++i < BUFF_SIZE)
-    if (info->elem[i].id != NULL)
-      if (info->elem[i].nbr_ants == nbr)
-	set_ants(info->elem[i].nbr_ants, info,
-		 info->elem[i].id);
+  i = 0;
+  while (i < BUFF_SIZE)
+    {
+      if (info->elem[i].id != NULL)
+	if (info->elem[i].nbr_ants == nbr)
+	  if (set_ants(info->elem[i].nbr_ants, info,
+		       info->elem[i].id))
+	    return (1);
+      ++i;
+    }
+  return (0);
 }

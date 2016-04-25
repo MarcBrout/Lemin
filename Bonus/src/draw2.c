@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:22:38 2016 THEIS Paul
-** Last update Mon Apr 25 13:08:03 2016 marc brout
+** Last update Mon Apr 25 15:26:05 2016 marc brout
 */
 
 #include "main.h"
@@ -88,15 +88,17 @@ void		draw_line(SDL_Rect *pos1, SDL_Rect *pos2, t_info *info)
     }
 }
 
-void		draw_tunel(char *id1, char *id2, t_info *info)
+int		draw_tunel(char *id1, char *id2, t_info *info)
 {
   int		i;
   SDL_Rect	*pos1;
   SDL_Rect	*pos2;
 
-  pos1 = xalloc(sizeof(SDL_Rect));
+  if (!(pos1 = xalloc(sizeof(SDL_Rect))))
+    return (1);
   init_SDL_Rect(pos1);
-  pos2 = xalloc(sizeof(SDL_Rect));
+  if (!(pos2 = xalloc(sizeof(SDL_Rect))))
+    return (1);
   init_SDL_Rect(pos2);
   i = -1;
   while (++i < BUFF_SIZE)
@@ -114,5 +116,5 @@ void		draw_tunel(char *id1, char *id2, t_info *info)
   pos2->y = pos2->y * info->spacer.y + 50;
   draw_line(pos1, pos2, info), aff_room(pos1->x, pos1->y, info);
   aff_room(pos2->x, pos2->y, info);
-  free(pos1), free(pos2);
+  return (free(pos1), free(pos2), 0);
 }

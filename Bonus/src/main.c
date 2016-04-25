@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:16:42 2016 THEIS Paul
-** Last update Mon Apr 25 13:37:02 2016 marc brout
+** Last update Mon Apr 25 15:15:22 2016 marc brout
 */
 
 #include "main.h"
@@ -29,10 +29,8 @@ int		main()
     return (1);
   my_bzero(info, sizeof(t_info), 0);
   quit = 0;
-  if (init(info))
+  if (init(info) ||  parse(info) || update_screen(info))
     return (1);
-  parse(info);
-  update_screen(info);
   while (!(quit))
     {
       SDL_WaitEvent(&event);

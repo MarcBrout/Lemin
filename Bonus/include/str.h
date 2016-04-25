@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Mar 30 20:03:42 2016 THEIS Paul
-** Last update Wed Apr 20 18:45:55 2016 THEIS Paul
+** Last update Mon Apr 25 16:14:22 2016 THEIS Paul
 */
 
 #ifndef STR_H_
@@ -57,5 +57,7 @@ char	*epur_str(char *str);
 char	*my_strchr(char *, char);
 bool	is_char_space(char);
 int	my_getnbr(char *);
+
+char	*my_putnbr_char(int nb);
 
 #endif /* !STR_H_ */

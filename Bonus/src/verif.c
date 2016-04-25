@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:24:29 2016 THEIS Paul
-** Last update Mon Apr 25 17:11:15 2016 marc brout
+** Last update Mon Apr 25 19:18:18 2016 benjamin duhieu
 */
 
 #include "main.h"
@@ -28,7 +28,7 @@ int	verif_id_ant(t_info *info, char *id)
 
   i = -1;
   while (++i < BUFF_SIZE / 4)
-    if (info->ants[i].id != NULL)
+    if (info->ants[i].id != NULL && id)
       if (my_strcmp(info->ants[i].id, id) == 0)
 	return (i);
   return (my_put_error("Error : Ant not found\n"), -1);

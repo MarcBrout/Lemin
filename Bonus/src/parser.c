@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:19:44 2016 THEIS Paul
-** Last update Mon Apr 25 17:10:39 2016 marc brout
+** Last update Mon Apr 25 19:04:46 2016 benjamin duhieu
 */
 
 #include "main.h"
@@ -80,7 +80,7 @@ int		parse_path(char *str, t_info *info)
       nbr++;
     else
       nbr = 0;
-  if (nbr == my_strlen(str))
+  if (nbr == (unsigned int)my_strlen(str))
     {
       if (my_getnbr(str) >= (BUFF_SIZE/4) - 1)
 	return (my_put_error("Too much ants.\n"), 1);

@@ -5,10 +5,11 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Apr 25 13:48:01 2016 benjamin duhieu
-** Last update Mon Apr 25 15:57:56 2016 benjamin duhieu
+** Last update Mon Apr 25 16:34:23 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "main.h"
 
 char	*concat_str(char *tmp, char *tmp2)
@@ -25,17 +26,25 @@ char	*concat_str(char *tmp, char *tmp2)
   fin[i] = 0;
   a = -1;
   b = -1;
+  printf("tmp : %s && tmp2 : %s\n", tmp, tmp2);
   num = FALSE;
   while (++a < i)
     {
       if (!num)
 	{
 	  fin[a] = tmp[++b];
-	  if (b >= my_strlen(tmp) && (num = TRUE))
-	    b = -1;
+	  printf("fin[%d] : %c\n", a, fin[a]);
+	  if (b + 1 >= my_strlen(tmp))
+	    {
+	      num = TRUE;
+	      b = -1;
+	    }
 	}
       else
-	fin[a] = tmp[++b];
+	{
+	  fin[a] = tmp2[++b];
+	  printf("-fin[%d] : %c-\n", a, fin[a]);
+	}
     }
   return (fin);
 }

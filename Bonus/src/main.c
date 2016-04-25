@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:16:42 2016 THEIS Paul
-** Last update Mon Apr 25 15:46:12 2016 marc brout
+** Last update Mon Apr 25 16:39:32 2016 benjamin duhieu
 */
 
 #include "main.h"
@@ -19,6 +19,26 @@ int		init(t_info *info)
   return (0);
 }
 
+char	*reverse_str(char *str)
+{
+  char	*rev;
+  int	i;
+  int	j;
+
+  i = my_strlen(str);
+  if (!(rev = malloc(i + 1)))
+    return (NULL);
+  j = -1;
+  rev[i] = 0;
+  while (str && str[++j])
+    {
+      rev[i] = str[j];
+      i--;
+    }
+  free(str);
+  return (rev);
+}
+
 char	*my_putnbr_char(int nb)
 {
   char	*str;
@@ -30,14 +50,11 @@ char	*my_putnbr_char(int nb)
   my_bzero(str, 21, 0);
   while (nb != 0)
     {
-      if (nb >= 10)
-	{
-	  nb = nb / 10;
-	  nb = nb % 10;
-	}
-      else
-	str[i++] = nb + '0';
+      str[i++] = nb % 10 + '0';
+      nb = nb / 10;
     }
+  if (!(str = reverse_str(str)))
+    return (NULL);
   return (str);
 }
 

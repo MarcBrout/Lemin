@@ -1,3 +1,4 @@
+
 /*
 ** main.h for bonus in ~/git/CPE/CPE_2015_Lemin/Bonus/include/
 **
@@ -5,12 +6,11 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:30:56 2016 THEIS Paul
-** Last update Mon Apr 25 17:30:35 2016 marc brout
+** Last update Mon Apr 25 20:36:28 2016 marc brout
 */
 
 #ifndef MAIN_H
 # define MAIN_H
-
 
 # define	W_W		(1280)
 # define	STATBAR_H	(50)
@@ -159,7 +159,6 @@ int		add_ant_in_room(char *id, char *room, t_info *info);
 */
 int		aff_info_all(t_info *info);
 
-
 /*
 ** ADD
 */
@@ -171,4 +170,4 @@ void		my_bzero(void *ptr, int size, char val);
 int		my_strcmp(char *str, char *str2);
 void		my_put_error(char *str);
 
-#endif /* MAIN_H */
+#endif /* !MAIN_H */

@@ -5,14 +5,14 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Tue Apr 19 11:40:45 2016 THEIS Paul
-** Last update Mon Apr 25 16:09:41 2016 THEIS Paul
+** Last update Mon Apr 25 19:45:54 2016 marc brout
 */
 
 #include "main.h"
 
 int	init_struct(t_info *info)
 {
-  info->speed = 20;
+  info->speed = 50;
   info->opt = 0;
   info->round = 0;
   if (TTF_Init() == -1)

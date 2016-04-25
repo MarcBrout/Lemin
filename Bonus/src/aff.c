@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:25:04 2016 THEIS Paul
-** Last update Mon Apr 25 17:30:56 2016 marc brout
+** Last update Mon Apr 25 17:31:47 2016 marc brout
 */
 
 #include "main.h"
@@ -67,9 +67,9 @@ int		aff_info(char *id_room, int x, int y, t_info *info)
   ((info->elem[id].opt == 1) ? (set_color(&color, 255, 0, 0)) :
    ((info->elem[id].opt == 2) ? (set_color(&color, 0, 255, 0)) :
     set_color(&color, 230, 230, 230)));
-  if (!(str = my_strdup(JOIN(JOIN(JOIN(JOIN("#", id_room), " - "),
-				  NB_CH(info->elem[id].nbr_ants)),
-			     " Ants"))))
+  if (!(str =
+	my_strdup(JOIN(JOIN(JOIN(JOIN("#", id_room), " - "),
+			    NB_CH(info->elem[id].nbr_ants)), " Ants"))))
     return (1);
   if (x >= 0 && x < info->screen->w && y >= 0 && y < info->screen->h)
     pos = set_pos(x - 25, y + 30);

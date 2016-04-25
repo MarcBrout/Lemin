@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.net>
 **
 ** Started on  Mon Feb 29 21:02:04 2016 Paul THEIS
-** Last update Sun Apr 10 00:00:30 2016 THEIS Paul
+** Last update Mon Apr 25 15:17:34 2016 Paul THEIS
 */
 
 #ifndef DISLAY_H_
@@ -14,7 +14,7 @@
 # include "main.h"
 
 /*
-** Allocation opttions
+** Allocation options
 */
 
 void    *xalloc(const size_t);
@@ -22,7 +22,7 @@ void    *xealloc(void *, const size_t);
 void    *xcalloc(size_t, const size_t);
 
 /*
-** Output opttions
+** Output options
 */
 
 bool    my_put_err(char *, const bool);

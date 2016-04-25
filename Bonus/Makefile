@@ -5,31 +5,31 @@
 ## Login   <brout_m@epitech.net>
 ## 
 ## Started on  Sun Apr 24 17:02:29 2016 marc brout
-## Last update Mon Apr 25 13:06:18 2016 marc brout
+## Last update Mon Apr 25 15:14:53 2016 Paul THEIS
 ##
 
 NAME		=	visu-hex
 
-SRC		=	main.c \
+SRC		=	main.c		\
 			get_next_line.c	\
-			refresh.c \
-			ants.c \
-			draw2.c	\
-			draw.c \
-			parser.c \
-			thread.c \
-			verif.c \
-			aff.c \
-			init.c \
-			str.c \
-			str2.c \
-			str3.c \
-			str4.c \
-			str5.c \
-			error.c	\
-			tool.c \
-			tool2.c \
-			my_bzero.c \
+			refresh.c	\
+			ants.c		\
+			draw2.c		\
+			draw.c		\
+			parser.c	\
+			thread.c	\
+			verif.c		\
+			aff.c		\
+			init.c		\
+			str.c		\
+			str2.c		\
+			str3.c		\
+			str4.c		\
+			str5.c		\
+			error.c		\
+			tool.c		\
+			tool2.c		\
+			my_bzero.c	\
 			my_strcmp.c
 
 OBJ			= $(addprefix src/, $(SRC:.c=.o))

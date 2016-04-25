@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:20:38 2016 THEIS Paul
-** Last update Mon Apr 25 14:56:03 2016 THEIS Paul
+** Last update Mon Apr 25 15:16:39 2016 Paul THEIS
 */
 
 #include "main.h"
@@ -32,9 +32,8 @@ void	ants_path(char *str, t_info *info)
 	  while (str[i] != C_MIN)
 	    id[j++] = str[i++];
 	  id[j] = 0;
-	  if (str[i++] == C_MIN)
+	  if (str[i++] == C_MIN && !(j = 0))
 	    {
-	      j = 0;
 	      while (str[i] && str[i] != C_SPACE)
 		room[j++] = str[i++];
 	      room[j] = 0x00;
@@ -55,8 +54,7 @@ void	set_ants(int total, t_info *info, char *id)
     {
       info->ants[i].id = xalloc(BUFF_SIZE * sizeof(char));
       sprintf(info->ants[i].id, "%d", i + 1);
-      //info->ants[i].room = xalloc(BUFF_SIZE * sizeof(char));
-      info->ants[i].room = my_strdup(id); //sprintf(info->ants[i].room, "%s", id);
+      info->ants[i].room = my_strdup(id);
     }
 }
 

@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:30:56 2016 THEIS Paul
-** Last update Mon Apr 25 15:58:27 2016 benjamin duhieu
+** Last update Mon Apr 25 17:30:35 2016 marc brout
 */
 
 #ifndef MAIN_H
@@ -24,6 +24,8 @@
 # define	C_FLAG		'P'
 # define	C_MIN		'-'
 # define	C_SPACE		' '
+# define	JOIN		my_strjoin
+# define	NB_CH		my_putnbr_char
 
 # include 	<stdio.h>
 # include 	<unistd.h>

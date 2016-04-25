@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:16:42 2016 THEIS Paul
-** Last update Mon Apr 25 19:03:13 2016 benjamin duhieu
+** Last update Mon Apr 25 19:44:16 2016 marc brout
 */
 
 #include "main.h"
@@ -28,13 +28,10 @@ char	*reverse_str(char *str)
   i = my_strlen(str);
   if (!(rev = malloc(i + 1)))
     return (NULL);
-  j = -1;
   rev[i] = 0;
-  while (str && str[++j])
-    {
-      rev[i] = str[j];
-      i--;
-    }
+  j = -1;
+  while (str && --i >= 0)
+    rev[++j] = str[i];
   free(str);
   return (rev);
 }

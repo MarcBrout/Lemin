@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Apr 25 13:48:01 2016 benjamin duhieu
-** Last update Mon Apr 25 16:34:23 2016 benjamin duhieu
+** Last update Mon Apr 25 19:44:02 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -26,14 +26,12 @@ char	*concat_str(char *tmp, char *tmp2)
   fin[i] = 0;
   a = -1;
   b = -1;
-  printf("tmp : %s && tmp2 : %s\n", tmp, tmp2);
   num = FALSE;
   while (++a < i)
     {
       if (!num)
 	{
 	  fin[a] = tmp[++b];
-	  printf("fin[%d] : %c\n", a, fin[a]);
 	  if (b + 1 >= my_strlen(tmp))
 	    {
 	      num = TRUE;
@@ -41,10 +39,7 @@ char	*concat_str(char *tmp, char *tmp2)
 	    }
 	}
       else
-	{
-	  fin[a] = tmp2[++b];
-	  printf("-fin[%d] : %c-\n", a, fin[a]);
-	}
+	fin[a] = tmp2[++b];
     }
   return (fin);
 }

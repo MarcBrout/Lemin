@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:25:04 2016 THEIS Paul
-** Last update Mon Apr 25 17:31:47 2016 marc brout
+** Last update Mon Apr 25 19:43:13 2016 marc brout
 */
 
 #include "main.h"
@@ -32,13 +32,6 @@ int		aff_round(t_info *info)
   SDL_Color	color;
   char		*str;
 
-  /* sprintf(str, "Round : %d   |   Room: %d   |   Ants: %d"\ */
-  /* 	  "{Ant Man}"\ */
-  /* 	  "              Start: %d    |    End: %d    |    Between: %d", */
-  /* 	  info->round, info->nbr_room, info->nbr_ants, */
-  /* 	  get_room(info, TRUE), */
-  /* 	  get_room(info, FALSE), info->nbr_ants - */
-  /* 	  (get_room(info, TRUE) + get_room(info, FALSE))); */
   if (!(str = text_round(info)))
     return (1);
   set_color(&color, 230, 230, 230);

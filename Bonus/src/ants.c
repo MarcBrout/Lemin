@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:20:38 2016 THEIS Paul
-** Last update Sun Apr 24 17:56:52 2016 marc brout
+** Last update Mon Apr 25 14:56:03 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -55,8 +55,8 @@ void	set_ants(int total, t_info *info, char *id)
     {
       info->ants[i].id = xalloc(BUFF_SIZE * sizeof(char));
       sprintf(info->ants[i].id, "%d", i + 1);
-      info->ants[i].room = xalloc(BUFF_SIZE * sizeof(char));
-      sprintf(info->ants[i].room, "%s", id);
+      //info->ants[i].room = xalloc(BUFF_SIZE * sizeof(char));
+      info->ants[i].room = my_strdup(id); //sprintf(info->ants[i].room, "%s", id);
     }
 }
 

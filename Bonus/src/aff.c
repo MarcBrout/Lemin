@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:25:04 2016 THEIS Paul
-** Last update Mon Apr 25 15:12:07 2016 benjamin duhieu
+** Last update Mon Apr 25 15:22:24 2016 benjamin duhieu
 */
 
 #include "main.h"
@@ -58,11 +58,11 @@ void		aff_info(char *id_room, int x, int y, t_info *info)
   char		str[BUFF_SIZE];
 
   id = verif_id(info, id_room);
+  txt = NULL;
   ((info->elem[id].opt == 1) ? (set_color(&color, 255, 0, 0)) :
    ((info->elem[id].opt == 2) ? (set_color(&color, 0, 255, 0)) :
     set_color(&color, 230, 230, 230)));
   sprintf(str, "#%s - %d ants", id_room, info->elem[id].nbr_ants);
-  txt = NULL;
   if (x >= 0 && x < info->screen->w && y >= 0 && y < info->screen->h)
     pos = set_pos(x - 25, y + 30);
   if (pos.x >= 0 && pos.x < W_W && pos.y >= 0 && pos.y < W_H)

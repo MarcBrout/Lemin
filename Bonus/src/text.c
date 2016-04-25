@@ -5,13 +5,13 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Apr 25 13:48:01 2016 benjamin duhieu
-** Last update Mon Apr 25 15:56:16 2016 marc brout
+** Last update Mon Apr 25 15:57:56 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
 #include "main.h"
 
-char	*my_strcat(char *tmp, char *tmp2)
+char	*concat_str(char *tmp, char *tmp2)
 {
   int	i;
   int	b;
@@ -44,11 +44,11 @@ char	*concat_str_int(char *tmp, char *tmp2, char *str, int nb)
 {
   if (!(tmp2 = my_strdup(str)))
     return (NULL);
-  if (!(tmp = my_strcat(tmp, tmp2)))
+  if (!(tmp = concat_str(tmp, tmp2)))
     return (NULL);
   if (!(tmp2 = my_putnbr_char(nb)))
     return (NULL);
-  if (!(tmp = my_strcat(tmp, tmp2)))
+  if (!(tmp = concat_str(tmp, tmp2)))
     return (NULL);
   return (tmp);
 }
@@ -60,7 +60,7 @@ char	*text_round(t_info *info)
 
   if (!(tmp = my_strdup("Round : ")) ||
       !(tmp2 = my_putnbr_char(info->round)) ||
-      !(tmp = my_strcat(tmp, tmp2)) ||
+      !(tmp = concat_str(tmp, tmp2)) ||
       !(tmp = concat_str_int(tmp, tmp2, "   |    Room: ",
 			     info->nbr_room)) ||
       !(tmp = concat_str_int(tmp, tmp2, "   |    Ants: ",

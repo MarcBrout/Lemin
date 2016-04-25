@@ -5,11 +5,10 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Apr 25 13:48:01 2016 benjamin duhieu
-** Last update Mon Apr 25 15:43:08 2016 benjamin duhieu
+** Last update Mon Apr 25 15:56:16 2016 marc brout
 */
 
 #include <stdlib.h>
-#include <stdbool.h>
 #include "main.h"
 
 char	*my_strcat(char *tmp, char *tmp2)
@@ -26,13 +25,13 @@ char	*my_strcat(char *tmp, char *tmp2)
   fin[i] = 0;
   a = -1;
   b = -1;
-  num = false;
+  num = FALSE;
   while (++a < i)
     {
       if (!num)
 	{
 	  fin[a] = tmp[++b];
-	  if (b >= my_strlen(tmp) && (num = true))
+	  if (b >= my_strlen(tmp) && (num = TRUE))
 	    b = -1;
 	}
       else
@@ -59,23 +58,19 @@ char	*text_round(t_info *info)
   char	*tmp;
   char	*tmp2;
 
-  if (!(tmp = my_strdup("Round : ")))
-    return (NULL);
-  if (!(tmp2 = my_putnbr_char(info->round)))
-    return (NULL);
-  if (!(tmp = my_strcat(tmp, tmp2)))
-    return (NULL);
-  if (!(tmp = concat_str_int(tmp, tmp2, "   |    Room: ", info->nbr_room)))
-    return (NULL);
-  if (!(tmp = concat_str_int(tmp, tmp2, "   |    Ants: ", info->nbr_ants)))
-    return (NULL);
-  if (!(tmp = concat_str_int(tmp, tmp2, "{Ant Man}              Start: ",
-			     get_room(info, TRUE))))
-    return (NULL);
-  if (!(tmp = concat_str_int(tmp, tmp2, "   |    End: ",
-			     get_room(info, FALSE))))
-    return (NULL);
-  if (!(tmp = concat_str_int(tmp, tmp2, "   |    Between: ",
+  if (!(tmp = my_strdup("Round : ")) ||
+      !(tmp2 = my_putnbr_char(info->round)) ||
+      !(tmp = my_strcat(tmp, tmp2)) ||
+      !(tmp = concat_str_int(tmp, tmp2, "   |    Room: ",
+			     info->nbr_room)) ||
+      !(tmp = concat_str_int(tmp, tmp2, "   |    Ants: ",
+			     info->nbr_ants)) ||
+      !(tmp = concat_str_int(tmp, tmp2,
+			     "{Ant Man}              Start: ",
+			     get_room(info, TRUE))) ||
+      !(tmp = concat_str_int(tmp, tmp2, "   |    End: ",
+			     get_room(info, FALSE))) ||
+      !(tmp = concat_str_int(tmp, tmp2, "   |    Between: ",
 			     info->nbr_ants - (get_room(info, TRUE) +
 					       get_room(info, FALSE)))))
     return (NULL);

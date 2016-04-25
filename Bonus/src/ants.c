@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:20:38 2016 THEIS Paul
-** Last update Mon Apr 25 15:41:36 2016 THEIS Paul
+** Last update Mon Apr 25 16:31:52 2016 THEIS Paul
 */
 
 #include "main.h"
@@ -57,7 +57,7 @@ int	set_ants(int total, t_info *info, char *id)
     {
       if (!(info->ants[i].id =
 	    xalloc(BUFF_SIZE * sizeof(char))) ||
-	  !(sprintf(info->ants[i].id, "%d", i + 1)) ||
+	  !(info->ants[i].id = my_strdup(my_putnbr_char(i + 1))) ||
 	  !(info->ants[i].room =
 	    xalloc(BUFF_SIZE * sizeof(char))) ||
 	  !(info->ants[i].room = my_strdup(id)))

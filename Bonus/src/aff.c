@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:25:04 2016 THEIS Paul
-** Last update Mon Apr 25 15:54:49 2016 marc brout
+** Last update Mon Apr 25 17:31:47 2016 marc brout
 */
 
 #include "main.h"
@@ -59,7 +59,7 @@ int		aff_info(char *id_room, int x, int y, t_info *info)
   SDL_Surface	*txt;
   SDL_Color	color;
   int		id;
-  char		str[BUFF_SIZE];
+  char		*str;
 
   if ((id = verif_id(info, id_room)) < 0)
     return (1);
@@ -67,15 +67,16 @@ int		aff_info(char *id_room, int x, int y, t_info *info)
   ((info->elem[id].opt == 1) ? (set_color(&color, 255, 0, 0)) :
    ((info->elem[id].opt == 2) ? (set_color(&color, 0, 255, 0)) :
     set_color(&color, 230, 230, 230)));
-  sprintf(str, "#%s - %d ants", id_room, info->elem[id].nbr_ants);
+  if (!(str =
+	my_strdup(JOIN(JOIN(JOIN(JOIN("#", id_room), " - "),
+			    NB_CH(info->elem[id].nbr_ants)), " Ants"))))
+    return (1);
   if (x >= 0 && x < info->screen->w && y >= 0 && y < info->screen->h)
     pos = set_pos(x - 25, y + 30);
   if (pos.x >= 0 && pos.x < W_W && pos.y >= 0 && pos.y < W_H)
-    {
-      if (!(txt = TTF_RenderText_Blended(info->font, str, color)) ||
-	  SDL_BlitSurface(txt, NULL, info->screen, &pos) < 0)
-	return (1);
-    }
+    if (!(txt = TTF_RenderText_Blended(info->font, str, color)) ||
+	SDL_BlitSurface(txt, NULL, info->screen, &pos) < 0)
+      return (1);
   if (txt)
     free(txt);
   return (0);

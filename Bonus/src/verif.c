@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:24:29 2016 THEIS Paul
-** Last update Mon Apr 25 15:28:33 2016 marc brout
+** Last update Mon Apr 25 17:11:15 2016 marc brout
 */
 
 #include "main.h"
@@ -42,7 +42,7 @@ int	save_room(char *id, SDL_Rect *pos, t_info *info, int opt)
   info->elem[info->nbr_room].pos.x = pos->x;
   info->elem[info->nbr_room].pos.y = pos->y;
   info->elem[info->nbr_room].opt = opt;
-  if (!(info->elem[info->nbr_room].id = xalloc((strlen(id) + 1)
+  if (!(info->elem[info->nbr_room].id = xalloc((my_strlen(id) + 1)
 					       * sizeof(*id))))
     return (1);
   my_bzero(info->elem[info->nbr_room].id,

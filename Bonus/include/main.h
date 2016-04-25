@@ -5,7 +5,11 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:30:56 2016 THEIS Paul
+<<<<<<< HEAD
 ** Last update Mon Apr 25 15:45:06 2016 THEIS Paul
+=======
+** Last update Mon Apr 25 15:51:58 2016 marc brout
+>>>>>>> bf749a8368e583d9c527d7d1df4a0e1f7306a2fb
 */
 
 #ifndef MAIN_H
@@ -106,9 +110,12 @@ int		aff_round(t_info *info);
 int		aff_info(char *id_room, int x, int y, t_info *info);
 int		aff_room(int x, int y, t_info *info);
 char		*text_round(t_info *info);
-char		*concat_str_int(char *tmp, char *tmp2, char *str, int nb);
+char		*concat_str_int(char *tmp, char *tmp2,
+				char *str, int nb);
 char		*my_strcat(char *tmp, char *tmp2);
 char		*my_putnbr_char(int nb);
+int		get_room(t_info *info, bool a);
+
 /*
 **VERIF
 */
@@ -153,6 +160,7 @@ int		add_ant_in_room(char *id, char *room, t_info *info);
 **THREAD
 */
 int		aff_info_all(t_info *info);
+
 
 /*
 ** ADD

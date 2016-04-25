@@ -5,7 +5,7 @@
 ** Login   <theis_p@epitech.eu>
 **
 ** Started on  Wed Apr 20 11:24:04 2016 THEIS Paul
-** Last update Mon Apr 25 15:27:32 2016 marc brout
+** Last update Mon Apr 25 15:48:22 2016 marc brout
 */
 
 #include "main.h"
@@ -34,6 +34,7 @@ int	aff_info_all(t_info *info)
 	}
       i++;
     }
+  return (0);
 }
 
 int	parse_thread(char *str, t_info *info)

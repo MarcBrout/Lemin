@@ -5,7 +5,7 @@
 ## Login   <duhieu_b@epitech.net>
 ## 
 ## Started on  Fri Apr  8 15:45:04 2016 benjamin duhieu
-## Last update Sun Apr 24 17:16:21 2016 marc brout
+## Last update Mon Apr 25 20:10:00 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -111,21 +111,16 @@ $(LIB)		:	$(OBJSLIB)
 			@cp $(LIBPATH)/my/get_next_line.h include/
 			@$(ECHO) "$(GREEN)\n> Compiling Library\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
-bonus		:	
-			make -C Bonus/
-
 all		:	$(NAME)
 
 clean		:
 			@$(RM) $(OBJS)
 			@$(RM) $(OBJSLIB)
-			make clean -C Bonus
 			@$(ECHO) "$(GREEN)\n> Cleaning repository\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
 fclean		: 	clean
 			@$(RM) $(NAME)
 			@$(RM) $(LIBPATH)/libmy.a
-			@$(RM) Bonus/visu-hex
 			@$(ECHO) "$(GREEN)\n> Cleaning exec\t\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
 re		:	fclean all
